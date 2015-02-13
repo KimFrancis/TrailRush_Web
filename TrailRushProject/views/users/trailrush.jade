@@ -1,0 +1,456 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Scrolling Nav - Start Bootstrap Template
+    link(href='stylesheets/bootstrap.min.css', rel='stylesheet')
+    link(href='stylesheets/scrolling-nav.css', rel='stylesheet')
+    link(href='stylesheets/newscarousel.css', rel='stylesheet')
+    link(href='stylesheets/project.css', rel='stylesheet')
+  body#page-top(data-spy='scroll', data-target='.navbar-fixed-top')
+    // Navigation
+    nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+      .container
+        .navbar-header.page-scroll
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand.page-scroll(href='#page-top')
+            img(src='img/logo.png', height='18', width='140')
+        // Collect the nav links, forms, and other content for toggling
+        .collapse.navbar-collapse.navbar-ex1-collapse.navHeaderCollapse
+          ul.nav.navbar-nav.navbar-right
+            // Hidden li included to remove active class from about link when scrolled up past about section
+            li.hidden
+              a.page-scroll(href='#page-top')
+            li
+              a.page-scroll(href='#about') About
+            li
+              a.page-scroll(href='#services') Services
+            li.dropdown
+              a.page-scroll(href='#events') Events
+            li
+              a(href='#onlinereg', data-toggle='modal') Online Registration
+            li
+              a.page-scroll(href='#contacts') Contact
+    #onlinereg.modal.fade(role='dialog')
+      .modal-dialog
+        .modal-content
+          form.form-horizontal
+            .modal-header
+              h2 Online Registration
+            .modal-body
+              .form-group
+                label.col-lg-2.control-label(for='signup-name') Name:
+                .col-lg-10
+                  input#signup-name.form-control(type='text', placeholder='Full Name')
+                br
+              .form-group
+                label.col-lg-2.control-label(for='signup-email') Email:
+                .col-lg-10
+                  input#signup-email.form-control(type='email', placeholder='Email')
+                br
+              .form-group
+                label.col-lg-2.control-label(for='signup-number') Contact:
+                .col-lg-5
+                  input#signup-number.form-control(type='number', placeholder='Number')
+                br
+              .form-group
+                label.col-lg-2.control-label(for='signup-age') Age:
+                .col-lg-2
+                  input#signup-age.form-control(type='number', placeholder='Age')
+                br
+              .form-group
+                label.col-lg-2.control-label(for='signup-gender') Gender:
+                .col-lg-3
+                  select#signup-gender.form-control(placeholder='Gender')
+                    option Male
+                    option Female
+              .form-group
+                label.col-lg-2.control-label(for='signup-address') Address:
+                .col-lg-10
+                  input#signup-address.form-control(type='text', placeholder='Address')
+                br
+              .form-group
+                label.col-lg-2.control-label(for='signup-event') Event:
+                .col-lg-10
+                  select#signup-event.form-control(placeholder='chooseanevent')
+                    option Events
+                    option Los Angeles
+                    option Tokyo
+                    option New York
+                    option London
+            .modal-footer
+              button.btn.btn-primary(type='submit') Submit
+              a.btn.btn-default(data-dismiss='modal') Close
+    #thumbnail-preview-indicators.carousel.slide(data-ride='carousel')
+      // Indicators
+      .carousel-inner
+        .item.slides.active
+          .slide-1
+          .container
+            .carousel-caption
+              h1 New carousel layout
+              p Responsive thumbnail preview in carousel indicators.
+              p
+                a.btn.btn-lg.btn-primary(href='#', role='button') Sign up today
+        .item.slides
+          .slide-2
+          .container
+            .carousel-caption
+              h1 Another example headline.
+              p Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+              p
+                a.btn.btn-lg.btn-primary.page-scroll(href='#about', role='button') Learn more
+        .item.slides
+          .slide-3
+          .container
+            .carousel-caption
+              h1 One more for good measure.
+              p Nullam id dolor id nibh ultricies vehicula ut id elit.
+              p
+                a.btn.btn-lg.btn-primary(href='#', role='button') Browse gallery
+      a.left.carousel-control(href='#thumbnail-preview-indicators', role='button', data-slide='prev')
+        span.glyphicon.glyphicon-chevron-left
+      a.right.carousel-control(href='#thumbnail-preview-indicators', role='button', data-slide='next')
+        span.glyphicon.glyphicon-chevron-right
+    section#about.about-section
+      .container
+        //
+          <div class="jumbotron">
+          <div class="text-center">
+          <h1>About</h1>
+          <hr class="style-eight"></hr>
+          <p class="text-muted">Aliquam convallis, ipsum eget condimentum volutpat, leo orci malesuada purus, tempus imperdiet turpis leo et dui. Praesent pellentesque arcu id mauris iaculis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
+          </div>
+          </div>
+        .jumbotron
+          h1 About
+          p
+            | Nunc justo nulla, consectetur vitae laoreet eget, viverra sed est. Vestibulum sit amet sapien mi. Aenean blandit in lorem sed pulvinar. Proin eget efficitur turpis. Integer mauris eros, luctus quis interdum nec, tristique nec massa. Morbi eu risus non ligula varius vehicula a eget massa. Morbi cursus eros non interdum aliquam.
+    section#services.services-section
+      .container
+        .row
+          .col-lg-12
+            h1 Services
+        //
+          <div class="row">
+          <div class="col-md-6">
+          <div class="row">
+          <div class="col-xs-2">
+          <img src="img/settings48.png" class="img-responsive center-block ">
+          </div>
+          <div class="col-xs-9">
+          <h3><a href="#">Lorem Ipsum</a></h3>
+          <p>Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut. Ad alii sententiae duo.</p>
+          </div>
+          </div>
+          </div>
+          <div class="col-md-6">
+          <div class="row">
+          <div class="col-xs-2">
+          <img src="img/magnifier11.png" class="img-responsive center-block">
+          </div>
+          <div class="col-xs-9">
+          <h3><a href="#">Lorem Ipsum</a></h3>
+          <p>Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut. Ad alii sententiae duo.</p>
+          </div>
+          </div>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-6">
+          <div class="row">
+          <div class="col-xs-2">
+          <img src="img/people.png" class="img-responsive center-block">
+          </div>
+          <div class="col-xs-9">
+          <h3><a href="#">Lorem Ipsum</a></h3>
+          <p>Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut. Ad alii sententiae duo.</p>
+          </div>
+          </div>
+          </div>
+          <div class="col-md-6">
+          <div class="row">
+          <div class="col-xs-2">
+          <img src="img/responsive16.png" class="img-responsive center-block">
+          </div>
+          <div class="col-xs-9">
+          <h3><a href="#">Lorem Ipsum</a></h3>
+          <p>Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut. Ad alii sententiae duo.</p>
+          </div>
+          </div>
+          </div>
+          </div>
+        .row
+          .col-md-4
+            img.img-responsive(src='img/search24.png')
+            h3 Lorem Impsum
+            p
+              | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
+          .col-md-4
+            img.img-responsive(src='img/people3.png')
+            h3 Lorem Impsum
+            p
+              | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
+          .col-md-4
+            img.img-responsive(src='img/monitor46.png')
+            h3 Lorem Impsum
+            p
+              | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
+    section#events.events-section
+      .jumbotron
+        h1 Events
+        hr.style-two
+      .container
+        .row
+          // Blog Entries Column
+          .col-md-8
+            h1.page-header
+              | Current Events
+            .row
+              .col-lg-4.col-sm-4
+                #thumbnailevent
+                  img(src='img/Glow-Run-Poster_MS.jpg')
+                h3
+                  a(href='#') Lorem Ipsum
+                p.text-muted
+                  | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
+                a.btn.btn-primary(href='postresults.htm')
+                  | Read More
+                  span.glyphicon.glyphicon-chevron-right
+              .col-lg-4.col-sm-4
+                #thumbnailevent
+                  img(src='img/Run4aReason-Race_Poster_thumb[2].jpg')
+                h3
+                  a(href='#') Lorem Ipsum
+                p.text-muted
+                  | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
+                a.btn.btn-primary(href='eventpost.htm')
+                  | Read More 
+                  span.glyphicon.glyphicon-chevron-right
+              .col-lg-4.col-sm-4
+                #thumbnailevent
+                  img(src='img/fuego-sunset-run-2012-poster-723x1024.jpg')
+                h3
+                  a(href='#') Lorem Ipsum
+                p.text-muted
+                  | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
+                a.btn.btn-primary(href='eventpost.htm')
+                  | Read More 
+                  span.glyphicon.glyphicon-chevron-right
+            .row
+              .col-lg-4.col-sm-4
+                #thumbnailevent
+                  img(src='img/JLR13-Poster-Web.jpg')
+                h3
+                  a(href='#') Lorem Ipsum
+                p.text-muted
+                  | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
+                a.btn.btn-primary(href='eventpost.htm')
+                  | Read More
+                  span.glyphicon.glyphicon-chevron-right
+              .col-lg-4.col-sm-4
+                #thumbnailevent
+                  img(src='img/catbalogan-run-2012-poster.jpg')
+                h3
+                  a(href='#') Lorem Ipsum
+                p.text-muted
+                  | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
+                a.btn.btn-primary(href='eventpost.htm')
+                  | Read More
+                  span.glyphicon.glyphicon-chevron-right
+              .col-lg-4.col-sm-4
+                #thumbnailevent
+                  img(src='img/RU-Poster-Low-Res.jpg')
+                h3
+                  a(href='#') Lorem Ipsum
+                p.text-muted
+                  | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
+                a.btn.btn-primary(href='eventpost.htm')
+                  | Read More
+                  span.glyphicon.glyphicon-chevron-right
+          .col-md-4
+            h1.page-header
+              | Upcoming Events
+            include ./events.jade
+                
+                  
+            h1.page-header
+              | Past Events
+            //
+              <div class="list-group">
+              <a href="eventpostresults.htm" class = "list-group-item">
+              <h4 class="list-group-item-heading">Lorem ipsum</h4>
+              <p class="list-group-item-text">Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra.</p>
+              </a>
+              <a href="#" class = "list-group-item">
+              <h4 class="list-group-item-heading">Lorem ipsum</h4>
+              <p class="list-group-item-text">Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra.</p>
+              </a>
+              <a href="#" class = "list-group-item">
+              <h4 class="list-group-item-heading">Lorem ipsum</h4>
+              <p class="list-group-item-text">Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra.</p>
+              </a>
+              <a href="#" class = "list-group-item">
+              <h4 class="list-group-item-heading">Lorem ipsum</h4>
+              <p class="list-group-item-text">Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra.</p>
+              </a>
+              <a href="#" class = "list-group-item">
+              <h4 class="list-group-item-heading">Lorem ipsum</h4>
+              <p class="list-group-item-text">Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra.</p>
+              </a>
+              </div>
+            .row
+              .col-md-12
+                .row
+                  .col-xs-2
+                    img(src='img/7K-2013_poster.jpg', height='70', width='50')
+                  .col-xs-9
+                    h4
+                      a(href='eventpostresults.htm') Lorem Impusom Mothafucka
+                    p
+                      | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut
+            hr
+            .row
+              .col-md-12
+                .row
+                  .col-xs-2
+                    img(src='img/rogin-e-last-man-running-2-poster-661x1024.jpg', height='70', width='50')
+                  .col-xs-9
+                    h4
+                      a(href='#') Lorem Impusom Mothafucka
+                    p
+                      | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut
+            hr
+            .row
+              .col-md-12
+                .row
+                  .col-xs-2
+                    img(src='img/Run-of-the-mill-poster.jpg', height='70', width='50')
+                  .col-xs-9
+                    h4
+                      a(href='#') Lorem Impusom Mothafucka
+                    p
+                      | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut
+            hr
+            .row
+              .col-md-12
+                .row
+                  .col-xs-2
+                    img(src='img/FAVE-Run-2013-Poster.jpg', height='70', width='50')
+                  .col-xs-9
+                    h4
+                      a(href='#') Lorem Impusom Mothafucka
+                    p
+                      | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut
+            hr
+            .row
+              .col-md-12
+                .row
+                  .col-xs-2
+                    img(src='img/SWCC_Run_FoCA_Poster_11X17.jpg', height='70', width='50')
+                  .col-xs-9
+                    h4
+                      a(href='#') Lorem Impusom Mothafucka
+                    p
+                      | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut
+    #download.download-section
+      .container
+        .row
+          .col-md-8
+            img(src='img/iphonetablet.png')
+          .col-md-4
+            h1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            p
+              | Sed vitae nisi non leo vestibulum volutpat. Maecenas facilisis elementum neque, iaculis rhoncus lectus tincidunt ac. Mauris non tortor a dui auctor aliquet quis id ante. Aliquam elit erat, commodo vel turpis in, molestie convallis enim. In sem erat, aliquet nec porttitor a, sodales eu dolor.
+            #downloadbuttons
+              img(src='img/apple.png', height='40', width='120')
+              img(src='img/google.png', height='40', width='120')
+    #contacts.contacts-section
+      .container
+        #rowcontacts.row
+          .col-md-4
+            .row
+              h3 Contacts
+              .col-xs-2
+                img.img-responsive.center-block(src='img/localization3.png')
+              .col-xs-9
+                p Unit 14
+                p 3 Edgar Buildings
+                p George Street
+                p England
+            hr
+            .row
+              .col-xs-2
+                img.img-responsive.center-block(src='img/phone72.png')
+              .col-xs-9
+                p 63+ 09277861793
+            hr
+            .row
+              .col-xs-2
+                img.img-responsive.center-block(src='img/google110.png')
+              .col-xs-9
+                p trackermaster@gmail.com
+          .col-md-4
+            .row
+              h3 Social Media
+              .col-xs-2
+                img.img-responsive.center-block(src='img/facebok.png')
+              .col-xs-9
+                p facebook.com/trackermasterofficial
+            hr
+            .row
+              .col-xs-2
+                img.img-responsive.center-block(src='img/social71.png')
+              .col-xs-9
+                p twitter.com/trackermasterofficial
+            hr
+            .row
+              .col-xs-2
+                img.img-responsive.center-block(src='img/instagram13.png')
+              .col-xs-9
+                p instagram.com/trackermasterofficial
+          .col-md-4
+            form#contactForm(name='sentMessage', novalidate='')
+              .row
+                h3 Get in Touch
+                .col-lg-12
+                  .form-group
+                    input#name.form-control(type='text', placeholder='Your Name *', required='', data-validation-required-message='Please enter your name.')
+                    p.help-block.text-danger
+                  .form-group
+                    input#email.form-control(type='email', placeholder='Your Email *', required='', data-validation-required-message='Please enter your email address.')
+                    p.help-block.text-danger
+                  .form-group
+                    textarea#message.form-control(placeholder='Your Message *', required='', data-validation-required-message='Please enter a message.', rows='3')
+                    p.help-block.text-danger
+                .col-lg-12
+                  #success
+                  button.btn.btn-xl(type='submit') Send
+    footer
+      #socialmedias
+        //
+          <ul>
+          <li>
+          <img src="public/images/facebok.png"></img></li>
+          <li>
+          <img src="public/images/instagram13.png"></img></li>
+          <li>
+          <img src="public/images/social71.png"></img></li>
+          </ul>
+        p Copyright © Trail Rush 2015
+    script(src='javascripts/jquery.js')
+    script(src='javascripts/scrollingproject.js')
+    // Bootstrap Core JavaScript
+    script(src='javascripts/bootstrap.min.js')
+    // Scrolling Nav JavaScript
+    script(src='javascripts/jquery.easing.min.js')
+    script(src='javascripts/scrolling-nav.js')
+    script(src='javascripts/newscarousel.js')

@@ -1,0 +1,17 @@
+{
+  "name": "TrailRush",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.19.0",
+    "jade": "*",
+    "less-middleware": "~0.1.15",
+    "mongoose": "3.8.21"
+  },
+  "devDependencies": {
+     "nodemon" : "*"
+   }
+}

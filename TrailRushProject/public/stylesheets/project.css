@@ -1,0 +1,347 @@
+
+#about {
+    background-image: url(../img/artist_desk_w1.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    height:720px;
+    color:#1D1D1D;
+}
+#about h1 {
+    font-size: 40px;
+    font-weight: 800;
+    padding-bottom: 20px;
+}
+#about .container {
+    padding-top: 140px;
+}
+#about .container .jumbotron{
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 0px;
+    width: 500px;
+    background-color: rgba(255,255,255,0.5);
+    text-align: center;
+}
+
+
+#events{
+    background-color: white;
+    padding-bottom: 150px;
+}
+#events #myCarousel .carousel-inner {
+    height:400px; 
+    width:760px;
+}
+#events .jumbotron{
+    background-image:url(../img/mountain_lake_scenery_2-wallpaper-1600x900.jpg);
+    background-size: cover;
+    color:white;
+    height:400px;
+    text-align: center;
+}
+#events .jumbotron h1 {
+    margin-top: 100px;
+    font-weight:800;
+}
+#events .jumbotron hr {
+    width: 10%;
+    height: 5px;
+    background-color:white;
+    border: 0 none;
+}
+#events #thumbnailevent img{
+    height:309px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+#events .col-md-4 {
+    padding-bottom: 40px;
+}
+#events .col-md-12 .col-xs-9 h4{
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+#events .col-md-12 .col-xs-9 p{
+    font-size: 11px;
+}
+#services{
+    padding-top: 170px;
+    padding-bottom: 170px;
+    background-color: #F7F7F7;
+ 
+    text-align: center;
+    /*background-image: url(../asphalt_texture3728.jpg);
+    background-size: cover;*/
+}
+#services img {
+    width:100px;
+    height:100px;
+    display: block;
+margin-left: auto;
+margin-right: auto;
+}
+#services .col-md-4{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+#services h1 {
+    padding-bottom: 60px;
+    font-weight: 800;
+}
+/* #services img{
+    height: auto;
+}
+#services .col-xs-2{
+    padding-right: 3px;
+    padding-top: 37px;
+    text-align: center;
+}
+#services .col-xs-9{
+    border-left:2px solid #969696;
+}
+#services a{
+    color: #ff7d13;
+}
+#services h3{
+    text-align: left;
+}
+#services h1{
+    color:#eee;
+    text-align: center;
+    font-weight: 800;
+}
+#services p{
+    color:#eee;
+    text-align: left;
+}
+#services .row{
+    margin-bottom: 25px;
+}*/
+#myCarousel{
+    margin-bottom: 20px;
+}
+hr.style-eight {
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+    width:50%;
+}
+hr.style-eight:after {
+    content: "§";
+    display: inline-block;
+    position: relative; 
+    top: -0.7em;  
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
+}
+
+.page-header {
+    font-size: 30px;
+}
+
+
+.btn-default{
+    text-align: center;
+}
+
+
+#thumbnail-preview-indicators {
+    position: relative;
+    overflow: hidden;
+}
+#thumbnail-preview-indicators  h1{
+    margin-top: 50px;
+}
+#thumbnail-preview-indicators .slides .slide-1, 
+#thumbnail-preview-indicators .slides .slide-2,
+#thumbnail-preview-indicators .slides .slide-3 {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+#thumbnail-preview-indicators,
+#thumbnail-preview-indicators .slides,
+#thumbnail-preview-indicators .slides .slide-1, 
+#thumbnail-preview-indicators .slides .slide-2,
+#thumbnail-preview-indicators .slides .slide-3 {
+    height: 720px;
+}
+#thumbnail-preview-indicators .slides .slide-1 {
+    background-image: url(../img/mountain-wallpapers26.jpg); 
+}
+#thumbnail-preview-indicators .slides .slide-2 {
+    background-image: url(../img/Beautiful-Road-Wallpaper-HD-103.jpg);
+}
+#thumbnail-preview-indicators .slides .slide-3 {
+    background-image: url(../img/phoneoriginal.jpg);
+}
+#thumbnail-preview-indicators .carousel-inner .item .carousel-caption {
+    top: 20%;
+    bottom: inherit;
+}
+#thumbnail-preview-indicators .carousel-indicators li,
+#thumbnail-preview-indicators .carousel-indicators li.active {
+    position: relative;
+    width: 100px;
+    height: 8px;  
+}
+#thumbnail-preview-indicators .carousel-indicators li > .thumbnail {
+    position: absolute;
+    top: 0;
+    width: 100px;
+    display: none;
+    opacity: 0;
+    left: 50%;
+    margin-top: -80px;
+    margin-left: -50px;
+}
+#thumbnail-preview-indicators .carousel-indicators li:hover > .thumbnail,
+#thumbnail-preview-indicators .carousel-indicators li.active > .thumbnail {
+    display: block;
+    opacity: .8;
+}
+#thumbnail-preview-indicators .carousel-indicators li.active > .thumbnail:hover{
+    opacity: 1;
+}
+
+.modal-header{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.mask {
+    position:relative;
+    height:auto;
+    width:auto;
+    box-shadow:0 0 1px #000;
+    overflow:hidden;
+}
+#events .btn{
+    margin-bottom: 20px;
+}
+
+.carousel-caption{
+    margin-top: 90px; 
+}
+#contacts{
+    background-image:url(../img/03-dark-grey_03.jpg); 
+    background-size: cover;
+    color:white;
+}
+#contacts {
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+#contacts h1{
+
+    font-weight: 800;
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+#contacts .container .row .col-md-4{
+    padding-right: 30px;
+    padding-left: 30px;
+}
+#contacts .container #rowcontacts {
+  
+}
+#contacts .container .row .col-md-4 .row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+#contacts .btn {
+    height:35px;
+    width: 100px;
+    background-color:#ff7d13;
+}
+#contacts .col-lg-12 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#contacts .col-md-4 p {
+    font-size:15px;
+}
+#contacts .col-md-4 h3{
+    margin-bottom: 20px;
+    color:#F9F9F9;
+}
+#contacts hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#contacts .col-xs-9{
+    padding-left: 0px;
+}
+#contacts .col-xs-9 p{
+    margin-bottom: 2px;
+    color:#D8D8D8;
+}
+#download{
+    background-color: #F7F7F7;
+}
+#download .col-md-8 img {
+    display: block;
+margin-left: auto;
+margin-right: auto;
+}
+#download .container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#download #downloadbuttons  img {
+   margin-right: 20px;
+}
+#socialmedias{
+    text-align: center;
+    padding-bottom: 1px;
+    color:#DBDBDB;
+}
+/*#socialmedias li{
+    display: inline;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#socialmedias img{
+    height:30px;
+    width:30px;
+}
+#socialmedias ul{
+    /*para mawala ung tuldok
+    list-style:none;
+    margin:0;
+    padding: 0;
+}
+ #sociamedia ul li img{
+    height: 50px;
+}
+*/
+footer{
+    padding-top: 20px;
+    background-color: #4F4F4F;
+    text-align: center;
+    color:white;
+}
+@media screen and (max-width : 480px) {    
+    #thumbnail-preview-indicators .carousel-indicators li,
+    #thumbnail-preview-indicators .carousel-indicators li.active {
+        width: 50px;
+        height: 8px;
+        position: relative;
+    }
+    #thumbnail-preview-indicators .carousel-indicators li > .thumbnail {
+        width: 50px;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -25px;
+    }
+    #services p{
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,121 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Scrolling Nav - Start Bootstrap Template
+    // Bootstrap Core CSS
+    link(href='css/bootstrap.min.css', rel='stylesheet')
+    // Custom CSS
+    link(href='css/scrolling-nav.css', rel='stylesheet')
+    link(href='css/tableresults.css', rel='stylesheet')
+    // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    // WARNING: Respond.js doesn't work if you view the page via file://
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    style.
+      #events{
+      margin-top: 60px;
+      }
+      .caret-up {
+      width: 0;
+      height: 0;
+      border-left: 4px solid rgba(0, 0, 0, 0);
+      border-right: 4px solid rgba(0, 0, 0, 0);
+      border-bottom: 4px solid;
+      display: inline-block;
+      margin-left: 2px;
+      vertical-align: middle;
+      }
+      #thumbnailevent img{
+      height:309px;
+      padding-right: 20px;
+      }
+      .well{
+      margin-top: 55px
+      }
+      h1 {
+      margin-top: 0px;
+      }
+  // The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function
+  body#page-top(data-spy='scroll', data-target='.navbar-fixed-top')
+    // Navigation
+    nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+      .container
+        .navbar-header.page-scroll
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand.page-scroll(href='index.html')
+            img(src='img/logo.png', height='18', width='140')
+        // Collect the nav links, forms, and other content for toggling
+        .collapse.navbar-collapse.navbar-ex1-collapse.navHeaderCollapse
+          ul.nav.navbar-nav.navbar-right
+            // Hidden li included to remove active class from about link when scrolled up past about section
+            li.hidden
+              a.page-scroll(href='#page-top')
+            li
+              a.page-scroll(href='#about') About
+            li
+              a.page-scroll(href='#services') Services
+            li.dropdown
+              a.page-scroll.dropdown-toggle(href='#events', data-toggle='dropdown')
+                | Events
+                b.caret
+              ul.dropdown-menu
+                li
+                  a(href='upcomingeventpage.htm') Upcoming Events
+                li
+                  a(href='#') Current Events
+                li
+                  a(href='pasteventpage.htm') Past Events
+            li
+              a.page-scroll(href='#download') Download
+            li
+              a.page-scroll(href='#contacts') Contact
+    #events.events-section
+      .container
+        .row
+          .col-lg-8
+            h1 Milo Run 2014
+            hr
+            // Preview Image
+            #thumbnailevent
+              img.img-responsive(src='img/milo-flytospain-poster1.jpg', alt='', style='float:left')
+            // Post Content
+            p.lead
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?
+            p
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.
+            p
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!
+            p
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?
+            p
+              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!
+            hr
+            // Comments Form
+          // Blog Sidebar Widgets Column
+          .col-md-4
+            .well
+              h4 Date
+              p 2/12/2015
+              h4 Organizer
+              p Rotary International District 3810, Philippines & RG Events Co.
+        // /.row
+        hr
+        // Footer
+    script(src='js/jquery.js')
+    script(src='js/scrollingproject.js')
+    // Bootstrap Core JavaScript
+    script(src='js/bootstrap.min.js')
+    // Scrolling Nav JavaScript
+    script(src='js/jquery.easing.min.js')
+    script(src='js/scrolling-nav.js')
+    script(src='js/tableresults.js')
