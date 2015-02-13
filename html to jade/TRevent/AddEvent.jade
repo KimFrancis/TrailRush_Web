@@ -1,0 +1,30 @@
+octype html
+html
+  head
+    title ADD EVENT
+  body
+    h1 Add a New Event
+    br
+    br
+    form(action='/NewEvent', method='POST')
+      label(for='EventName') Event Name: 
+      input(type='text', name='EventName', placeholder='Event Name')
+      br
+      br
+      label(for='EventDate') Event Date: 
+      input(type='date', name='EventDate', placeholder='Event Date')
+      br
+      br
+      label(for='EventPlace') Event Place: 
+      input(type='text', name='EventPlace', placeholder='Event Place')
+      br
+      br
+      label(for='EventOrganizer') Event Organizer: 
+      input(type='text', name='EventOrganizer', placeholder='Event Organizer')
+      br
+      br
+      label(for='EventDescription') Event Description: 
+      br
+      textarea(name='EventDescription', cols='70', rows='25', placeholder='Event Description.', wrap='hard')
+      br
+      input(type='submit', value='Add Event')
