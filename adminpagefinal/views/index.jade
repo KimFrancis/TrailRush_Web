@@ -1,0 +1,111 @@
+extends layout
+
+block content
+    h1 (Logo) Trail Rush
+    p Welcome to Admin Page
+
+    // Wrapper
+    #wrapper
+
+        // USER INFO
+        #userInfo
+            h2 Runner's Information
+            p
+                strong BibID:
+                |  <input id='userInfoBibID'>
+                br
+                strong Name:
+                |  <input id='userInfoName'>
+                br
+                strong Event:
+                |  <input id='userInfoEvent'>
+                br
+                strong Email:
+                |  <input id='userInfoEmail'>
+                br
+                strong Contact #:
+                |  <input id='userInfoContactNum'>
+                br
+                strong Gender:
+                |  <input id='userInfoGender'>
+                br
+                strong Age:
+                |  <input id='userInfoAge'>
+                br
+                strong Address:
+                |  <input id='userInfoAddress'>
+            button#btnGenQR Generate QR
+
+            |  <div id="qrcode" style="width:250px; height:250px; margin-top:15px;"></div>
+        // /USER INFO
+
+
+        // SEARCH USER
+        h2 Search Runner
+        #searchUser
+            field
+                input#inputSearchName(type='text', placeholder='Bib ID')
+                br
+                button#btnSearchUser Search
+                br
+                br
+        // /SEARCH USER
+
+        // USER LIST
+        h2 Registered Runners
+        #userList
+            table
+                thead
+                    th Bib ID.
+                    th Event
+                    th DELETE USER
+                    th Edit
+                tbody
+        // /USER LIST
+
+        // ADD USER
+        #addUserPanel
+          h2 Add User
+          #addUser
+            fieldset
+              input#inputUserBibID(type='number', placeholder='BibID')
+              input#inputUserEvent(type='text', placeholder='Event')
+              br
+              input#inputUserFullname(type='text', placeholder='Full Name')
+              input#inputUserAge(type='number', placeholder='Age')
+              br
+              input#inputUserEmail(type='text', placeholder='Email Address')
+              input#inputUserContactNum(type='number', placeholder='Contact Number')
+              br
+              input#inputUserAddress(type='text', placeholder='Address')
+              input#inputUserGender(type='text', placeholder='Gender')
+              br
+              button#btnAddUser Add User
+        // /ADD USER
+
+        // UPDATE USER
+        #updateUserPanel
+          h2 Update User
+          #updateUser
+            fieldset
+              input#updateUserBibID(type='number', placeholder='BibID',)
+              input#updateUserEvent(type='text', placeholder='Event')
+              br
+              input#updateUserFullname(type='text', placeholder='Full Name')
+              input#updateUserAge(type='number', placeholder='Age')
+              br
+              input#updateUserEmail(type='text', placeholder='Email Address')
+              input#updateUserContactNum(type='number', placeholder='Contact Number')
+              br
+              input#updateUserAddress(type='text', placeholder='Address')
+              input#updateUserGender(type='text', placeholder='gender')
+              br
+              button#btnUpdateUser Update
+              button#btnCancelUpdateUser Cancel
+        // /UPDATE USER
+
+        
+
+
+
+    // /WRAPPER
