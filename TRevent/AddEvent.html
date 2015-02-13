@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ADD EVENT</title>
+</head>
+<body>
+	<h1>Add a New Event</h1>
+	<br><br>
+
+	<form action="/NewEvent" method="POST">
+
+		<label for="EventName">Event Name: </label>
+	 	<input type="text" name="EventName" placeholder="Event Name"/><br><br>
+
+	 	<label for="EventDate">Event Date: </label>
+	 	<input type="date" name="EventDate" placeholder="Event Date"/><br><br>
+
+	 	<label for="EventPlace">Event Place: </label>
+	 	<input type="text" name="EventPlace" placeholder="Event Place"/><br><br>
+
+	 	<label for="EventOrganizer">Event Organizer: </label>
+	 	<input type="text" name="EventOrganizer" placeholder="Event Organizer"/><br><br>
+
+		<label for="EventDescription">Event Description: </label><br>
+	 	<textarea name="EventDescription" cols="70" rows="25" placeholder="Event Description." wrap="hard"/></textarea><br>
+
+	 	<input type="submit" value= "Add Event">
+	</form>
+</body>
+</html>
