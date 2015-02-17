@@ -101,12 +101,12 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 
-app.get('/addEvent',function(req, res){
+app.get('/admin/event/addEvent',function(req, res){
 	res.render('users/addevent');
 });
 
 //post new event
-app.post('/addEvent', function(req, res) {
+app.post('/admin/event/addEvent', function(req, res) {
 var _id = req.body.EventName;
 var EventName = req.body.EventName;
 var EventDate = req.body.EventDate; 
@@ -123,7 +123,7 @@ MyEvent.find({"_id": req.body.EventName},function(err,docs){
 	});
 });
 });
-app.post('/addstation',function(req,res){
+app.post('/admin/event/addEvent',function(req,res){
 	var _id =req.body.EventName+"."+req.body.StationID;
 	var EventName = req.body.EventName;
 	var StationID = req.body.StationID;
