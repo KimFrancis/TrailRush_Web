@@ -16,7 +16,7 @@ var dialog =require('dialog');
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3001);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -123,7 +123,7 @@ MyEvent.find({"_id": req.body.EventName},function(err,docs){
 	});
 });
 });
-app.post('/admin/event/addEvent',function(req,res){
+app.post('/admin/event/addStation',function(req,res){
 	var _id =req.body.EventName+"."+req.body.StationID;
 	var EventName = req.body.EventName;
 	var StationID = req.body.StationID;
