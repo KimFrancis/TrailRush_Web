@@ -1,0 +1,61 @@
+extends layout
+
+block content
+    h1 (Logo) Trail Rush
+    p Welcome to Admin Page
+
+    // Wrapper
+    #wrapper
+
+        // USER LIST
+        h2 "Name of EVENT"
+        #userList
+            table
+                thead
+                    th Name
+                    th Remove
+                tbody
+        // /USER LIST
+
+        // ADD USER
+        #addUserPanel
+          h2 Add User
+          #addUser
+            fieldset
+              input#inputUserBibID(type='number', placeholder='BibID')
+              input#inputUserEvent(type='text', placeholder='Event')
+              br
+              input#inputUserFullname(type='text', placeholder='Full Name')
+              input#inputUserAge(type='number', placeholder='Age')
+              br
+              input#inputUserEmail(type='text', placeholder='Email Address')
+              input#inputUserContactNum(type='number', placeholder='Contact Number')
+              br
+              input#inputUserAddress(type='text', placeholder='Address')
+              input#inputUserGender(type='text', placeholder='Gender')
+              br
+              button#btnAddUser Add User
+        // /ADD USER
+
+        // UPDATE USER
+        #updateUserPanel
+          h2 Update User
+          #updateUser
+            fieldset
+              input#updateUserBibID(type='number', placeholder='BibID',)
+              input#updateUserEvent(type='text', placeholder='Event')
+              br
+              input#updateUserFullname(type='text', placeholder='Full Name')
+              input#updateUserAge(type='number', placeholder='Age')
+              br
+              input#updateUserEmail(type='text', placeholder='Email Address')
+              input#updateUserContactNum(type='number', placeholder='Contact Number')
+              br
+              input#updateUserAddress(type='text', placeholder='Address')
+              input#updateUserGender(type='text', placeholder='Gender')
+              br
+              button#btnUpdateUser Update
+              button#btnCancelUpdateUser Cancel
+        // /UPDATE USER
+
+    // /WRAPPER

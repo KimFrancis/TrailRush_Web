@@ -2,17 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 
-
-/*
- * GET stats.
- */
-router.get('/stats', function(req, res) {
-    var db = req.db;
-    db.collection('stats').find().toArray(function (err, items) {
-        res.json(items);
-    });
-});
-
 /*
  * GET userlist.
  */
@@ -23,6 +12,12 @@ router.get('/userlist', function(req, res) {
     });
 });
 
+router.get('/event', function(req, res) {
+    var db = req.db;
+    db.collection('myevents').find().toArray(function (err, items) {
+        res.json(items);
+    });
+});
 
 
 /*
@@ -48,6 +43,15 @@ router.delete('/deleteuser/:id', function(req, res) {
         res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });
     });
 });
+
+router.delete('/deleteevent/:id', function(req, res) {
+    var db = req.db;
+    var userToDelete = req.params.id;
+    db.collection('myevents').removeById(userToDelete, function(err, result) {
+        res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });
+    });
+});
+
 
 router.put('/updateuser/:id', function(req, res) {
     var db = req.db;
