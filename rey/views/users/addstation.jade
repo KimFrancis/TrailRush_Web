@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title add stations
+  body
+    h1 Add station
+    br
+    br
+    form(action='/addStation', method='POST')
+      label(for='EventName') Event Name: 
+      input(type='text', name='EventName', placeholder='Event Name')
+      br
+      br
+      label(for='EventDate') Event Date: 
+      input(type='date', name='EventDate', placeholder='Event Date')
+      br
+      br
+      p Event:
+      select(name="event")
+        |<option value="event">event</option>

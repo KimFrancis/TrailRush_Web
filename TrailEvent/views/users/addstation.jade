@@ -1,0 +1,19 @@
+each event in users
+  h2 Configure Stations for #{event.EventName}
+  -var noStation = event.EventStations
+  input(type='text', value= "EventName", readonly)
+  input(type='text', value="StationID", readonly)
+  input(type='text', value="StationName", readonly)
+  br
+  br
+  - for (var i = 0; i < noStation; ++i) {
+    form(action='/addstation', method='POST')
+      input(type='text', name="EventName", value= "#{event.EventName}", readonly)
+      input(type='text' name="StationID", placeholder="Station ID" value="#{i+1}", readonly)
+      input(type='text', name="StationName", placeholder="StationName")
+      input(type='submit')
+  - }
+script(src='./public/javascripts/jquery.js')
+script(src='./public/javascripts/post.js')
+
+
