@@ -1,18 +1,29 @@
 extends layout
 
 block content
+    button#btnBack Back to Event
     h1 (Logo) Trail Rush
     p Welcome to Admin Page
-
     // Wrapper
     #wrapper
+        // SEARCH USER
+        h2 Search Runner
+        #searchUser
+            field
+                input#inputSearchName(type='text', placeholder='Bib ID')
+                br
+                button#btnSearchUser Search
+                br
+                br
+        // /SEARCH USER
 
         // USER LIST
-        h2 "Name of EVENT"
+        h2 Marathon
         #userList
             table
                 thead
                     th Name
+                    th Event
                     th Remove
                 tbody
         // /USER LIST
@@ -54,8 +65,11 @@ block content
               input#updateUserAddress(type='text', placeholder='Address')
               input#updateUserGender(type='text', placeholder='Gender')
               br
+              | <div id="qrcode" style="width:250px; height:250px; margin-top:15px;"></div>
+              br
               button#btnUpdateUser Update
               button#btnCancelUpdateUser Cancel
+              
         // /UPDATE USER
 
     // /WRAPPER

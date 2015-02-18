@@ -20,6 +20,17 @@ router.get('/event', function(req, res) {
 });
 
 
+
+
+
+
+// router.get('/event', function(req, res) {
+//     var db = req.db;
+//     db.collection('myevents').find('Milo').toArray(function (err, items) {
+//         res.json(items);
+//     });
+// });
+
 /*
  * POST to adduser.
  */
@@ -56,14 +67,6 @@ router.delete('/deleteevent/:id', function(req, res) {
 router.put('/updateuser/:id', function(req, res) {
     var db = req.db;
     var userToUpdate = req.params.id;
-    // var dataToUpdate = {
-    //     bibid: req.body.username,
-    //     event1: req.body.event1,
-    //     fullname: req.body.fullname,
-    //     age: req.body.age,
-    //     location: req.body.location,
-    //     gender: req.body.gender,
-    // }
     var doc = { $set: req.body};
 
     db.collection('participants').updateById(userToUpdate,doc,function(err, result) {

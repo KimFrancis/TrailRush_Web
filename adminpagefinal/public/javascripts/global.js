@@ -15,7 +15,7 @@ $(document).ready(function() {
 });
 
  // Username link click
-    $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
+    // $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
  // Delete User link click
     $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
  // start the update user process
@@ -25,7 +25,7 @@ $(document).ready(function() {
  // Search User button click
     $('#btnSearchUser').on('click', searchUser);
  // Generate QR Button Click
-    $('#btnGenQR').on("click", makeCode);
+    $('#btnBack').on("click", back);
  // Cancel Update User button click
     $('#btnCancelUpdateUser').on('click', togglePanels);
  // Add class to updated fields
@@ -57,6 +57,7 @@ function populateTable() {
         $.each(data, function(){
             tableContent += '<tr>';
             tableContent += '<td><a href="#" class="linkupdateuser" rel="' + this.bibid + '" title="Show Details">' + this.fullname + '</a></td>';
+            tableContent += '<td>' + this.event + '</td>';
             tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">REMOVE</a></td>';
             tableContent += '</tr>';
 
@@ -69,54 +70,54 @@ function populateTable() {
     });
 };
 
-// Show User Info
-function showUserInfo(event) {
+// // Show User Info
+// function showUserInfo(event) {
 
-    // Prevent Link from Firing
-    event.preventDefault();
+//     // Prevent Link from Firing
+//     event.preventDefault();
 
-    // Retrieve username from link rel attribute
-    var thisBibID = $(this).attr('rel');
+//     // Retrieve username from link rel attribute
+//     var thisBibID = $(this).attr('rel');
 
-    // Get Index of object based on id value
-    var arrayPosition = userListData.map(function(arrayItem) { 
-        return  arrayItem.bibid + '';
+//     // Get Index of object based on id value
+//     var arrayPosition = userListData.map(function(arrayItem) { 
+//         return  arrayItem.bibid + '';
 
-    }).indexOf(thisBibID);
+//     }).indexOf(thisBibID);
 
-    console.log(arrayPosition);
-    // Get our User Object
-    var thisUserObject = userListData[arrayPosition];
+//     console.log(arrayPosition);
+//     // Get our User Object
+//     var thisUserObject = userListData[arrayPosition];
 
-    //Populate Info Box
-    $('#userInfoBibID').val(thisUserObject.bibid);
-    $('#userInfoName').val(thisUserObject.fullname);
-    $('#userInfoEvent').val(thisUserObject.event);
-    $('#userInfoEmail').val(thisUserObject.emailaddress);
-    $('#userInfoContactNum').val(thisUserObject.contactnumber);
-    $('#userInfoGender').val(thisUserObject.gender);
-    $('#userInfoAge').val(thisUserObject.age);
-    $('#userInfoAddress').val(thisUserObject.address);
+//     //Populate Info Box
+//     $('#userInfoBibID').val(thisUserObject.bibid);
+//     $('#userInfoName').val(thisUserObject.fullname);
+//     $('#userInfoEvent').val(thisUserObject.event);
+//     $('#userInfoEmail').val(thisUserObject.emailaddress);
+//     $('#userInfoContactNum').val(thisUserObject.contactnumber);
+//     $('#userInfoGender').val(thisUserObject.gender);
+//     $('#userInfoAge').val(thisUserObject.age);
+//     $('#userInfoAddress').val(thisUserObject.address);
 
-    //Generate QR
-    clearQR();
-    var qrcode = new QRCode(document.getElementById("qrcode"), 
-    {
-    width : 250,
-    height : 250
-    });
+//     //Generate QR
+//     clearQR();
+//     var qrcode = new QRCode(document.getElementById("qrcode"), 
+//     {
+//     width : 250,
+//     height : 250
+//     });
   
-    var name = document.getElementById('userInfoName').value;
-    var bimp = document.getElementById('userInfoAge').value;
-    var TRevent= document.getElementById('userInfoEvent').value;
-    document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","event":"'+TRevent+'"}';
+//     var name = document.getElementById('userInfoName').value;
+//     var bimp = document.getElementById('userInfoAge').value;
+//     var TRevent= document.getElementById('userInfoEvent').value;
+//     document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","event":"'+TRevent+'"}';
 
-    // alert(document.getElementById('qrvalue').value);
-    var elText = document.getElementById('qrcode');
-    qrcode.makeCode(elText.value);
+//     // alert(document.getElementById('qrvalue').value);
+//     var elText = document.getElementById('qrcode');
+//     qrcode.makeCode(elText.value);
 
 
-};
+// };
 
 // Add User
 function addUser(event,name,age, callback) {
@@ -141,7 +142,7 @@ function addUser(event,name,age, callback) {
             'contactnumber': $('#addUser fieldset input#inputUserContactNum').val(),
             'fullname': $('#addUser fieldset input#inputUserFullname').val(),
             'age': $('#addUser fieldset input#inputUserAge').val(),
-            'address': $('#addUser fieldset input#inputUseraddress').val(),
+            'address': $('#addUser fieldset input#inputUserAddress').val(),
             'gender': $('#addUser fieldset input#inputUserGender').val()
         }
         console.log(newUser);
@@ -228,22 +229,28 @@ function searchUser(event) {
 
     // Prevent Link from Firing
     event.preventDefault();
+
+    if($('#addUserPanel').is(":visible")){
+    togglePanels();
+     }
+
     var searchvariable = $('input#inputSearchName').val();
     console.log(searchvariable);
     // Get Index of object based on id value
-    var arrayPosition = userListData.map(function(arrayItem) { return arrayItem.bibid; }).indexOf(searchvariable);
+    var arrayPosition = userListData.map(function(arrayItem) { return arrayItem.bibid+''; }).indexOf(searchvariable);
     // Get our User Object
     var thisUserObject = userListData[arrayPosition];
 
+    console.log(thisUserObject);
     //Populate Info Box
-    $('#userInfoBibID').val(thisUserObject.bibid);
-    $('#userInfoName').val(thisUserObject.fullname);
-    $('#userInfoEvent').val(thisUserObject.event);
-    $('#userInfoEmail').val(thisUserObject.emailaddress);
-    $('#userInfoContactNum').val(thisUserObject.contactnumber);
-    $('#userInfoGender').val(thisUserObject.gender);
-    $('#userInfoAge').val(thisUserObject.age);
-    $('#userInfoAddress').val(thisUserObject.address);
+      $('#updateUserBibID').val(thisUserObject.bibid);
+      $('#updateUserEvent').val(thisUserObject.event);
+      $('#updateUserFullname').val(thisUserObject.fullname);
+      $('#updateUserAge').val(thisUserObject.age);
+      $('#updateUserEmail').val(thisUserObject.emailaddress);
+      $('#updateUserContactNum').val(thisUserObject.contactnumber);
+      $('#updateUserAddress').val(thisUserObject.address);
+      $('#updateUserGender').val(thisUserObject.gender);
 
 
 
@@ -256,11 +263,11 @@ function searchUser(event) {
     });
   
 
-    var name = document.getElementById('userInfoName').value;
-    var bimp = document.getElementById('userInfoAge').value;
-    var TRevent= document.getElementById('userInfoEvent').value;
+    var name = document.getElementById('updateUserFullname').value;
+    var bimp = document.getElementById('updateUserAge').value;
+    var TRevent= document.getElementById('updateUserEvent').value;
 
-    document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","event":"'+TRevent+'"}';
+    document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","Event":"'+TRevent+'"}';
 
 
     // alert(document.getElementById('qrvalue').value);
@@ -286,14 +293,11 @@ function makeCode () {
     var name = document.getElementById('userInfoName').value;
     var bimp = document.getElementById('userInfoAge').value;
     var TRevent= document.getElementById('userInfoEvent').value;
-    document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","event":"'+TRevent+'"}';
-
-
+    document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","Event":"'+TRevent+'"}';
 
     var elText = document.getElementById('qrcode');
 
     qrcode.makeCode(elText.value);
-
 }
 
 function clearQR()
@@ -340,6 +344,23 @@ function changeUserInfo(event) {
   $('#updateUserAddress').val(thisUserObject.address);
   $('#updateUserGender').val(thisUserObject.gender);
 
+ //Generate QR
+    clearQR();
+    var qrcode = new QRCode(document.getElementById("qrcode"), 
+    {
+    width : 250,
+    height : 250
+    });
+  
+    var name = document.getElementById('updateUserFullname').value;
+    var bimp = document.getElementById('updateUserAge').value;
+    var TRevent= document.getElementById('updateUserEvent').value;
+    document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","event":"'+TRevent+'"}';
+
+    // alert(document.getElementById('qrvalue').value);
+    var elText = document.getElementById('qrcode');
+    qrcode.makeCode(elText.value);
+
 
 
   // Put the userID into the REL of the 'update user' block
@@ -373,7 +394,6 @@ function updateUser(event){
         updatedFields[key]=value;
     })
 
-// console.log(updatedFields);
     // do the AJAX
     $.ajax({
       type: 'PUT',
@@ -401,5 +421,9 @@ function updateUser(event){
     return false;
 
   }
-  }
 
+
+  }
+function back() {
+    window.location = 'http://localhost:3000/admin/event';
+}

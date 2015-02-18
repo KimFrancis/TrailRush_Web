@@ -4,9 +4,9 @@ var router = express.Router();
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+// router.get('/', function(req, res, next) {
+//   res.render('index', { title: 'Express' });
+// });
 
 router.get('/admin/event', function(req, res, next) {
   res.render('admin_event', { title: 'Express' });
@@ -15,6 +15,11 @@ router.get('/admin/event', function(req, res, next) {
 router.get('/admin/runner', function(req, res, next) {
   res.render('admin_runner', { title: 'Express' });
 });
+
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: 'Express' });
+});
+
 
 
 
