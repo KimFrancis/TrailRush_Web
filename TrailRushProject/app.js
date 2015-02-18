@@ -51,6 +51,8 @@ var EventSchema = new mongoose.Schema({
     ,EventPlace: String
     ,EventOrganizer: String
     ,EventDescription: String
+    ,EventStations: String
+    ,EventStatus: String
 
 });
 
