@@ -1,9 +1,9 @@
-h3 Event Details :
-
-ul
+extends upcommingeventpost.jade
+block content
 each tevent in trailevents
-	li #{tevent.EventName}
-	li #{tevent.EventDate}
-	li #{tevent.EventOrganizer}
-	li #{tevent.EventDescription}
+	h1 #{tevent.EventName}
+	p Date
+	p #{tevent.EventDate}
+	p #{tevent.EventOrganizer}
+	p #{tevent.EventDescription}
 	

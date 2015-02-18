@@ -30,6 +30,9 @@
     background-color: white;
     padding-bottom: 150px;
 }
+#events ul {
+    
+}
 #events #myCarousel .carousel-inner {
     height:400px; 
     width:760px;
@@ -303,25 +306,7 @@ margin-right: auto;
     padding-bottom: 1px;
     color:#DBDBDB;
 }
-/*#socialmedias li{
-    display: inline;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-#socialmedias img{
-    height:30px;
-    width:30px;
-}
-#socialmedias ul{
-    /*para mawala ung tuldok
-    list-style:none;
-    margin:0;
-    padding: 0;
-}
- #sociamedia ul li img{
-    height: 50px;
-}
-*/
+
 footer{
     padding-top: 20px;
     background-color: #4F4F4F;

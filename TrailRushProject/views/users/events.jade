@@ -1,7 +1,5 @@
 ul
-each tevent in trailevents
-	|<a href="/Event/#{tevent.EventName}">
-	|<li name="#{tevent.EventName}"> #{tevent.EventName}
-	|</li>
-	|</a>
-	|<br>
+	each tevent in trailevents
+		|<li name="#{tevent.EventName}">#{tevent.EventDate} - <a href="/Event/#{tevent.EventName}">#{tevent.EventName}</a>
+		|</li>
+		
