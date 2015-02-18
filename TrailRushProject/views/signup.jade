@@ -1,30 +1,45 @@
-h1 SIGN UP
-br
-form(id="signup", method="POST", action="/signup")
-	lable(for='username') User Name :
-	input#username(type='text', name='username')
-	br
-	br
-	lable(for='password') Password :
-	input#password(type='password', name='password')
-	br
-	br
-	lable(for='email') Email :
-	input#email(type='email', name='email')
-	br
-	br
-	lable(for='fname') Name :
-	input#fname(type='text', name='fname')
-	br
-	br
-	lable(for='age') Age :
-	input#age(type='text', name='age')
-	br
-	br
-	lable(for='gender') Gender :
-	input#gender(type='text', name='gender')
-	br
-	br
-	input(type="submit", value="Sign UP")
+link(href='stylesheets/bootstrap.min.css', rel='stylesheet')
+link(href='stylesheets/scrolling-nav.css', rel='stylesheet')
+link(href='stylesheets/newscarousel.css', rel='stylesheet')
+link(href='stylesheets/project.css', rel='stylesheet')
+form.form-horizontal(role='form', method="POST", action="/signup")
+                  h2
+                    | Please Sign Up 
+                    small It's free and always will be.
+                  hr
+                  // Username
+                  .form-group
+                    label.control-label.col-sm-2(for='username') Username:
+                    .col-sm-10
+                      input#username.form-control(type='text', placeholder=' Enter Username', name='username')
+                  // Password
+                  .form-group
+                    label.control-label.col-sm-2(for='password') Password:
+                    .col-sm-10
+                      input#password.form-control(type='password', placeholder='Enter Password', name='password')
+                  // Email
+                  .form-group
+                    label.control-label.col-sm-2(for='email') Email:
+                    .col-sm-10
+                      input#email.form-control(type='email', placeholder='Enter Email', name="email")
+                  // Full Name
+                  .form-group
+                    label.control-label.col-sm-2(for='fname') Name:
+                    .col-sm-10
+                      input#fullname.form-control(type='text', placeholder='Enter Full Name', name="fname")
+                  // Age
+                  .form-group
+                    label.control-label.col-sm-2(for='age') Age:
+                    .col-sm-2
+                      input#age.form-control(type='number', placeholder='Age', name='age')
+                  // Gender
+                  .form-group
+                    label.control-label.col-sm-2(for='gender') Gender:
+                    .col-sm-4
+                      select#gender.form-control(name='gender')
+                        option Male
+                        option Female
+                  .modal-footer
+                    button.btn.btn-primary(type='submit', value="Sign UP") Submit
+                    a.btn.btn-default(data-dismiss='modal') Close
 
-h1!=message

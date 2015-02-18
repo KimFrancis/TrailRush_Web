@@ -4,8 +4,8 @@
  */
 
 var express = require('express'),
-	mongoose = require('mongoose');
-	 hash = require('./pass').hash;
+    mongoose = require('mongoose');
+     hash = require('./pass').hash;
 var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
@@ -45,27 +45,27 @@ var UserSchema = new mongoose.Schema({
 
 var User = mongoose.model('users', UserSchema);
 var EventSchema = new mongoose.Schema({
-	 _id: String
-	,EventName: String
-	,EventDate: String
-	,EventPlace: String
-	,EventOrganizer: String
-	,EventDescription: String
+     _id: String
+    ,EventName: String
+    ,EventDate: String
+    ,EventPlace: String
+    ,EventOrganizer: String
+    ,EventDescription: String
 
 });
 
 var MyEvents=mongoose.model('MyEvents', EventSchema);
 
 app.param('EventName', function(req, res, next, EventName){
-	MyEvents.find({EventName: EventName}, function(err,docs){
-		req.MyEvent = docs[0];
-		next();
-	});
-	});
+    MyEvents.find({EventName: EventName}, function(err,docs){
+        req.MyEvent = docs[0];
+        next();
+    });
+    });
 
 //Show specific event
 app.post('/Events/:EventName', function (req, res){
-	res.render('users/search', { MyEvent: req.MyEvent});
+    res.render('users/search', { MyEvent: req.MyEvent});
 });
 // development only
 if ('development' == app.get('env')) {
@@ -74,9 +74,9 @@ if ('development' == app.get('env')) {
 
 //WEBSITE DESIGN
 app.get("/home",function(req,res){
-	/*res.render("users/trailrush"),{ MyEvent: req.MyEvent});*/
+    /*res.render("users/trailrush"),{ MyEvent: req.MyEvent});*/
  MyEvents.find({}, function (err, docs){
- 	console.log(docs);
+    console.log(docs);
  res.render("users/trailrush", {trailevents: docs});
  });
 });
