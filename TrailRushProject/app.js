@@ -257,10 +257,6 @@ app.get("/home/account",function(req,res,next){
  res.render("users/trailrushlogin", {trailevents: docs});
  });
 });
-
-
-
-
 app.get('/profile', requiredAuthentication, function (req, res) {
     res.send('Profile page of '+ req.session.user.username +'<br>'+' <a href="/logout">logout</a>');
 });
