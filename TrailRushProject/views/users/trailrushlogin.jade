@@ -7,10 +7,10 @@ html(lang='en')
     meta(name='description', content='')
     meta(name='author', content='')
     title Scrolling Nav - Start Bootstrap Template
-    link(href='stylesheets/bootstrap.min.css', rel='stylesheet')
-    link(href='stylesheets/scrolling-nav.css', rel='stylesheet')
-    link(href='stylesheets/newscarousel.css', rel='stylesheet')
-    link(href='stylesheets/project.css', rel='stylesheet')
+    link(href='../stylesheets/bootstrap.min.css', rel='stylesheet')
+    link(href='../stylesheets/scrolling-nav.css', rel='stylesheet')
+    link(href='../stylesheets/newscarousel.css', rel='stylesheet')
+    link(href='../stylesheets/project.css', rel='stylesheet')
   body#page-top(data-spy='scroll', data-target='.navbar-fixed-top')
     // Navigation
     nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
@@ -36,23 +36,8 @@ html(lang='en')
             li
               a.page-scroll(href='#download') Download
             li
-            
-              a(href='#onlinereg', data-toggle='modal') Sign in
-    #onlinereg.modal.fade
-      .modal-dialog
-        .modal-content
-          .modal-body
-            ul.nav.nav-tabs
-              li.active
-                a(href='#login', data-toggle='tab') Login
-              li
-                a(href='#create', data-toggle='tab') Create Account
-            #myTabContent.tab-content
-              #login.tab-pane.active.in
-                include ../login.jade
-              #create.tab-pane.fade
-                // ETO NILAGYAN KO 
-                include ../signup.jade
+              a(href='http://localhost:3000/home') Logout
+    
     #thumbnail-preview-indicators.carousel.slide(data-ride='carousel')
       // Indicators
       .carousel-inner
@@ -94,7 +79,7 @@ html(lang='en')
             .row
               .col-lg-4.col-sm-4
                 #thumbnailevent
-                  img.img-responsive(src='img/Glow-Run-Poster_MS.jpg')
+                  img.img-responsive(src='../img/Glow-Run-Poster_MS.jpg')
                 h3
                   a(href='#') Lorem Ipsum
                 p.text-muted
@@ -104,7 +89,7 @@ html(lang='en')
                   span.glyphicon.glyphicon-chevron-right
               .col-lg-4.col-sm-4
                 #thumbnailevent
-                  img.img-responsive(src='img/Run4aReason-Race_Poster_thumb[2].jpg')
+                  img.img-responsive(src='../img/Run4aReason-Race_Poster_thumb[2].jpg')
                 h3
                   a(href='#') Lorem Ipsum
                 p.text-muted
@@ -114,7 +99,7 @@ html(lang='en')
                   span.glyphicon.glyphicon-chevron-right
               .col-lg-4.col-sm-4
                 #thumbnailevent
-                  img.img-responsive(src='img/fuego-sunset-run-2012-poster-723x1024.jpg')
+                  img.img-responsive(src='../img/fuego-sunset-run-2012-poster-723x1024.jpg')
                 h3
                   a(href='#') Lorem Ipsum
                 p.text-muted
@@ -125,7 +110,7 @@ html(lang='en')
             .row
               .col-lg-4.col-sm-4
                 #thumbnailevent
-                  img.img-responsive(src='img/JLR13-Poster-Web.jpg')
+                  img.img-responsive(src='../img/JLR13-Poster-Web.jpg')
                 h3
                   a(href='#') Lorem Ipsum
                 p.text-muted
@@ -135,7 +120,7 @@ html(lang='en')
                   span.glyphicon.glyphicon-chevron-right
               .col-lg-4.col-sm-4
                 #thumbnailevent
-                  img.img-responsive(src='img/catbalogan-run-2012-poster.jpg')
+                  img.img-responsive(src='../img/catbalogan-run-2012-poster.jpg')
                 h3
                   a(href='#') Lorem Ipsum
                 p.text-muted
@@ -145,7 +130,7 @@ html(lang='en')
                   span.glyphicon.glyphicon-chevron-right
               .col-lg-4.col-sm-4
                 #thumbnailevent
-                  img.img-responsive(src='img/RU-Poster-Low-Res.jpg')
+                  img.img-responsive(src='../img/RU-Poster-Low-Res.jpg')
                 h3
                   a(href='#') Lorem Ipsum
                 p.text-muted
@@ -159,14 +144,14 @@ html(lang='en')
             ul
               each tevent in trailevents
                 |<li name="#{tevent.EventName}">#{tevent.EventDate} - <a href="/Event/#{tevent.EventName}">#{tevent.EventName}</a>
-                |</li>
+                |</li> 
             h1.page-header
               | Past Events
             .row
               .col-md-12
                 .row
                   .col-xs-2
-                    img(src='img/7K-2013_poster.jpg', height='70', width='50')
+                    img(src='../img/7K-2013_poster.jpg', height='70', width='50')
                   .col-xs-9
                     h4
                       a(href='eventpostresults.htm') Lorem Impusom Mothafucka
@@ -177,7 +162,7 @@ html(lang='en')
               .col-md-12
                 .row
                   .col-xs-2
-                    img(src='img/rogin-e-last-man-running-2-poster-661x1024.jpg', height='70', width='50')
+                    img(src='../img/rogin-e-last-man-running-2-poster-661x1024.jpg', height='70', width='50')
                   .col-xs-9
                     h4
                       a(href='#') Lorem Impusom Mothafucka
@@ -188,7 +173,7 @@ html(lang='en')
               .col-md-12
                 .row
                   .col-xs-2
-                    img(src='img/Run-of-the-mill-poster.jpg', height='70', width='50')
+                    img(src='../img/Run-of-the-mill-poster.jpg', height='70', width='50')
                   .col-xs-9
                     h4
                       a(href='#') Lorem Impusom Mothafucka
@@ -199,7 +184,7 @@ html(lang='en')
               .col-md-12
                 .row
                   .col-xs-2
-                    img(src='img/FAVE-Run-2013-Poster.jpg', height='70', width='50')
+                    img(src='../img/FAVE-Run-2013-Poster.jpg', height='70', width='50')
                   .col-xs-9
                     h4
                       a(href='#') Lorem Impusom Mothafucka
@@ -210,7 +195,7 @@ html(lang='en')
               .col-md-12
                 .row
                   .col-xs-2
-                    img(src='img/SWCC_Run_FoCA_Poster_11X17.jpg', height='70', width='50')
+                    img(src='../img/SWCC_Run_FoCA_Poster_11X17.jpg', height='70', width='50')
                   .col-xs-9
                     h4
                       a(href='#') Lorem Impusom Mothafucka
@@ -223,17 +208,17 @@ html(lang='en')
             h1 SERVICES
         .row
           .col-md-4
-            img.img-responsive(src='img/search24.png')
+            img.img-responsive(src='../img/search24.png')
             h3 Lorem Impsum
             p
               | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
           .col-md-4
-            img.img-responsive(src='img/people3.png')
+            img.img-responsive(src='../img/people3.png')
             h3 Lorem Impsum
             p
               | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
           .col-md-4
-            img.img-responsive(src='img/monitor46.png')
+            img.img-responsive(src='../img/monitor46.png')
             h3 Lorem Impsum
             p
               | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
@@ -245,10 +230,10 @@ html(lang='en')
             p
               | Sed vitae nisi non leo vestibulum volutpat. Maecenas facilisis elementum neque, iaculis rhoncus lectus tincidunt ac.
             #downloadbuttons
-              img(src='img/apple.png', height='50', width='150')
-              img(src='img/google.png', height='50', width='150')
+              img(src='../img/apple.png', height='50', width='150')
+              img(src='../img/google.png', height='50', width='150')
           .col-md-5
-            img.img-responsive(src='img/final-imagehalf.png', height='50')
+            img.img-responsive(src='../img/final-imagehalf.png', height='50')
     #contacts.contacts-section
       .container
         #rowcontacts.row
@@ -256,7 +241,7 @@ html(lang='en')
             .row
               h3 Contacts
               .col-xs-2
-                img.img-responsive.center-block(src='img/localization3.png')
+                img.img-responsive.center-block(src='../img/localization3.png')
               .col-xs-9
                 p Unit 14
                 p 3 Edgar Buildings
@@ -265,32 +250,32 @@ html(lang='en')
             hr
             .row
               .col-xs-2
-                img.img-responsive.center-block(src='img/phone72.png')
+                img.img-responsive.center-block(src='../img/phone72.png')
               .col-xs-9
                 p 63+ 09277861793
             hr
             .row
               .col-xs-2
-                img.img-responsive.center-block(src='img/google110.png')
+                img.img-responsive.center-block(src='../img/google110.png')
               .col-xs-9
                 p trackermaster@gmail.com
           .col-md-4
             .row
               h3 Social Media
               .col-xs-2
-                img.img-responsive.center-block(src='img/facebok.png')
+                img.img-responsive.center-block(src='../img/facebok.png')
               .col-xs-9
                 p facebook.com/trailrushofficial
             hr
             .row
               .col-xs-2
-                img.img-responsive.center-block(src='img/social71.png')
+                img.img-responsive.center-block(src='../img/social71.png')
               .col-xs-9
                 p twitter.com/trailrushofficial
             hr
             .row
               .col-xs-2
-                img.img-responsive.center-block(src='img/instagram13.png')
+                img.img-responsive.center-block(src='../img/instagram13.png')
               .col-xs-9
                 p instagram.com/trailrushofficial
           .col-md-4
@@ -311,11 +296,11 @@ html(lang='en')
                   #success
                   button.btn.btn-xl(type='submit') Send
     // jQuery
-    script(src='javascripts/jquery.js')
-    script(src='javascripts/scrollingproject.js')
+    script(src='../javascripts/jquery.js')
+    script(src='../javascripts/scrollingproject.js')
     // Bootstrap Core JavaScript
-    script(src='javascripts/bootstrap.min.js')
+    script(src='../javascripts/bootstrap.min.js')
     // Scrolling Nav JavaScript
-    script(src='javascripts/jquery.easing.min.js')
-    script(src='javascripts/scrolling-nav.js')
-    script(src='javascripts/newscarousel.js')
+    script(src='../javascripts/jquery.easing.min.js')
+    script(src='../javascripts/scrolling-nav.js')
+    script(src='../javascripts/newscarousel.js')

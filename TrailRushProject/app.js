@@ -82,7 +82,13 @@ if ('development' == app.get('env')) {
 }
 
 //WEBSITE DESIGN
-app.get("/home",function(req,res){
+app.get("/home", function(req,res,next){
+ if (req.session.user) {
+        res.redirect("/home/account");
+    } else {
+        next();
+    }
+},function (req,res){
     /*res.render("users/trailrush"),{ MyEvent: req.MyEvent});*/
  MyEvents.find({}, function (err, docs){
     console.log(docs);
@@ -147,7 +153,7 @@ function userExist(req, res, next) {
             next();
         } else {
             req.session.error = "User Exist"
-            res.redirect("/signup");
+            res.redirect("/home");
         }
     });
 }
@@ -158,15 +164,24 @@ Routes
 app.get("/", function (req, res) {
 
     if (req.session.user) {
-        res.send("Welcome " + req.session.user.username + "<br>" + "<a href='/logout'>logout</a>");
+        res.render("users/trailrushlogin");
     } else {
-        res.send("<a href='/login'> Login</a>" + "<br>" + "<a href='/signup'> Sign Up</a>");
+        res.redirect("/home");
     }
 });
 
+<<<<<<< HEAD
 app.get("/signup", checkauth ,function (req, res) {
     res.render("signup");
     
+=======
+app.get("/signup", function (req, res) {
+    if (req.session.user) {
+        res.redirect("/home/account");
+    } else {
+        res.render("signup");
+    }
+>>>>>>> latest
 });
 
 app.post("/signup", userExist, function (req, res) {
@@ -202,8 +217,22 @@ app.post("/signup", userExist, function (req, res) {
     });
 });
 
+<<<<<<< HEAD
 app.get("/login", checkauth ,function (req, res) {
     res.render("login");
+=======
+app.get("/login",function (req,res,next){
+    if (req.session.user) {
+        res.redirect("/home/account");
+    } else {
+        next();
+    }
+}, function (req, res) {
+    MyEvents.find({}, function (err, docs){
+    console.log(docs);
+ res.render("login", {trailevents: docs});
+ });
+>>>>>>> latest
 });
 
 app.post("/login", function (req, res) {
@@ -214,20 +243,34 @@ app.post("/login", function (req, res) {
 
                 req.session.user = user;
                 req.session.success = 'Authenticated as ' + user.username + ' click to <a href="/logout">logout</a>. ' + ' You may now access <a href="/restricted">/restricted</a>.';
-                res.redirect('/');
+                res.redirect('/home/account');
             });
         } else {
             req.session.error = 'Authentication failed, please check your ' + ' username and password.';
+<<<<<<< HEAD
             res.redirect('login');
+=======
+            res.redirect('/home');
+>>>>>>> latest
         }
     });
 });
 
 app.get('/logout', function (req, res) {
     req.session.destroy(function () {
-        res.redirect('/');
+        res.redirect('/home');
     });
 });
+app.get("/home/account",function(req,res){
+    /*res.render("users/trailrush"),{ MyEvent: req.MyEvent});*/
+ MyEvents.find({}, function (err, docs){
+    console.log(docs);
+ res.render("users/trailrushlogin", {trailevents: docs});
+ });
+});
+
+
+
 
 app.get('/profile', requiredAuthentication, function (req, res) {
     res.send('Profile page of '+ req.session.user.username +'<br>'+' <a href="/logout">logout</a>');
