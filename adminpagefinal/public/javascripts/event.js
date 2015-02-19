@@ -28,13 +28,13 @@ function populateTable() {
     var tableContent = '';
 
     // jQuery AJAX call for JSON
-    $.getJSON( '/users/event', function( data ) {
+    $.getJSON( '/event', function( data ) {
     // Stick our user data array into a userlist variable in the global object
     userListData = data;    
         // For each item in our JSON, add a table row and cells to the content string
         $.each(data, function(){
             tableContent += '<tr>';
-            tableContent += '<td><a href="http://localhost:3000/admin/runner" class="linkupdateuser" rel="' + this._id + '" title="Show Details">' + this.EventName + '</a></td>';
+            tableContent += '<td><a href="http://localhost:3000/admin/event/'+this._id+'" rel="' + this._id + '" title="Show Details">' + this.EventName + '</a></td>';
             tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">REMOVE</a></td>';
             tableContent += '</tr>';
         });

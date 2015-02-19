@@ -5,28 +5,24 @@ var router = express.Router();
 /*
  * GET userlist.
  */
-router.get('/userlist', function(req, res) {
-    var db = req.db;
-    db.collection('participants').find().toArray(function (err, items) {
-        res.json(items);
-    });
-});
 
-router.get('/event', function(req, res) {
-    var db = req.db;
-    db.collection('myevents').find().toArray(function (err, items) {
-        res.json(items);
-    });
-});
+// router.get('/userlist/:id', function(req, res) {
+//     var db = req.db;
+//     db.collection('participants').find({'EventName':req.params.id}).toArray(function (err, items) {
+//         res.json(items);
+//     });
+// });
 
-
-
-
-
+// router.get('/userlist/', function(req, res) {
+//     var db = req.db;
+//     db.collection('participants').find().toArray(function (err, items) {
+//         res.json(items);
+//     });
+// });
 
 // router.get('/event', function(req, res) {
 //     var db = req.db;
-//     db.collection('myevents').find('Milo').toArray(function (err, items) {
+//     db.collection('myevents').find().toArray(function (err, items) {
 //         res.json(items);
 //     });
 // });

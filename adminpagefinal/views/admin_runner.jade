@@ -18,16 +18,18 @@ block content
         // /SEARCH USER
 
         // USER LIST
-        h2 Marathon
+        h2 #{eventID} Event
         #userList
             table
                 thead
+                    th BibID
                     th Name
-                    th Event
+                    th Gender
+                    th Age
                     th Remove
                 tbody
         // /USER LIST
-
+        input(type="hidden" id="hiddenEvent" value="#{eventID}")
         // ADD USER
         #addUserPanel
           h2 Add User
@@ -36,11 +38,11 @@ block content
               input#inputUserBibID(type='number', placeholder='BibID')
               input#inputUserEvent(type='text', placeholder='Event')
               br
-              input#inputUserFullname(type='text', placeholder='Full Name')
+              input#inputUserFName(type='text', placeholder='Full Name')
               input#inputUserAge(type='number', placeholder='Age')
               br
               input#inputUserEmail(type='text', placeholder='Email Address')
-              input#inputUserContactNum(type='number', placeholder='Contact Number')
+              input#inputUserContactNumber(type='number', placeholder='Contact Number')
               br
               input#inputUserAddress(type='text', placeholder='Address')
               input#inputUserGender(type='text', placeholder='Gender')
@@ -56,11 +58,11 @@ block content
               input#updateUserBibID(type='number', placeholder='BibID',)
               input#updateUserEvent(type='text', placeholder='Event')
               br
-              input#updateUserFullname(type='text', placeholder='Full Name')
+              input#updateUserFName(type='text', placeholder='Full Name')
               input#updateUserAge(type='number', placeholder='Age')
               br
               input#updateUserEmail(type='text', placeholder='Email Address')
-              input#updateUserContactNum(type='number', placeholder='Contact Number')
+              input#updateUserContactNumber(type='number', placeholder='Contact Number')
               br
               input#updateUserAddress(type='text', placeholder='Address')
               input#updateUserGender(type='text', placeholder='Gender')

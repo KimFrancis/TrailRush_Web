@@ -49,15 +49,19 @@ function populateTable() {
     // Empty content string
     var tableContent = '';
 
+    var eventid=$('#hiddenEvent').val();
+
     // jQuery AJAX call for JSON
-    $.getJSON( '/users/userlist', function( data ) {
+    $.getJSON( '/event/' +eventid , function( data ) {
     // Stick our user data array into a userlist variable in the global object
     userListData = data;    
         // For each item in our JSON, add a table row and cells to the content string
         $.each(data, function(){
             tableContent += '<tr>';
-            tableContent += '<td><a href="#" class="linkupdateuser" rel="' + this.bibid + '" title="Show Details">' + this.fullname + '</a></td>';
-            tableContent += '<td>' + this.event + '</td>';
+            tableContent += '<td>' + this.bibid + '</td>';
+            tableContent += '<td><a href="#" class="linkupdateuser" rel="' + this.bibid + '" title="Show Details">' + this.FName + '</a></td>';
+            tableContent += '<td>' + this.Gender + '</td>';
+            tableContent += '<td>' + this.Age + '</td>';
             tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">REMOVE</a></td>';
             tableContent += '</tr>';
 
@@ -137,13 +141,13 @@ function addUser(event,name,age, callback) {
 
         var newUser = {
             'bibid': $('#addUser fieldset input#inputUserBibID').val(),
-            'event': $('#addUser fieldset input#inputUserEvent').val(),
-            'emailaddress': $('#addUser fieldset input#inputUserEmail').val(),
-            'contactnumber': $('#addUser fieldset input#inputUserContactNum').val(),
-            'fullname': $('#addUser fieldset input#inputUserFullname').val(),
-            'age': $('#addUser fieldset input#inputUserAge').val(),
-            'address': $('#addUser fieldset input#inputUserAddress').val(),
-            'gender': $('#addUser fieldset input#inputUserGender').val()
+            'EventName': $('#addUser fieldset input#inputUserEvent').val(),
+            'EmailAddress': $('#addUser fieldset input#inputUserEmail').val(),
+            'ContactNumber': $('#addUser fieldset input#inputUserContactNumber').val(),
+            'FName': $('#addUser fieldset input#inputUserFName').val(),
+            'Age': $('#addUser fieldset input#inputUserAge').val(),
+            'Address': $('#addUser fieldset input#inputUserAddress').val(),
+            'Gender': $('#addUser fieldset input#inputUserGender').val()
         }
         console.log(newUser);
 
@@ -244,13 +248,13 @@ function searchUser(event) {
     console.log(thisUserObject);
     //Populate Info Box
       $('#updateUserBibID').val(thisUserObject.bibid);
-      $('#updateUserEvent').val(thisUserObject.event);
-      $('#updateUserFullname').val(thisUserObject.fullname);
-      $('#updateUserAge').val(thisUserObject.age);
-      $('#updateUserEmail').val(thisUserObject.emailaddress);
-      $('#updateUserContactNum').val(thisUserObject.contactnumber);
-      $('#updateUserAddress').val(thisUserObject.address);
-      $('#updateUserGender').val(thisUserObject.gender);
+      $('#updateUserEvent').val(thisUserObject.EventName);
+      $('#updateUserFName').val(thisUserObject.FName);
+      $('#updateUserAge').val(thisUserObject.Age);
+      $('#updateUserEmail').val(thisUserObject.EmailAddress);
+      $('#updateUserContactNumber').val(thisUserObject.ContactNumber);
+      $('#updateUserAddress').val(thisUserObject.Address);
+      $('#updateUserGender').val(thisUserObject.Gender);
 
 
 
@@ -263,7 +267,7 @@ function searchUser(event) {
     });
   
 
-    var name = document.getElementById('updateUserFullname').value;
+    var name = document.getElementById('updateUserFName').value;
     var bimp = document.getElementById('updateUserAge').value;
     var TRevent= document.getElementById('updateUserEvent').value;
 
@@ -280,25 +284,25 @@ function searchUser(event) {
    
 };
 
-function makeCode () { 
+// function makeCode () { 
     
-    clearQR();
-    var qrcode = new QRCode(document.getElementById("qrcode"), 
-    {
-    width : 250,
-    height : 250
-    });
+//     clearQR();
+//     var qrcode = new QRCode(document.getElementById("qrcode"), 
+//     {
+//     width : 250,
+//     height : 250
+//     });
   
 
-    var name = document.getElementById('userInfoName').value;
-    var bimp = document.getElementById('userInfoAge').value;
-    var TRevent= document.getElementById('userInfoEvent').value;
-    document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","Event":"'+TRevent+'"}';
+//     var name = document.getElementById('userInfoName').value;
+//     var bimp = document.getElementById('userInfoAge').value;
+//     var TRevent= document.getElementById('userInfoEvent').value;
+//     document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","EventName":"'+TRevent+'"}';
 
-    var elText = document.getElementById('qrcode');
+//     var elText = document.getElementById('qrcode');
 
-    qrcode.makeCode(elText.value);
-}
+//     qrcode.makeCode(elText.value);
+// }
 
 function clearQR()
 {
@@ -336,13 +340,13 @@ function changeUserInfo(event) {
   console.log(thisUserObject);
   // Populate Info Box
   $('#updateUserBibID').val(thisUserObject.bibid);
-  $('#updateUserEvent').val(thisUserObject.event);
-  $('#updateUserFullname').val(thisUserObject.fullname);
-  $('#updateUserAge').val(thisUserObject.age);
-  $('#updateUserEmail').val(thisUserObject.emailaddress);
-  $('#updateUserContactNum').val(thisUserObject.contactnumber);
-  $('#updateUserAddress').val(thisUserObject.address);
-  $('#updateUserGender').val(thisUserObject.gender);
+  $('#updateUserEvent').val(thisUserObject.EventName);
+  $('#updateUserFName').val(thisUserObject.FName);
+  $('#updateUserAge').val(thisUserObject.Age);
+  $('#updateUserEmail').val(thisUserObject.EmailAddress);
+  $('#updateUserContactNumber').val(thisUserObject.ContactNumber);
+  $('#updateUserAddress').val(thisUserObject.Address);
+  $('#updateUserGender').val(thisUserObject.Gender);
 
  //Generate QR
     clearQR();
@@ -352,7 +356,7 @@ function changeUserInfo(event) {
     height : 250
     });
   
-    var name = document.getElementById('updateUserFullname').value;
+    var name = document.getElementById('updateUserFName').value;
     var bimp = document.getElementById('updateUserAge').value;
     var TRevent= document.getElementById('updateUserEvent').value;
     document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","event":"'+TRevent+'"}';
@@ -397,7 +401,7 @@ function updateUser(event){
     // do the AJAX
     $.ajax({
       type: 'PUT',
-      url: 'users/updateuser/' + _id,
+      url: '/users/updateuser/' + _id,
       data: updatedFields
     }).done(function( response ) {
 
