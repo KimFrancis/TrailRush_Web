@@ -48,28 +48,7 @@ html(lang='en')
                 a(href='#create', data-toggle='tab') Create Account
             #myTabContent.tab-content
               #login.tab-pane.active.in
-                form.form-horizontal(role='form' method="POST", action="/login")
-                  h2 Please Sign In
-                  hr
-                  // Username
-                  .form-group
-                    label.control-label.col-sm-2(for='username') Username:
-                    .col-sm-10
-                      input#username.form-control(type='text', placeholder=' Enter Username', name='username')
-                  // Password
-                  .form-group
-                    label.control-label.col-sm-2(for='password') Password:
-                    .col-sm-10
-                      input#passwordd.form-control(type='password', placeholder='Enter Password', name='password')
-                  .form-group
-                    .col-sm-offset-2.col-sm-10
-                      .checkbox
-                        label
-                          input(type='checkbox')
-                          |  Remember me
-                  .modal-footer
-                    button.btn.btn-primary(type='submit' value="Log In") Submit
-                    a.btn.btn-default(data-dismiss='modal') Close
+                include ../login.jade
               #create.tab-pane.fade
                 // ETO NILAGYAN KO 
                 include ../signup.jade
@@ -176,7 +155,10 @@ html(lang='en')
           .col-md-4
             h1.page-header
               | Upcoming Events
-            include ./events.jade
+            ul
+              each tevent in trailevents
+                |<li name="#{tevent.EventName}">#{tevent.EventDate} - <a href="/Event/#{tevent.EventName}">#{tevent.EventName}</a>
+                |</li>
             h1.page-header
               | Past Events
             .row

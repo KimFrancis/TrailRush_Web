@@ -57,7 +57,14 @@ var EventSchema = new mongoose.Schema({
 });
 
 var MyEvents=mongoose.model('MyEvents', EventSchema);
-
+var checkauth = function (req,res,next){
+    if (req.session.user) {
+        res.redirect("/");
+    } 
+    else {
+        next();
+    }
+};
 app.param('EventName', function(req, res, next, EventName){
     MyEvents.find({EventName: EventName}, function(err,docs){
         req.MyEvent = docs[0];
@@ -85,7 +92,7 @@ app.get("/home",function(req,res){
 
 app.get("/Event/:id", function(req,res){
  MyEvents.find({'EventName':req.params.id}, function (err, docs){
- res.render('users/search', {trailevents: docs});
+ res.render('users/upcommingeventpost', {trailevents: docs});
  });
 });
 app.use(function (req, res, next) {
@@ -157,12 +164,9 @@ app.get("/", function (req, res) {
     }
 });
 
-app.get("/signup", function (req, res) {
-    if (req.session.user) {
-        res.redirect("/");
-    } else {
-        res.render("signup");
-    }
+app.get("/signup", checkauth ,function (req, res) {
+    res.render("signup");
+    
 });
 
 app.post("/signup", userExist, function (req, res) {
@@ -198,7 +202,7 @@ app.post("/signup", userExist, function (req, res) {
     });
 });
 
-app.get("/login", function (req, res) {
+app.get("/login", checkauth ,function (req, res) {
     res.render("login");
 });
 
@@ -214,7 +218,7 @@ app.post("/login", function (req, res) {
             });
         } else {
             req.session.error = 'Authentication failed, please check your ' + ' username and password.';
-            res.redirect('/login');
+            res.redirect('login');
         }
     });
 });
