@@ -79,7 +79,7 @@ exports.updateuser = function(db) {
   return function(req, res) {
     var userToUpdate = req.params.id;
       var doc = { $set: req.body};
-    db.collection('userlist').updateById(userToUpdate, doc ,function(err, result) {
+    db.collection('participants').updateById(userToUpdate, doc ,function(err, result) {
       res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });
     });
   }

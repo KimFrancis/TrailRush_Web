@@ -59,9 +59,9 @@ function populateTable() {
         $.each(data, function(){
             tableContent += '<tr>';
             tableContent += '<td>' + this.bibid + '</td>';
-            tableContent += '<td><a href="#" class="linkupdateuser" rel="' + this.bibid + '" title="Show Details">' + this.FName + '</a></td>';
-            tableContent += '<td>' + this.Gender + '</td>';
-            tableContent += '<td>' + this.Age + '</td>';
+            tableContent += '<td><a href="#" class="linkupdateuser" rel="' + this.bibid + '" title="Show Details">' + this.fullname + '</a></td>';
+            tableContent += '<td>' + this.gender + '</td>';
+            tableContent += '<td>' + this.age + '</td>';
             tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">REMOVE</a></td>';
             tableContent += '</tr>';
 
@@ -141,13 +141,13 @@ function addUser(event,name,age, callback) {
 
         var newUser = {
             'bibid': $('#addUser fieldset input#inputUserBibID').val(),
-            'EventName': $('#addUser fieldset input#inputUserEvent').val(),
-            'EmailAddress': $('#addUser fieldset input#inputUserEmail').val(),
-            'ContactNumber': $('#addUser fieldset input#inputUserContactNumber').val(),
-            'FName': $('#addUser fieldset input#inputUserFName').val(),
-            'Age': $('#addUser fieldset input#inputUserAge').val(),
-            'Address': $('#addUser fieldset input#inputUserAddress').val(),
-            'Gender': $('#addUser fieldset input#inputUserGender').val()
+            'event': $('#addUser fieldset input#inputUserEvent').val(),
+            'emailaddress': $('#addUser fieldset input#inputUserEmail').val(),
+            'contactnumber': $('#addUser fieldset input#inputUserContactNumber').val(),
+            'fullname': $('#addUser fieldset input#inputUserFullname').val(),
+            'age': $('#addUser fieldset input#inputUserAge').val(),
+            'address': $('#addUser fieldset input#inputUserAddress').val(),
+            'gender': $('#addUser fieldset input#inputUserGender').val()
         }
         console.log(newUser);
 
@@ -248,13 +248,13 @@ function searchUser(event) {
     console.log(thisUserObject);
     //Populate Info Box
       $('#updateUserBibID').val(thisUserObject.bibid);
-      $('#updateUserEvent').val(thisUserObject.EventName);
-      $('#updateUserFName').val(thisUserObject.FName);
-      $('#updateUserAge').val(thisUserObject.Age);
-      $('#updateUserEmail').val(thisUserObject.EmailAddress);
-      $('#updateUserContactNumber').val(thisUserObject.ContactNumber);
-      $('#updateUserAddress').val(thisUserObject.Address);
-      $('#updateUserGender').val(thisUserObject.Gender);
+      $('#updateUserEvent').val(thisUserObject.event);
+      $('#updateUserFullname').val(thisUserObject.fullname );
+      $('#updateUserAge').val(thisUserObject.age);
+      $('#updateUserEmail').val(thisUserObject.emailaddress);
+      $('#updateUserContactNumber').val(thisUserObject.contactnumber);
+      $('#updateUserAddress').val(thisUserObject.address);
+      $('#updateUserGender').val(thisUserObject.gender);
 
 
 
@@ -267,7 +267,7 @@ function searchUser(event) {
     });
   
 
-    var name = document.getElementById('updateUserFName').value;
+    var name = document.getElementById('updateUserFullname').value;
     var bimp = document.getElementById('updateUserAge').value;
     var TRevent= document.getElementById('updateUserEvent').value;
 
@@ -340,13 +340,13 @@ function changeUserInfo(event) {
   console.log(thisUserObject);
   // Populate Info Box
   $('#updateUserBibID').val(thisUserObject.bibid);
-  $('#updateUserEvent').val(thisUserObject.EventName);
-  $('#updateUserFName').val(thisUserObject.FName);
-  $('#updateUserAge').val(thisUserObject.Age);
-  $('#updateUserEmail').val(thisUserObject.EmailAddress);
-  $('#updateUserContactNumber').val(thisUserObject.ContactNumber);
-  $('#updateUserAddress').val(thisUserObject.Address);
-  $('#updateUserGender').val(thisUserObject.Gender);
+  $('#updateUserEvent').val(thisUserObject.event);
+  $('#updateUserFullname').val(thisUserObject.fullname);
+  $('#updateUserAge').val(thisUserObject.age);
+  $('#updateUserEmail').val(thisUserObject.emailaddress);
+  $('#updateUserContactNumber').val(thisUserObject.contactnumber);
+  $('#updateUserAddress').val(thisUserObject.address);
+  $('#updateUserGender').val(thisUserObject.gender);
 
  //Generate QR
     clearQR();
@@ -356,7 +356,7 @@ function changeUserInfo(event) {
     height : 250
     });
   
-    var name = document.getElementById('updateUserFName').value;
+    var name = document.getElementById('updateUserFullname').value;
     var bimp = document.getElementById('updateUserAge').value;
     var TRevent= document.getElementById('updateUserEvent').value;
     document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","event":"'+TRevent+'"}';

@@ -24,7 +24,7 @@ router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Express' });
 });
 
-router.get('/admin/runner', function(req, res) {
+router.get('/runner', function(req, res) {
     var db = req.db;
     db.collection('participants').find().toArray(function (err, items) {
         res.json(items);
@@ -33,7 +33,7 @@ router.get('/admin/runner', function(req, res) {
 
 router.get('/event/:id', function(req, res) {
     var db = req.db;
-    db.collection('participants').find({'EventName':req.params.id}).toArray(function (err, items) {
+    db.collection('participants').find({'event':req.params.id}).toArray(function (err, items) {
         res.json(items);
     });
 });
