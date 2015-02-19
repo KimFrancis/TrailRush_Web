@@ -36,23 +36,9 @@ html(lang='en')
             li
               a.page-scroll(href='#download') Download
             li
-            
-              a(href='#onlinereg', data-toggle='modal') Sign in
-    #onlinereg.modal.fade
-      .modal-dialog
-        .modal-content
-          .modal-body
-            ul.nav.nav-tabs
-              li.active
-                a(href='#login', data-toggle='tab') Login
-              li
-                a(href='#create', data-toggle='tab') Create Account
-            #myTabContent.tab-content
-              #login.tab-pane.active.in
-                include ../login.jade
-              #create.tab-pane.fade
-                // ETO NILAGYAN KO 
-                include ../signup.jade
+              a(href='http://localhost:3000/login') Sign in
+            li
+              a(href='http://localhost:3000/logout') Logout
     #thumbnail-preview-indicators.carousel.slide(data-ride='carousel')
       // Indicators
       .carousel-inner
