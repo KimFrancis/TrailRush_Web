@@ -27,9 +27,14 @@ html(lang='en')
       }
       #signup form h2{
       color:white;
+      padding-bottom:20px;
       }
       #signup form .btn{
       margin-top: 30px;
+      margin-bottom:20px;
+      background-color:#ff9640;
+      border-color: none !important;
+      color:white;
       }
   body#page-top(data-spy='scroll', data-target='.navbar-fixed-top')
     // Navigation
@@ -66,7 +71,7 @@ html(lang='en')
                 h2
                   | Please Sign Up 
                   small It's free and always will be.
-                hr.colorgraph
+                
                 .form-group
                   input#username.form-control.input-md(type='text', name='username', placeholder='Username', tabindex='3')
                 .form-group
@@ -83,8 +88,8 @@ html(lang='en')
                       option Male
                       option Female
                 .form-group
-                  button.btn.btn-primary(type='Sign UP') Submit
-                  a.btn.btn-default(data-dismiss='modal') Close
+                  button.btn(type='Sign UP') Submit
+                 
     script(src='javascripts/jquery.js')
     script(src='javascripts/scrollingproject.js')
     // Bootstrap Core JavaScript

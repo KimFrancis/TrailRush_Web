@@ -20,17 +20,21 @@ html(lang='en')
       padding-left: 30px;
       padding-right: 30px;
       padding-top: 5px;
-      padding-bottom: 30px;
+      padding-bottom: 10px;
       vertical-align: center;
       margin-top: 130px;
-      margin-bottom: 20px;
       }
       #signup form h2{
       color:white;
+      padding-bottom: 20px;
       }
-      #signup form .btn{
-      margin-top: 30px;
+      #signup .btn{
+      margin-bottom:20px;
+      background-color:#ff9640;
+      border-color: none !important;
+      color:white;
       }
+    
   body#page-top(data-spy='scroll', data-target='.navbar-fixed-top')
     // Navigation
     nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
@@ -71,10 +75,11 @@ html(lang='en')
                   // Password
                   .form-group
                     input#passwordd.form-control(type='password', placeholder='Enter Password', name='password')
-                  
-                  .modal-footer
-                    button.btn.btn-primary(type='submit' value="Log In") Submit
-                    a.btn.btn-default(data-dismiss='modal') Close
+                  .form-group
+                    button.btn(type='submit' value="Log In") Submit
+                  .form-group
+                    a(href='http://localhost:3000/signup') Don't have an account yet?
+                 
     script(src='javascripts/jquery.js')
     script(src='javascripts/scrollingproject.js')
     // Bootstrap Core JavaScript
