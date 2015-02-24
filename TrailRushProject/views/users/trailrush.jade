@@ -35,10 +35,15 @@ html(lang='en')
               a.page-scroll(href='#services') Services
             li
               a.page-scroll(href='#download') Download
-            li
-              a(href='http://localhost:3000/login') Sign in
-            li
-              a(href='http://localhost:3000/logout') Logout
+            if (title == "No Account")
+              li
+                a(href='http://localhost:3000/login') Sign in
+            else 
+              li 
+                a(href='http://localhost:3000/logout') Logout
+              li
+                a(href='http://localhost:3000/Join') Join Event
+
     #thumbnail-preview-indicators.carousel.slide(data-ride='carousel')
       // Indicators
       .carousel-inner
@@ -46,7 +51,7 @@ html(lang='en')
           .slide-1
           .container
             .carousel-caption
-              h1 New carousel layout
+              h1 A carousel headline.
               p Responsive thumbnail preview in carousel indicators.
               p
                 a.btn.btn-lg.btn-primary(href='#', role='button') Sign up today
@@ -108,37 +113,7 @@ html(lang='en')
                 a.btn.btn-primary(href='eventpost.htm')
                   | Read More 
                   span.glyphicon.glyphicon-chevron-right
-            .row
-              .col-lg-4.col-sm-4
-                #thumbnailevent
-                  img.img-responsive(src='img/JLR13-Poster-Web.jpg')
-                h3
-                  a(href='#') Lorem Ipsum
-                p.text-muted
-                  | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
-                a.btn.btn-primary(href='eventpost.htm')
-                  | Read More
-                  span.glyphicon.glyphicon-chevron-right
-              .col-lg-4.col-sm-4
-                #thumbnailevent
-                  img.img-responsive(src='img/catbalogan-run-2012-poster.jpg')
-                h3
-                  a(href='#') Lorem Ipsum
-                p.text-muted
-                  | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
-                a.btn.btn-primary(href='eventpost.htm')
-                  | Read More
-                  span.glyphicon.glyphicon-chevron-right
-              .col-lg-4.col-sm-4
-                #thumbnailevent
-                  img.img-responsive(src='img/RU-Poster-Low-Res.jpg')
-                h3
-                  a(href='#') Lorem Ipsum
-                p.text-muted
-                  | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
-                a.btn.btn-primary(href='eventpost.htm')
-                  | Read More
-                  span.glyphicon.glyphicon-chevron-right
+          
           .col-md-4
             h1.page-header
               | Upcoming Events
@@ -155,10 +130,10 @@ html(lang='en')
                     img(src='img/7K-2013_poster.jpg', height='70', width='50')
                   .col-xs-9
                     h4
-                      a(href='eventpostresults.htm') Lorem Impusom Mothafucka
+                      a(href='eventpostresults.htm') Lorem Impusom 
                     p
                       | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut
-            hr
+        
             .row
               .col-md-12
                 .row
@@ -166,10 +141,10 @@ html(lang='en')
                     img(src='img/rogin-e-last-man-running-2-poster-661x1024.jpg', height='70', width='50')
                   .col-xs-9
                     h4
-                      a(href='#') Lorem Impusom Mothafucka
+                      a(href='#') Lorem Impusom 
                     p
                       | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut
-            hr
+          
             .row
               .col-md-12
                 .row
@@ -180,28 +155,7 @@ html(lang='en')
                       a(href='#') Lorem Impusom Mothafucka
                     p
                       | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut
-            hr
-            .row
-              .col-md-12
-                .row
-                  .col-xs-2
-                    img(src='img/FAVE-Run-2013-Poster.jpg', height='70', width='50')
-                  .col-xs-9
-                    h4
-                      a(href='#') Lorem Impusom Mothafucka
-                    p
-                      | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut
-            hr
-            .row
-              .col-md-12
-                .row
-                  .col-xs-2
-                    img(src='img/SWCC_Run_FoCA_Poster_11X17.jpg', height='70', width='50')
-                  .col-xs-9
-                    h4
-                      a(href='#') Lorem Impusom Mothafucka
-                    p
-                      | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut
+          
     section#services.services-section
       .container
         .row
@@ -240,7 +194,7 @@ html(lang='en')
         #rowcontacts.row
           .col-md-4
             .row
-              h3 Contacts
+              h3 CONTACT US
               .col-xs-2
                 img.img-responsive.center-block(src='img/localization3.png')
               .col-xs-9
@@ -262,7 +216,7 @@ html(lang='en')
                 p trackermaster@gmail.com
           .col-md-4
             .row
-              h3 Social Media
+              h3 SOCIAL MEDIA
               .col-xs-2
                 img.img-responsive.center-block(src='img/facebok.png')
               .col-xs-9
@@ -282,7 +236,7 @@ html(lang='en')
           .col-md-4
             form#contactForm(name='sentMessage', novalidate='')
               .row
-                h3 Get in Touch
+                h3 GET IN TOUCH
                 .col-lg-12
                   .form-group
                     input#name.form-control(type='text', placeholder='Your Name *', required='', data-validation-required-message='Please enter your name.')

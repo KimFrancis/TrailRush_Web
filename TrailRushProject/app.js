@@ -15,6 +15,27 @@ var app = express();
 
 //LAGYAN NG MONGOOSE.CONNECT
 mongoose.connect("mongodb://admin:admin@ds041831.mongolab.com:41831/trailrush");
+//JOIN EVENT
+var connection = mongoose.createConnection('mongodb://admin:admin@ds041831.mongolab.com:41831/trailrush');
+var autoIncrement = require('mongoose-auto-increment');
+autoIncrement.initialize(connection);
+var Schema = new mongoose.Schema({
+        fullname: String,
+        address: String,
+        event: String,
+        age: String,
+        gender: String,
+        emailaddress: String,
+        contactnumber: String
+});
+    Schema.plugin(autoIncrement.plugin, {
+    model: 'participants',
+    field: 'bibid',
+    startAt: 1000,
+    incrementBy: 1
+});
+var participants = mongoose.model('participants', Schema);
+//JOIN EVENT
 var UserSchema = new mongoose.Schema({
     username: String,
     password: String,
@@ -38,8 +59,9 @@ var EventSchema = new mongoose.Schema({
     ,EventStatus: String
 
 });
-
 var MyEvents=mongoose.model('MyEvents', EventSchema);
+
+
 
 app.param('EventName', function(req, res, next, EventName){
     MyEvents.find({EventName: EventName}, function(err,docs){
@@ -60,7 +82,7 @@ app.param('EventName', function(req, res, next, EventName){
     app.use(express.json());
     app.use(express.urlencoded());
     app.use(express.methodOverride());
-    app.use(app.router);
+    
     app.use(express.static(path.join(__dirname, 'public')));
 });
 app.use(function (req, res, next) {
@@ -114,7 +136,7 @@ function userExist(req, res, next) {
             next();
         } else {
             req.session.error = "User Exist"
-            res.redirect("/home");
+            res.redirect("/signup");
         }
     });
 }
@@ -143,10 +165,16 @@ if ('development' == app.get('env')) {
 //WEBSITE DESIGN
 app.get("/home", function (req,res){
     /*res.render("users/trailrush"),{ MyEvent: req.MyEvent});*/
- MyEvents.find({}, function (err, docs){
-    console.log(docs);
- res.render("users/trailrush", {trailevents: docs});
- });
+    if (req.session.user){
+        MyEvents.find({}, function (err, docs){
+        res.render("users/trailrush", {trailevents: docs, title: "Already Login"});
+        });
+    }
+    else {
+        MyEvents.find({}, function (err, docs){
+        res.render("users/trailrush", {trailevents: docs, title: "No Account"});
+        });
+    }
 });
 
 app.get("/Event/:id", function(req,res){
@@ -199,6 +227,7 @@ app.post("/signup", userExist, function (req, res) {
 app.get("/login",function (req,res,next){
     if (req.session.user) {
         res.redirect("/home");
+
     } else {
         next();
     }
@@ -211,7 +240,7 @@ app.post("/login", function (req, res) {
     authenticate(req.body.username, req.body.password, function (err, user) {
         if (user) {
             req.session.regenerate(function () {
-                 req.session.user = user;
+                req.session.user = user;
                 req.session.success = 'Authenticated as ' + user.username + ' click to <a href="/logout">logout</a>. ' + ' You may now access <a href="/restricted">/restricted</a>.';
                 res.redirect('/home');
             });
@@ -246,6 +275,46 @@ app.get("/home/account" ,function (req,res,next){
 app.get('/profile', requiredAuthentication, function (req, res) {
     res.send('Profile page of '+ req.session.user.username +'<br>'+' <a href="/logout">logout</a>');
 });
+
+
+
+//JOIN EVENT
+app.get("/Join", function (req, res) {
+    MyEvents.find({}, function (err, docs) {
+        res.render('users/new_joinevent', { users : docs});
+    });
+});
+app.post('/Join',function(req,res){
+    var a = req.body;
+    new participants({
+        fullname: a.fullname,
+        address: a.address,
+        event: a.event,
+        age: a.age,
+        gender: a.gender,
+        emailaddress: a.emailaddress,
+        contactnumber: a.contactnumber,
+
+    }).save(function (err, users){
+        if(err) res.json(err);
+        participants.find({"fullname": req.body.fullname},function(err,docs){
+        res.render('users/show_joinevent', {users: docs});
+    });
+});
+});
+app.param('bibid', function (req, res, next, name) {
+    participants.find({ bibid: bibid }, function (err, docs ) {
+        req.users = docs[0];
+        next();
+    });
+});
+
+
+
+
+
+
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

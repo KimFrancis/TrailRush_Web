@@ -34,6 +34,9 @@ html(lang='en')
       border-color: none !important;
       color:white;
       }
+      p{
+      color:red;
+      }
     
   body#page-top(data-spy='scroll', data-target='.navbar-fixed-top')
     // Navigation
@@ -45,7 +48,7 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand.page-scroll(href='#page-top')
+          a.navbar-brand.page-scroll(href='http://localhost:3000/home')
             img(src='img/logo.png', height='18', width='140')
         // Collect the nav links, forms, and other content for toggling
         .collapse.navbar-collapse.navbar-ex1-collapse.navHeaderCollapse
@@ -71,15 +74,16 @@ html(lang='en')
                  
                   // Username
                   .form-group
-                    input#username.form-control(type='text', placeholder=' Enter Username', name='username')
+                    input#username.form-control(type='text', placeholder=' Enter Username', name='username', required, data-required-msg='Username is required')
                   // Password
                   .form-group
-                    input#passwordd.form-control(type='password', placeholder='Enter Password', name='password')
+                    input#passwordd.form-control(type='password', placeholder='Enter Password', name='password', required, data-required-msg='Password is required')
                   .form-group
                     button.btn(type='submit' value="Log In") Submit
+                    p!=message
                   .form-group
                     a(href='http://localhost:3000/signup') Don't have an account yet?
-                  h1!=message
+                  
     script(src='javascripts/jquery.js')
     script(src='javascripts/scrollingproject.js')
     // Bootstrap Core JavaScript
