@@ -66,6 +66,14 @@ var EventSchema = new mongoose.Schema({
 
 var MyEvents=mongoose.mongoose.model('MyEvents', EventSchema);
 
+var StatsSchema = new mongoose.Schema({
+	 _id: String
+	fullname: String,
+	event: String,
+});
+
+var MyStats=mongoose.mongoose.model('MyStats', StatsSchema);
+
 app.get("/users", function (req, res) {
 	MyEvents.find({}, function (err, docs) {
 		res.render('users/new', { users : docs});
