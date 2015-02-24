@@ -337,7 +337,7 @@ function changeUserInfo(event) {
     var thisUserObject = userListData[arrayPosition];
 
 
-  console.log(thisUserObject);
+  console.log(userListData);
   // Populate Info Box
   $('#updateUserBibID').val(thisUserObject.bibid);
   $('#updateUserEvent').val(thisUserObject.event);
@@ -397,7 +397,7 @@ function updateUser(event){
         var value = $(this).val();
         updatedFields[key]=value;
     })
-
+    console.log(updatedFields);
     // do the AJAX
     $.ajax({
       type: 'PUT',
@@ -425,9 +425,9 @@ function updateUser(event){
     return false;
 
   }
-
-
   }
+
+
 function back() {
     window.location = 'http://localhost:3000/admin/event';
 }
