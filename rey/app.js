@@ -5,8 +5,8 @@
 
 var express = require('express')
 var routes = require('./routes');
-  var mong = require('mongoose');
-  var http = require('http');
+var mong = require('mongoose');
+var http = require('http');
 var fs = require('fs');
 var Runner=require('./lib/participant.js');
 var mongoose=require('./lib/db');
@@ -38,6 +38,7 @@ var autoIncrement = require('mongoose-auto-increment');
 var connection = mong.createConnection('mongodb://admin:admin@ds041831.mongolab.com:41831/trailrush');
 autoIncrement.initialize(connection);
 var Schema = new mongoose.Schema({
+		_id:String,
 		fullname: String,
 		address: String,
 		event: String,
@@ -67,7 +68,7 @@ var EventSchema = new mongoose.Schema({
 var MyEvents=mongoose.mongoose.model('MyEvents', EventSchema);
 
 var StatsSchema = new mongoose.Schema({
-	 _id: String
+	 _id: String,
 	fullname: String,
 	event: String,
 });
@@ -83,6 +84,7 @@ app.get("/users", function (req, res) {
 app.post('/users',function(req,res){
 	var a = req.body;
 	new participants({
+		_id:a.fullname+a.event,
 		fullname: a.fullname,
 		address: a.address,
 		event: a.event,
@@ -92,8 +94,17 @@ app.post('/users',function(req,res){
 		contactnumber: a.contactnumber,
 
 	}).save(function (err, users){
-		if(err) res.json(err);
-		participants.find({"fullname": req.body.fullname},function(err,docs){
+		if(err){
+			res.render('users/alert');
+		} //res.json(err);
+		participants.find({"_id": req.body.fullname+req.body.event},function(err,docs){
+/*			console.log(docs.length)
+		if (docs.length>){
+			res.render('users/show', {users: docs});
+		}
+		else{
+			res.render('users/alert', {users: docs});
+		}*/
 		res.render('users/show', {users: docs});
 	});
 });
