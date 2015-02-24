@@ -67,16 +67,18 @@ var StationSchema = new db.Schema({
 	,EventName : String
 	,StationID : String
 	,StationName : String
+	,UUID : String
 });
 
 var MyStation=db.mongoose.model('MyStation',StationSchema)
 
-function addStation(_id, EventName, StationID, StationName, callback){
+function addStation(_id, EventName, StationID, StationName, UUID, callback){
 	var instance = new MyStation();
 	instance._id = EventName+"."+StationID;
 	instance.EventName = EventName;
 	instance.StationID = StationID;
 	instance.StationName = StationName;
+	instance.UUID = UUID;
 	instance.save(function (err){
 		if (err){
 			callback(err);
@@ -128,7 +130,8 @@ app.post('/admin/event/addStation',function(req,res){
 	var EventName = req.body.EventName;
 	var StationID = req.body.StationID;
 	var StationName = req.body.StationName;
-	addStation(_id, EventName, StationID, StationName, function(err, user){
+	var UUID = req.body.UUID;
+	addStation(_id, EventName, StationID, StationName, UUID, function(err, user){
 		if (err) throw err;
 	});
 });
