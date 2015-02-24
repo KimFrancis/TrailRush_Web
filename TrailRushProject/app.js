@@ -11,27 +11,10 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var fs = require('fs');
-
 var app = express();
 
-// all environments
-app.configure(function () {
-app.use(express.bodyParser());
-app.use(express.cookieParser('Authentication Tutorial '));
-app.use(express.session());
-app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
-});
 //LAGYAN NG MONGOOSE.CONNECT
-mongoose.connect('mongodb://admin:admin@ds041831.mongolab.com:41831/trailrush');
+mongoose.connect("mongodb://admin:admin@ds041831.mongolab.com:41831/trailrush");
 var UserSchema = new mongoose.Schema({
     username: String,
     password: String,
@@ -64,29 +47,21 @@ app.param('EventName', function(req, res, next, EventName){
         next();
     });
     });
-
-//Show specific event
-app.post('/Events/:EventName', function (req, res){
-    res.render('users/search', { MyEvent: req.MyEvent});
-});
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
-
-//WEBSITE DESIGN
-app.get("/home", function (req,res){
-    /*res.render("users/trailrush"),{ MyEvent: req.MyEvent});*/
- MyEvents.find({}, function (err, docs){
-    console.log(docs);
- res.render("users/trailrush", {trailevents: docs});
- });
-});
-
-app.get("/Event/:id", function(req,res){
- MyEvents.find({'EventName':req.params.id}, function (err, docs){
- res.render('users/upcommingeventpost', {trailevents: docs});
- });
+// all environments
+    app.configure(function () {
+    app.use(express.bodyParser());
+    app.use(express.cookieParser('Authentication Tutorial '));
+    app.use(express.session());
+    app.set('port', process.env.PORT || 3000);
+    app.set('views', path.join(__dirname, 'views'));
+    app.set('view engine', 'jade');
+    app.use(express.favicon());
+    app.use(express.logger('dev'));
+    app.use(express.json());
+    app.use(express.urlencoded());
+    app.use(express.methodOverride());
+    app.use(app.router);
+    app.use(express.static(path.join(__dirname, 'public')));
 });
 app.use(function (req, res, next) {
     var err = req.session.error,
@@ -103,7 +78,6 @@ Helper Functions
 */
 function authenticate(name, pass, fn) {
     if (!module.parent) console.log('authenticating %s:%s', name, pass);
-
     User.findOne({
         username: name
     },
@@ -157,6 +131,29 @@ app.get("/", function (req, res) {
     }
 });
 */
+//Show specific event
+app.post('/Events/:EventName', function (req, res){
+    res.render('users/search', { MyEvent: req.MyEvent});
+});
+// development only
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
+
+//WEBSITE DESIGN
+app.get("/home", function (req,res){
+    /*res.render("users/trailrush"),{ MyEvent: req.MyEvent});*/
+ MyEvents.find({}, function (err, docs){
+    console.log(docs);
+ res.render("users/trailrush", {trailevents: docs});
+ });
+});
+
+app.get("/Event/:id", function(req,res){
+ MyEvents.find({'EventName':req.params.id}, function (err, docs){
+ res.render('users/upcommingeventpost', {trailevents: docs});
+ });
+});
 
 app.get("/signup", function (req, res) {
     if (req.session.user) {
@@ -206,26 +203,22 @@ app.get("/login",function (req,res,next){
         next();
     }
 }, function (req, res) {
-    
- res.render("users/login");
- 
-
-});
+    res.render("users/login");
+ });
 
 app.post("/login", function (req, res) {
+    
     authenticate(req.body.username, req.body.password, function (err, user) {
         if (user) {
-
             req.session.regenerate(function () {
-
-                req.session.user = user;
+                 req.session.user = user;
                 req.session.success = 'Authenticated as ' + user.username + ' click to <a href="/logout">logout</a>. ' + ' You may now access <a href="/restricted">/restricted</a>.';
                 res.redirect('/home');
             });
         } else {
+            res.redirect('/login');
             req.session.error = 'Authentication failed, please check your ' + ' username and password.';
-
-            res.redirect('/home');
+            
 
         }
     });

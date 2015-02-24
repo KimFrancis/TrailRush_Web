@@ -35,6 +35,12 @@ app.configure(function () {
     app.use(express.static(path.join(__dirname, 'public')));
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
+     app.use(express.favicon());
+    app.use(express.logger('dev'));
+    app.use(express.json());
+    app.use(express.urlencoded());
+    app.use(express.methodOverride());
+   
 });
 
 app.use(function (req, res, next) {
@@ -52,7 +58,6 @@ Helper Functions
 */
 function authenticate(name, pass, fn) {
     if (!module.parent) console.log('authenticating %s:%s', name, pass);
-
     User.findOne({
         username: name
     },
@@ -162,8 +167,9 @@ app.post("/login", function (req, res) {
                 res.redirect('/');
             });
         } else {
-            req.session.error = 'Authentication failed, please check your ' + ' username and password.';
+            
             res.redirect('/login');
+            req.session.error = 'Authentication failed, please check your ' + ' username and password.';
         }
     });
 });
