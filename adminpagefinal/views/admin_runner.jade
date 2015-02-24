@@ -4,33 +4,9 @@ block content
     button#btnBack Back to Event
     h1 #{eventID} Event
     p Admin Page (Participants)
-    // Wrapper
-    #wrapper
-        // SEARCH USER
-        h2 Search Runner
-        #searchUser
-            field
-                input#inputSearchName(type='text', placeholder='Bib ID')
-                br
-                button#btnSearchUser Search
-                br
-                br
-        // /SEARCH USER
 
-        // USER LIST
-        h2 #{eventID} Event
-        #userList
-            table
-                thead
-                    th BibID
-                    th Name
-                    th Gender
-                    th Age
-                    th Remove
-                tbody
-        // /USER LIST
         input(type="hidden" id="hiddenEvent" value="#{eventID}")
-        // ADD USER
+
         #addUserPanel
           h2 Add User
           #addUser
@@ -48,9 +24,7 @@ block content
               input#inputUserGender(type='text', placeholder='Gender')
               br
               button#btnAddUser Add User
-        // /ADD USER
-
-        // UPDATE USER
+              
         #updateUserPanel
           h2 Update User
           #updateUser
@@ -71,7 +45,32 @@ block content
               br
               button#btnUpdateUser Update
               button#btnCancelUpdateUser Cancel
-              
-        // /UPDATE USER
+
+
+    // Wrapper
+    #wrapper
+        // SEARCH USER
+        h2 Search Runner
+        #searchUser
+            field
+                input#inputSearchName(type='text', placeholder='Bib ID')
+                br
+                button#btnSearchUser Search
+                br
+                br
+        // /SEARCH USER
+
+        // USER LIST
+        h2 Participants
+        #userList
+            table
+                thead
+                    th BibID
+                    th Name
+                    th Gender
+                    th Age
+                    th Remove
+                tbody
+        
 
     // /WRAPPER

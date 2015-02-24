@@ -271,7 +271,7 @@ function searchUser(event) {
     var bimp = document.getElementById('updateUserAge').value;
     var TRevent= document.getElementById('updateUserEvent').value;
 
-    document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","Event":"'+TRevent+'"}';
+    document.getElementById('qrcode').value='{"FName":"'+name+'","bibid":"'+bimp+'","EventName":"'+TRevent+'"}';
 
 
     // alert(document.getElementById('qrvalue').value);
@@ -359,7 +359,7 @@ function changeUserInfo(event) {
     var name = document.getElementById('updateUserFullname').value;
     var bimp = document.getElementById('updateUserAge').value;
     var TRevent= document.getElementById('updateUserEvent').value;
-    document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","event":"'+TRevent+'"}';
+    document.getElementById('qrcode').value='{"FName":"'+name+'","bibid":"'+bimp+'","EventName":"'+TRevent+'"}';
 
     // alert(document.getElementById('qrvalue').value);
     var elText = document.getElementById('qrcode');

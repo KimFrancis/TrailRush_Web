@@ -12,8 +12,10 @@ a {
 }
 
 #wrapper {
-	padding-left:312px;
-	position:relative;
+	position:absolute;
+	top:15%;
+	left:35%;
+
 }
 
 #userList {
