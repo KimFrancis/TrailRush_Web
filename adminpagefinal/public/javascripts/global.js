@@ -6,13 +6,33 @@ var userListData = [];
 
 
 // DOM Ready =============================================================
-$(document).ready(function() {
+$(document).ready(function(){  
 
-    // Populate the user table on initial page load
     populateTable();
+      var checkField;
 
+      //checking the length of the value of message and assigning to a variable(checkField) on load
+      checkField = $("input#inputSearchName").val().length;  
 
-});
+      var enableDisableButton = function(){         
+        if(checkField > 0){
+          $('#btnSearchUser').removeAttr("disabled");
+        } 
+        else {
+          $('#btnSearchUser').attr("disabled","disabled");
+        }
+      }        
+
+      //calling enableDisableButton() function on load
+      enableDisableButton();            
+
+      $('input#inputSearchName').keyup(function(){ 
+        //checking the length of the value of message and assigning to the variable(checkField) on keyup
+        checkField = $("input#inputSearchName").val().length;
+        //calling enableDisableButton() function on keyup
+        enableDisableButton();
+      });
+    })
 
  // Username link click
     // $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
@@ -28,6 +48,7 @@ $(document).ready(function() {
     $('#btnBack').on("click", back);
  // Cancel Update User button click
     $('#btnCancelUpdateUser').on('click', togglePanels);
+    // Cancel Update User button click
  // Add class to updated fields
     $('#updateUser input').on('change', function(){$(this).addClass('updated')})
  // Update User button click
@@ -40,6 +61,8 @@ function togglePanels(){
     $('#addUserPanel').toggle();
     $('#updateUserPanel').toggle();
   }
+
+
 
 
 // Fill table with data
@@ -73,55 +96,6 @@ function populateTable() {
         $('#userList table tbody').html(tableContent);
     });
 };
-
-// // Show User Info
-// function showUserInfo(event) {
-
-//     // Prevent Link from Firing
-//     event.preventDefault();
-
-//     // Retrieve username from link rel attribute
-//     var thisBibID = $(this).attr('rel');
-
-//     // Get Index of object based on id value
-//     var arrayPosition = userListData.map(function(arrayItem) { 
-//         return  arrayItem.bibid + '';
-
-//     }).indexOf(thisBibID);
-
-//     console.log(arrayPosition);
-//     // Get our User Object
-//     var thisUserObject = userListData[arrayPosition];
-
-//     //Populate Info Box
-//     $('#userInfoBibID').val(thisUserObject.bibid);
-//     $('#userInfoName').val(thisUserObject.fullname);
-//     $('#userInfoEvent').val(thisUserObject.event);
-//     $('#userInfoEmail').val(thisUserObject.emailaddress);
-//     $('#userInfoContactNum').val(thisUserObject.contactnumber);
-//     $('#userInfoGender').val(thisUserObject.gender);
-//     $('#userInfoAge').val(thisUserObject.age);
-//     $('#userInfoAddress').val(thisUserObject.address);
-
-//     //Generate QR
-//     clearQR();
-//     var qrcode = new QRCode(document.getElementById("qrcode"), 
-//     {
-//     width : 250,
-//     height : 250
-//     });
-  
-//     var name = document.getElementById('userInfoName').value;
-//     var bimp = document.getElementById('userInfoAge').value;
-//     var TRevent= document.getElementById('userInfoEvent').value;
-//     document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","event":"'+TRevent+'"}';
-
-//     // alert(document.getElementById('qrvalue').value);
-//     var elText = document.getElementById('qrcode');
-//     qrcode.makeCode(elText.value);
-
-
-// };
 
 // Add User
 function addUser(event,name,age, callback) {
@@ -288,25 +262,6 @@ function searchUser(event) {
    
 };
 
-// function makeCode () { 
-    
-//     clearQR();
-//     var qrcode = new QRCode(document.getElementById("qrcode"), 
-//     {
-//     width : 250,
-//     height : 250
-//     });
-  
-
-//     var name = document.getElementById('userInfoName').value;
-//     var bimp = document.getElementById('userInfoAge').value;
-//     var TRevent= document.getElementById('userInfoEvent').value;
-//     document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","EventName":"'+TRevent+'"}';
-
-//     var elText = document.getElementById('qrcode');
-
-//     qrcode.makeCode(elText.value);
-// }
 
 function clearQR()
 {
@@ -435,3 +390,24 @@ function updateUser(event){
 function back() {
     window.location = 'http://localhost:3000/admin/event';
 }
+
+
+// function makeCode () { 
+    
+//     clearQR();
+//     var qrcode = new QRCode(document.getElementById("qrcode"), 
+//     {
+//     width : 250,
+//     height : 250
+//     });
+  
+
+//     var name = document.getElementById('userInfoName').value;
+//     var bimp = document.getElementById('userInfoAge').value;
+//     var TRevent= document.getElementById('userInfoEvent').value;
+//     document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","EventName":"'+TRevent+'"}';
+
+//     var elText = document.getElementById('qrcode');
+
+//     qrcode.makeCode(elText.value);
+// }
