@@ -43,6 +43,7 @@ html(lang='en')
                 a(href='http://localhost:3000/logout') Logout
               li
                 a(href='http://localhost:3000/Join') Join Event
+           
 
     #thumbnail-preview-indicators.carousel.slide(data-ride='carousel')
       // Indicators
@@ -77,38 +78,36 @@ html(lang='en')
         span.glyphicon.glyphicon-chevron-right
     section#events.events-section
       .container
+        h1 LIST OF EVENTS
         .row
-          // Blog Entries Column
-
           each tevent in users
-            .col-md-4
-              h1.page-header
-                p #{tevent._id} Events
+            .col-md-4.col-sm-4.col-xs-12
+              h2 #{tevent._id}
               ul
                 each name in tevent.EventName
-                  |<li name="#{name}">#{name} - <a href="/Event/#{name}">SeeMore....</a> 
-
+                  |<li name="#{name}"><a href="/Event/#{name}">#{name}</a> 
     section#services.services-section
       .container
-        .row
-          .col-lg-12
-            h1 SERVICES
+        h1 SERVICES
         .row
           .col-md-4
-            img.img-responsive(src='img/search24.png')
-            h3 Lorem Impsum
-            p
-              | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
+            #whitebox
+              img.img-responsive(src='img/search24.png')
+              h3 Lorem Impsum
+              p
+                | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
           .col-md-4
-            img.img-responsive(src='img/people3.png')
-            h3 Lorem Impsum
-            p
-              | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
+            #whitebox
+              img.img-responsive(src='img/people3.png')
+              h3 Lorem Impsum
+              p
+                | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
           .col-md-4
-            img.img-responsive(src='img/monitor46.png')
-            h3 Lorem Impsum
-            p
-              | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
+            #whitebox
+              img.img-responsive(src='img/monitor46.png')
+              h3 Lorem Impsum
+              p
+                | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
     #download.download-section
       .container
         .row
@@ -120,7 +119,9 @@ html(lang='en')
               img(src='img/apple.png', height='50', width='150')
               img(src='img/google.png', height='50', width='150')
           .col-md-5
-            img.img-responsive(src='img/final-imagehalf.png', height='50')
+            img.img-responsive(src='img/final-imagehalf.png', height='50')             
+    
+
     #contacts.contacts-section
       .container
         #rowcontacts.row
@@ -134,13 +135,13 @@ html(lang='en')
                 p 3 Edgar Buildings
                 p George Street
                 p England
-            hr
+          
             .row
               .col-xs-2
                 img.img-responsive.center-block(src='img/phone72.png')
               .col-xs-9
                 p 63+ 09277861793
-            hr
+         
             .row
               .col-xs-2
                 img.img-responsive.center-block(src='img/google110.png')
@@ -153,35 +154,39 @@ html(lang='en')
                 img.img-responsive.center-block(src='img/facebok.png')
               .col-xs-9
                 p facebook.com/trailrushofficial
-            hr
+         
             .row
               .col-xs-2
                 img.img-responsive.center-block(src='img/social71.png')
               .col-xs-9
                 p twitter.com/trailrushofficial
-            hr
+        
             .row
               .col-xs-2
                 img.img-responsive.center-block(src='img/instagram13.png')
               .col-xs-9
                 p instagram.com/trailrushofficial
           .col-md-4
-            form#contactForm(name='sentMessage', novalidate='')
-              .row
-                h3 GET IN TOUCH
-                .col-lg-12
-                  .form-group
-                    input#name.form-control(type='text', placeholder='Your Name *', required='', data-validation-required-message='Please enter your name.')
-                    p.help-block.text-danger
-                  .form-group
-                    input#email.form-control(type='email', placeholder='Your Email *', required='', data-validation-required-message='Please enter your email address.')
-                    p.help-block.text-danger
-                  .form-group
-                    textarea#message.form-control(placeholder='Your Message *', required='', data-validation-required-message='Please enter a message.', rows='3')
-                    p.help-block.text-danger
-                .col-lg-12
-                  #success
-                  button.btn.btn-xl(type='submit') Send
+            .row
+              h3 SOCIAL MEDIA
+              .col-xs-2
+                img.img-responsive.center-block(src='img/facebok.png')
+              .col-xs-9
+                p facebook.com/trailrushofficial
+         
+            .row
+              .col-xs-2
+                img.img-responsive.center-block(src='img/social71.png')
+              .col-xs-9
+                p twitter.com/trailrushofficial
+           
+            .row
+              .col-xs-2
+                img.img-responsive.center-block(src='img/instagram13.png')
+              .col-xs-9
+                p instagram.com/trailrushofficial
+    footer
+      p © TrailRush. All rights reserved.
     // jQuery
     script(src='javascripts/jquery.js')
     script(src='javascripts/scrollingproject.js')

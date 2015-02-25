@@ -1,4 +1,4 @@
-doctype html
+  doctype html
 html(lang='en')
   head
     meta(charset='utf-8')
@@ -14,7 +14,7 @@ html(lang='en')
    
   body#page-top(data-spy='scroll', data-target='.navbar-fixed-top')
     // Navigation
-    nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+    nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
       .container
         .navbar-header.page-scroll
           button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
@@ -22,57 +22,93 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand.page-scroll(href='index.html')
-            img(src='../../img/logo.png', height='18', width='140')
+          a.navbar-brand.page-scroll(href='http://localhost:3000/home')
+            img(src='../img/logo.png', height='18', width='140')
         // Collect the nav links, forms, and other content for toggling
         .collapse.navbar-collapse.navbar-ex1-collapse.navHeaderCollapse
           ul.nav.navbar-nav.navbar-right
             // Hidden li included to remove active class from about link when scrolled up past about section
             li.hidden
-              a.page-scroll(href='#page-top')
+              a.page-scroll(href='http://localhost:3000/home#page-top')
             li
-              a.page-scroll(href='#about') About
+              a.page-scroll(href='http://localhost:3000/home#events') Events
             li
-              a.page-scroll(href='#services') Services
-            li.dropdown
-              a.page-scroll.dropdown-toggle(href='#events', data-toggle='dropdown')
-                | Events
-                b.caret
-              ul.dropdown-menu
-                li
-                  a(href='upcomingeventpage.htm') Upcoming Events
-                li
-                  a(href='#') Current Events
-                li
-                  a(href='pasteventpage.htm') Past Events
+              a.page-scroll(href='http://localhost:3000/home#services') Services
             li
-              a.page-scroll(href='#download') Download
-            li
-              a.page-scroll(href='#contacts') Contact
+              a.page-scroll(href='http://localhost:3000/home#download') Download
+            if (title == "No Account")
+              li
+                a(href='http://localhost:3000/login') Sign in
+            else 
+              li 
+                a(href='http://localhost:3000/logout') Logout
+              li
+                a(href='http://localhost:3000/Join') Join Event
     #events.events-section
-      
-        
-        
-  
       .container
         .row
           .col-lg-8
             each tevent in trailevents
               h1 #{tevent.EventName}
-            hr
-            // Preview Image
-            #thumbnailevent
-              img.img-responsive(src='../img/milo-flytospain-poster1.jpg', alt='', style='float:left')
-            // Post Content
-            each tevent in trailevents  
-              p #{tevent.EventDescription}
-              
-            
-            hr
+            .panel.panel-success
+              .panel-heading
+                h3.panel-title Results
+                .pull-right
+                  span.clickable.filter(data-toggle='tooltip', title='Toggle table filter', data-container='body')
+                    i.glyphicon.glyphicon-filter
+              .panel-body
+                input#task-table-filter.form-control(type='text', data-action='filter', data-filters='#task-table', placeholder='Search Name')
+              table#task-table.table.table-hover
+                thead
+                  tr
+                    th #
+                    th Name
+                    th Time
+                    th Status
+                tbody
+                  tr
+                    td 1
+                    td Site Wireframes
+                    td John Smith
+                    td in progress
+                  tr
+                    td 2
+                    td Mobile Landing Page
+                    td Kilgore Trout
+                    td completed
+                  tr
+                    td 3
+                    td Add SEO tags
+                    td Bob Loblaw
+                    td failed qa
+                  tr
+                    td 4
+                    td Migrate to Bootstrap 3
+                    td Emily Hoenikker
+                    td in progress
+                  tr
+                    td 5
+                    td Update jQuery library
+                    td Holden Caulfield
+                    td deployed
+                  tr
+                    td 6
+                    td Issues in IE7
+                    td Jane Doe
+                    td failed qa
+                  tr
+                    td 7
+                    td Bugs from Sprint 14
+                    td Kilgore Trout
+                    td completed
+
             // Comments Form
           // Blog Sidebar Widgets Column
           .col-md-4
             .well
+              h4 Description
+              each tevent in trailevents  
+                p #{tevent.EventDescription}
               h4 Date
               each tevent in trailevents
                 p #{tevent.EventDate}
@@ -86,14 +122,12 @@ html(lang='en')
               each tevent in trailevents
                 p #{tevent.EventStatus}  
                 
-        // /.row
+
         
-    script(src='javascripts/jquery.js')
-    script(src='javascripts/scrollingproject.js')
-    // Bootstrap Core JavaScript
-    script(src='javascripts/bootstrap.min.js')
-    // Scrolling Nav JavaScript
-    script(src='javascripts/jquery.easing.min.js')
-    script(src='javascripts/scrolling-nav.js')
-    script(src='javascripts/tableresults.js')
+    script(src='../../javascripts/jquery.js')
+    script(src='../../javascripts/scrollingproject.js')
+    script(src='../../javascripts/bootstrap.min.js')
+    script(src='../../javascripts/jquery.easing.min.js')
+    script(src='../../javascripts/scrolling-nav.js')
+    script(src='../../javascripts/tableresults.js')
 

@@ -56,15 +56,15 @@ html(lang='en')
           ul.nav.navbar-nav.navbar-right
             // Hidden li included to remove active class from about link when scrolled up past about section
             li.hidden
-              a.page-scroll(href='#page-top')
+              a.page-scroll(href='http://localhost:3000/home#page-top')
             li
-              a.page-scroll(href='#events') Events
+              a.page-scroll(href='http://localhost:3000/home#events') Events
             li
-              a.page-scroll(href='#services') Services
+              a.page-scroll(href='http://localhost:3000/home#services') Services
             li
-              a.page-scroll(href='#download') Download
+              a.page-scroll(href='http://localhost:3000/home#download') Download
             li
-              a(href='#onlinereg', data-toggle='modal') Sign in
+              a(href='http://localhost:3000/login') Sign in
     #signup
       .container
         .row
@@ -76,23 +76,23 @@ html(lang='en')
                   small It's free and always will be.
                 
                 .form-group
-                  input#username.form-control.input-md(type='text', name='username', placeholder='Username', tabindex='3')
+                  input#username.form-control.input-md(type='text', name='username', placeholder='Username',required, data-required-msg='Username is required', tabindex='1')
                 .form-group
-                  input#password.form-control.input-md(type='password', name='password', placeholder='Password', tabindex='3')
+                  input#password.form-control.input-md(type='password', name='password',required, data-required-msg='Password is required', placeholder='Password', tabindex='2')
                 .form-group
-                  input#email.form-control.input-md(type='email', name='email', placeholder='Email Address', tabindex='4')
+                  input#email.form-control.input-md(type='email', name='email',required, data-required-msg='Email is required', placeholder='Email Address', tabindex='3')
                 .form-group
-                  input#fname.form-control.input-md(type='text', name='fname', placeholder='Full Name', tabindex='3')
+                  input#fname.form-control.input-md(type='text', name='fname', placeholder='Full Name',required, data-required-msg='Full Name is required',  tabindex='4')
                 .row
                   .col-xs-12.col-sm-6.col-md-6
-                    input#age.form-control.input-md(type='number', name='age', placeholder='Age', tabindex='3')
+                    input#age.form-control.input-md(type='number', name='age', placeholder='Age',required, data-required-msg='Age is required',  tabindex='5')
                   .col-xs-12.col-sm-6.col-md-6
-                    select#gender.form-control
+                    select#gender.form-control(tabindex='6',required, data-required-msg='Gender is required', )
                       option Male
                       option Female
                 .form-group
                   p!=message
-                  button.btn(type='Sign UP') Submit
+                  button.btn(type='submit', tabindex='7') Submit
 
                  
     script(src='javascripts/jquery.js')

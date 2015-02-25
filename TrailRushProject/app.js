@@ -247,9 +247,15 @@ function (err, docs){
 });
 
 app.get("/Event/:id", function(req,res){
- MyEvents.find({'EventName':req.params.id}, function (err, docs){
- res.render('users/upcommingeventpost', {trailevents: docs});
+ if (req.session.user) {
+        MyEvents.find({'EventName':req.params.id}, function (err, docs){
+ res.render('users/upcommingeventpost', {trailevents: docs, title: "Already Login"});
  });
+    } else {
+        MyEvents.find({'EventName':req.params.id}, function (err, docs){
+ res.render('users/upcommingeventpost', {trailevents: docs, title: "No Account"});
+ });
+    }
 });
 
 app.get("/signup", function (req, res) {
@@ -330,11 +336,18 @@ app.get('/logout', function (req, res) {
 });
 
 //join event
-app.get("/join", function (req, res) {
-    MyEvents.find({"EventStatus":"Upcoming"}, function (err, docs) {
+app.get("/join",function (req,res,next){
+    if (req.session.user) {
+        
+         MyEvents.find({"EventStatus":"Upcoming"}, function (err, docs) {
         res.render('users/joinevent', { users : docs});
         console.log(docs);
     });
+    } else {
+        next();
+    }
+}, function (req, res) {
+   res.redirect("/login");
 });
 
 app.post('/join',function(req,res){
@@ -351,7 +364,10 @@ app.post('/join',function(req,res){
 
     }).save(function (err, users){
         if(err){
-            res.render('users/alert');
+           MyEvents.find({"EventStatus":"Upcoming"}, function (err, docs) {
+            res.render('users/joinevent', { users : docs, title : "You have already joined in this event!"});
+            console.log(docs);
+        });
         } //res.json(err);
         participants.find({"_id": req.body.fullname+req.body.event},function(err,docs){
 /*          console.log(docs.length)

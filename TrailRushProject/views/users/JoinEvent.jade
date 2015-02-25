@@ -29,10 +29,19 @@ html(lang='en')
       color:white;
       }
       #joinevent form .btn{
-      margin-top: 30px;
+ 
+      margin-top: 10px;
+      margin-bottom:20px;
+      background-color:#ff9640;
+      border-color: none !important;
+      color:white;
+      
       }
       .col-xs-12{
       margin-bottom:15px;
+      }
+      p {
+      color:red;
       }
   body#page-top(data-spy='scroll', data-target='.navbar-fixed-top')
     // Navigation
@@ -44,22 +53,23 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand.page-scroll(href='#page-top')
-            img(src='img/logo.png', height='18', width='140')
+          a.navbar-brand.page-scroll(href='http://localhost:3000/home')
+            img(src='../img/logo.png', height='18', width='140')
         // Collect the nav links, forms, and other content for toggling
         .collapse.navbar-collapse.navbar-ex1-collapse.navHeaderCollapse
           ul.nav.navbar-nav.navbar-right
             // Hidden li included to remove active class from about link when scrolled up past about section
             li.hidden
-              a.page-scroll(href='#page-top')
+              a.page-scroll(href='http://localhost:3000/home#page-top')
             li
-              a.page-scroll(href='#events') Events
+              a.page-scroll(href='http://localhost:3000/home#events') Events
             li
-              a.page-scroll(href='#services') Services
+              a.page-scroll(href='http://localhost:3000/home#services') Services
             li
-              a.page-scroll(href='#download') Download
-            li
-              a(href='#onlinereg', data-toggle='modal') Sign in
+              a.page-scroll(href='http://localhost:3000/home#download') Download
+            li 
+              a(href='http://localhost:3000/logout') Logout
+              
     #joinevent
       .container
         .row
@@ -67,32 +77,33 @@ html(lang='en')
             #blackbox
               form(role='form' method="POST" action="/Join")
                 h2 Join an event.
-                hr.colorgraph
+              
                 .form-group
-                  input#fullname.form-control.input-md(type='text', name='fullname', placeholder='Full Name', tabindex='3')
+                  input#fullname.form-control.input-md(type='text', name='fullname', placeholder='Full Name', tabindex='1', required)
                 .form-group
-                  input#address.form-control.input-md(type='text', name='address', placeholder='Address', tabindex='3')
+                  input#address.form-control.input-md(type='text', name='address', placeholder='Address', tabindex='2' , required)
                 .row
                   .col-xs-12.col-sm-6.col-md-6
-                    input#age.form-control.input-md(type='number', name='age', placeholder='Age', tabindex='3')
+                    input#age.form-control.input-md(type='number', name='age', placeholder='Age', tabindex='3' , required)
                   .col-xs-12.col-sm-6.col-md-6
-                    select#gender.form-control
+                    select#gender.form-control(tabindex='4' , required)
                       option Male
                       option Female
                 .form-group
-                  input#email.form-control.input-md(type='email', name='emailaddress', placeholder='Email Address', tabindex='4')
+                  input#email.form-control.input-md(type='email', name='emailaddress', placeholder='Email Address', tabindex='5' , required)
                 .row
                   .col-xs-12.col-sm-6.col-md-6
-                    select#event.form-control(name="event")
+                    select#event.form-control(name="event" tabindex='6' , required)
                       each event in users
                         |<option value=#{event.EventName}>#{event.EventName}</option>
                       
                   .col-xs-12.col-sm-6.col-md-6
-                    input#contactnum.form-control.input-md(type='number', name='contactnumber', placeholder='Contact Number', tabindex='3')
+                    input#contactnum.form-control.input-md(type='number', name='contactnumber', placeholder='Contact Number', tabindex='7' , required)
                 .form-group
-                  button.btn.btn-primary(type='submit') Submit
-                  p
-                    user already exist
+                  p #{title}
+                  button.btn(type='submit', tabindex='8') Submit
+                  
+                    
     script(src='javascripts/jquery.js')
     script(src='javascripts/scrollingproject.js')
     // Bootstrap Core JavaScript

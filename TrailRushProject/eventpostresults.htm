@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Scrolling Nav - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="public/stylesheets/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="public/stylesheets/scrolling-nav.css" rel="stylesheet">
+    <link href="public/stylesheets/tableresults.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    #events{
+        margin-top: 60px;
+    }
+   
+    .caret-up {
+            width: 0; 
+            height: 0; 
+            border-left: 4px solid rgba(0, 0, 0, 0);
+            border-right: 4px solid rgba(0, 0, 0, 0);
+            border-bottom: 4px solid;
+            
+            display: inline-block;
+            margin-left: 2px;
+            vertical-align: middle;
+    }
+    #thumbnailevent img{
+        height:309px;
+        padding-right: 20px;
+    }
+    h1 {
+        margin-top: 0px;
+    }
+    </style>
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
+            <div class="container">
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand page-scroll" href="index.html"><img src="img/logo.png" height=18 width=140></img></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse navHeaderCollapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                        <li class="hidden">
+                            <a class="page-scroll" href="#page-top"></a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#about">About</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#services">Services</a>
+                        </li>
+                         <li class="dropdown">
+                            <a href="#events" class=" page-scroll dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="upcomingeventpage.htm">Upcoming Events</a></li>
+                                <li><a href="#">Current Events</a></li>
+                                <li><a href="pasteventpage.htm">Past Events</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#download">Download</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#contacts">Contact</a>
+                        </li>
+                </div>
+                
+            </div>
+        </nav>
+
+    <div id="events" class="events-section"> 
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1>Milo Run 2014</h1>
+                <hr>
+                <!-- Preview Image -->
+                <div id="thumbnailevent">
+                    <img class="img-responsive" src="img/7K-2013_poster.jpg" alt="" style="float:left">
+                </div>
+               
+
+                <!-- Post Content -->
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
+                <hr>
+            
+
+                
+
+               
+
+            </div>
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+            <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Results</h3>
+                        <div class="pull-right">
+                            <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                                <i class="glyphicon glyphicon-filter"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Search Name" />
+                    </div>
+                    <table class="table table-hover" id="task-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Site Wireframes</td>
+                                <td>John Smith</td>
+                                <td>in progress</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Mobile Landing Page</td>
+                                <td>Kilgore Trout</td>
+                                <td>completed</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Add SEO tags</td>
+                                <td>Bob Loblaw</td>
+                                <td>failed qa</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Migrate to Bootstrap 3</td>
+                                <td>Emily Hoenikker</td>
+                                <td>in progress</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Update jQuery library</td>
+                                <td>Holden Caulfield</td>
+                                <td>deployed</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Issues in IE7</td>
+                                <td>Jane Doe</td>
+                                <td>failed qa</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Bugs from Sprint 14</td>
+                                <td>Kilgore Trout</td>
+                                <td>completed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+        <!-- /.row -->
+        
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+        </div>
+    </div>
+
+    <script src="public/javascripts/jquery.js"></script>
+    <script src="public/javascripts/scrollingproject.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="public/javascripts/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="public/javascripts/jquery.easing.min.js"></script>
+    <script src="public/javascripts/scrolling-nav.js"></script>
+    <script src="public/javascripts/tableresults.js"></script>
+
+</body>
+</html>
