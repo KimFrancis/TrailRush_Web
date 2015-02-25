@@ -172,7 +172,7 @@ function addUser(event,name,age, callback) {
             else {
 
                 // If something goes wrong, alert the error message that our service returned
-                alert('Error: ' + response.msg);
+                alert('Bib ID already exist. Please try again!');
 
             }
         });
@@ -234,6 +234,7 @@ function searchUser(event) {
     // Prevent Link from Firing
     event.preventDefault();
 
+
     if($('#addUserPanel').is(":visible")){
     togglePanels();
      }
@@ -280,6 +281,9 @@ function searchUser(event) {
     var elText = document.getElementById('qrcode');
 
     qrcode.makeCode(elText.value);
+
+
+    alert('Participant "' + thisUserObject.fullname +'" found!');
 
    
 };
@@ -410,7 +414,7 @@ function updateUser(event){
               togglePanels();
       }
       else {
-        alert('Error: ' + response.msg);
+        alert('Bib ID already exist. Please try again!');
       }
 
       // Update the table
