@@ -79,83 +79,15 @@ html(lang='en')
       .container
         .row
           // Blog Entries Column
-          .col-md-8
-            h1.page-header
-              | Current Events
-            .row
-              .col-lg-4.col-sm-4
-                #thumbnailevent
-                  img.img-responsive(src='img/Glow-Run-Poster_MS.jpg')
-                h3
-                  a(href='#') Lorem Ipsum
-                p.text-muted
-                  | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
-                a.btn.btn-primary(href='postresults.htm')
-                  | Read More
-                  span.glyphicon.glyphicon-chevron-right
-              .col-lg-4.col-sm-4
-                #thumbnailevent
-                  img.img-responsive(src='img/Run4aReason-Race_Poster_thumb[2].jpg')
-                h3
-                  a(href='#') Lorem Ipsum
-                p.text-muted
-                  | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
-                a.btn.btn-primary(href='eventpost.htm')
-                  | Read More 
-                  span.glyphicon.glyphicon-chevron-right
-              .col-lg-4.col-sm-4
-                #thumbnailevent
-                  img.img-responsive(src='img/fuego-sunset-run-2012-poster-723x1024.jpg')
-                h3
-                  a(href='#') Lorem Ipsum
-                p.text-muted
-                  | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut.
-                a.btn.btn-primary(href='eventpost.htm')
-                  | Read More 
-                  span.glyphicon.glyphicon-chevron-right
-          
-          .col-md-4
-            h1.page-header
-              | Upcoming Events
-            ul
-              each tevent in trailevents
-                |<li name="#{tevent.EventName}">#{tevent.EventDate} - <a href="/Event/#{tevent.EventName}">#{tevent.EventName}</a>
-                |</li>
-            h1.page-header
-              | Past Events
-            .row
-              .col-md-12
-                .row
-                  .col-xs-2
-                    img(src='img/7K-2013_poster.jpg', height='70', width='50')
-                  .col-xs-9
-                    h4
-                      a(href='eventpostresults.htm') Lorem Impusom 
-                    p
-                      | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut
-        
-            .row
-              .col-md-12
-                .row
-                  .col-xs-2
-                    img(src='img/rogin-e-last-man-running-2-poster-661x1024.jpg', height='70', width='50')
-                  .col-xs-9
-                    h4
-                      a(href='#') Lorem Impusom 
-                    p
-                      | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut
-          
-            .row
-              .col-md-12
-                .row
-                  .col-xs-2
-                    img(src='img/Run-of-the-mill-poster.jpg', height='70', width='50')
-                  .col-xs-9
-                    h4
-                      a(href='#') Lorem Impusom Mothafucka
-                    p
-                      | Dictas philosophia nec ne. His esse justo epicurei ne, cu noster dictas efficiantur sea, sea tantas invidunt constituam ut
-          
+
+          each tevent in users
+            .col-md-4
+              h1.page-header
+                p #{tevent._id} Events
+              ul
+                each name in tevent.EventName
+                  |<li name="#{name}">#{name} - <a href="/Event/#{name}">SeeMore....</a> 
+
     section#services.services-section
       .container
         .row

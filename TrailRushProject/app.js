@@ -12,14 +12,16 @@ var http = require('http');
 var path = require('path');
 var fs = require('fs');
 var app = express();
+var criteria;
 
 //LAGYAN NG MONGOOSE.CONNECT
 mongoose.connect("mongodb://admin:admin@ds041831.mongolab.com:41831/trailrush");
 //JOIN EVENT
-var connection = mongoose.createConnection('mongodb://admin:admin@ds041831.mongolab.com:41831/trailrush');
 var autoIncrement = require('mongoose-auto-increment');
+var connection = mongoose.createConnection('mongodb://admin:admin@ds041831.mongolab.com:41831/trailrush');
 autoIncrement.initialize(connection);
 var Schema = new mongoose.Schema({
+        _id:String,
         fullname: String,
         address: String,
         event: String,
@@ -60,9 +62,14 @@ var EventSchema = new mongoose.Schema({
 
 });
 var MyEvents=mongoose.model('MyEvents', EventSchema);
-
-
-
+//joinevent
+var StatsSchema = new mongoose.Schema({
+     _id: String,
+    fullname: String,
+    event: String,
+});
+var MyStats=mongoose.model('MyStats', StatsSchema);
+//joinevent
 app.param('EventName', function(req, res, next, EventName){
     MyEvents.find({EventName: EventName}, function(err,docs){
         req.MyEvent = docs[0];
@@ -70,7 +77,7 @@ app.param('EventName', function(req, res, next, EventName){
     });
     });
 // all environments
-    app.configure(function () {
+app.configure(function () {
     app.use(express.bodyParser());
     app.use(express.cookieParser('Authentication Tutorial '));
     app.use(express.session());
@@ -82,9 +89,17 @@ app.param('EventName', function(req, res, next, EventName){
     app.use(express.json());
     app.use(express.urlencoded());
     app.use(express.methodOverride());
-    
     app.use(express.static(path.join(__dirname, 'public')));
 });
+//joinevent
+app.configure('development', function(){
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+});
+
+app.configure('production', function(){
+  app.use(express.errorHandler());
+});
+//joinevent
 app.use(function (req, res, next) {
     var err = req.session.error,
         msg = req.session.success;
@@ -166,14 +181,68 @@ if ('development' == app.get('env')) {
 app.get("/home", function (req,res){
     /*res.render("users/trailrush"),{ MyEvent: req.MyEvent});*/
     if (req.session.user){
-        MyEvents.find({}, function (err, docs){
-        res.render("users/trailrush", {trailevents: docs, title: "Already Login"});
-        });
+        MyEvents.aggregate(
+    /*{ $match: 
+        { "EventStatus": "Upcoming" 
+    } 
+    },*/
+    {
+        $group : {
+        _id : "$EventStatus"
+        ,EventName: {
+            $addToSet: "$EventName"
+        }
+        ,EventDate: {
+            $addToSet: "$EventDate"
+        }
+    }
+},
+{ 
+    $sort : { 
+            "_id" : 1
+        } 
+    },
+function (err, docs){
+    console.log(docs);
+    res.render('users/trailrush', {users: docs ,title: "Already Login"});
+
+});
+
     }
     else {
-        MyEvents.find({}, function (err, docs){
+
+                MyEvents.aggregate(
+    /*{ $match: 
+        { "EventStatus": "Upcoming" 
+    } 
+    },*/
+    {
+        $group : {
+        _id : "$EventStatus"
+        ,EventName: {
+            $addToSet: "$EventName"
+        }
+        ,EventDate: {
+            $addToSet: "$EventDate"
+        }
+    }
+},
+{ 
+    $sort : { 
+            "_id" : 1
+        } 
+    },
+function (err, docs){
+    console.log(docs);
+    res.render('users/trailrush', {users: docs, title: "No Account"});
+ 
+});
+        /*MyEvents.find({"EventStatus":"Upcoming"}, function (err, docs){
         res.render("users/trailrush", {trailevents: docs, title: "No Account"});
         });
+        MyEvents.find({"EventStatus":"Current"}, function (err, docs){
+        res.render("users/trailrush", {current: docs, title: "Already Login"});
+        });*/
     }
 });
 
@@ -243,6 +312,7 @@ app.post("/login", function (req, res) {
                 req.session.user = user;
                 req.session.success = 'Authenticated as ' + user.username + ' click to <a href="/logout">logout</a>. ' + ' You may now access <a href="/restricted">/restricted</a>.';
                 res.redirect('/home');
+                criteria=req.body.username;
             });
         } else {
             res.redirect('/login');
@@ -258,35 +328,19 @@ app.get('/logout', function (req, res) {
         res.redirect('/home');
     });
 });
-app.get("/home/account" ,function (req,res,next){
-     if (req.session.user) {
-        
-        next();
-    } else {
-        res.redirect("/home");
-    }
-},function(req,res){
-    /*res.render("users/trailrush"),{ MyEvent: req.MyEvent});*/
- MyEvents.find({}, function (err, docs){
-    console.log(docs);
- res.render("users/trailrushlogin", {trailevents: docs});
- });
-});
-app.get('/profile', requiredAuthentication, function (req, res) {
-    res.send('Profile page of '+ req.session.user.username +'<br>'+' <a href="/logout">logout</a>');
-});
 
-
-
-//JOIN EVENT
-app.get("/Join", function (req, res) {
-    MyEvents.find({}, function (err, docs) {
-        res.render('users/new_joinevent', { users : docs});
+//join event
+app.get("/join", function (req, res) {
+    MyEvents.find({"EventStatus":"Upcoming"}, function (err, docs) {
+        res.render('users/joinevent', { users : docs});
+        console.log(docs);
     });
 });
-app.post('/Join',function(req,res){
+
+app.post('/join',function(req,res){
     var a = req.body;
     new participants({
+        _id:a.fullname+a.event,
         fullname: a.fullname,
         address: a.address,
         event: a.event,
@@ -296,18 +350,30 @@ app.post('/Join',function(req,res){
         contactnumber: a.contactnumber,
 
     }).save(function (err, users){
-        if(err) res.json(err);
-        participants.find({"fullname": req.body.fullname},function(err,docs){
-        res.render('users/show_joinevent', {users: docs});
+        if(err){
+            res.render('users/alert');
+        } //res.json(err);
+        participants.find({"_id": req.body.fullname+req.body.event},function(err,docs){
+/*          console.log(docs.length)
+        if (docs.length>){
+            res.render('users/show', {users: docs});
+        }
+        else{
+            res.render('users/alert', {users: docs});
+        }*/
+        res.render('users/joinsuccess', {users: docs});
     });
 });
 });
+
 app.param('bibid', function (req, res, next, name) {
     participants.find({ bibid: bibid }, function (err, docs ) {
         req.users = docs[0];
         next();
     });
 });
+
+
 
 
 
