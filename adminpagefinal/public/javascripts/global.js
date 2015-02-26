@@ -41,8 +41,6 @@ function togglePanels(){
   }
 
 
-
-
 // Fill table with data
 function populateTable() {
 
@@ -319,9 +317,9 @@ function updateUser(event){
     // If they did, do our update
  
     //set the _id of the user to be update 
-    var _id = $(this).parentsUntil('div').parent();
-;
-    console.log(_id)
+     var _id = $(this).parentsUntil('div').parent().attr('rel');
+    
+    console.log(_id);
     //create a collection of the updated fields
     var fieldsToBeUpdated = $('#editmodal input.updated');
     console.log(fieldsToBeUpdated);
