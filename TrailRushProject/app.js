@@ -77,6 +77,17 @@ var ProfileSchema = new mongoose.Schema({
 });
 var Profile=mongoose.model('Profile', ProfileSchema);
 
+//stats
+var MyStatsSchema = new mongoose.Schema({
+  FName: String
+  ,bibid: Number
+  ,EventName: String
+  ,Date: Number
+  ,Station: String
+});
+
+var stats=mongoose.model('stats', MyStatsSchema);
+
 //joinevent
 app.param('EventName', function(req, res, next, EventName){
     MyEvents.find({EventName: EventName}, function(err,docs){
@@ -255,23 +266,91 @@ function (err, docs){
 });
 
 app.get("/Event/:id", function(req,res){
- if (req.session.user) {
-        MyEvents.find({'EventName':req.params.id}, function (err, docs){
- res.render('users/upcommingeventpost', {trailevents: docs, title: "Already Login"});
- });
-    } else {
-        MyEvents.find({'EventName':req.params.id}, function (err, docs){
- res.render('users/upcommingeventpost', {trailevents: docs, title: "No Account"});
- });
-    }
-});
+        if (req.session.user) {
+        console.log('logged-in');
+        MyEvents.find({'EventName':req.params.id}, function (err, xEvent) {
+            
+            stats.aggregate(
+                { 
+                    $sort : { 
+                        "Station" : 1
+                    } 
+                },
+                { 
+                    $match: {
+                        "EventName": req.params.id 
+                    } 
+                },
+                {
+                    $group : {
+                        _id : "$FName",
+                        bibid: {
+                            $addToSet: "$bibid"
+                        },
+                        Station: {
+                            $addToSet: "$Station"
+                        },
+                        "Date": {
+                            $addToSet: "$Date"
+                        }
+                    }
+                },
+                function (err, xUsers){
+                    
+                    res.render('users/upcommingeventpost',{ 
+                        xEvent : xEvent,
+                        xUsers: xUsers, 
+                        title: "Already Login"
+                    });
+                    //res.render('users/upcommingeventpost', {trailevents: docs, title: "Already Login"});
+                
+                }); // end of stats.aggregate
+            
+        }); // end of finding event name
 
-app.get("/signup", function (req, res) {
-    if (req.session.user) {
-        res.redirect("/home");
     } else {
-        res.render("users/signup");
+        // @TODO: support for users that arent signed-in
+                MyEvents.find({'EventName':req.params.id}, function (err, xEvent) {
+            
+            stats.aggregate(
+                { 
+                    $sort : { 
+                        "Station" : 1
+                    } 
+                },
+                { 
+                    $match: {
+                        "EventName": req.params.id 
+                    } 
+                },
+                {
+                    $group : {
+                        _id : "$FName",
+                        bibid: {
+                            $addToSet: "$bibid"
+                        },
+                        Station: {
+                            $addToSet: "$Station"
+                        },
+                        "Date": {
+                            $addToSet: "$Date"
+                        }
+                    }
+                },
+                function (err, xUsers){
+                    
+                    res.render('users/upcommingeventpost',{ 
+                        xEvent : xEvent,
+                        xUsers: xUsers, 
+                        title: "No Account"
+                    });
+                    //res.render('users/upcommingeventpost', {trailevents: docs, title: "Already Login"});
+                
+                }); // end of stats.aggregate
+            
+        });
     }
+ 
 });
 
 app.post("/signup", userExist, function (req, res) {
