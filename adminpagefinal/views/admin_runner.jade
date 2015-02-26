@@ -11,6 +11,16 @@ block content
           .col-md-12
             #wrapper  
                 // USER LIST
+                // SEARCH USER
+                h2 Search Participants
+                #searchUser
+                    field
+                        input#inputSearchName(type='text', placeholder='Bib ID')
+                        br
+                        button#btnSearchUser(href='#editmodal', data-toggle='modal') Search
+                        br
+                        br
+                // /SEARCH USER
                 h2 Participants
 
                 #userList
@@ -20,58 +30,43 @@ block content
                           th Name
                           th Remove
                       tbody
-        // /WRAPPER
+                // /USER LIST
+        #addUserPanel
+          h2 Add User
+          #addUser
+            fieldset
+              input#inputUserBibID(type='number', placeholder='BibID')
+              input#inputUserEvent(type='text', placeholder='Event')
+              br
+              input#inputUserFullname(type='text', placeholder='Full Name')
+              input#inputUserAge(type='number', placeholder='Age')
+              br
+              input#inputUserEmail(type='text', placeholder='Email Address')
+              input#inputUserContactNumber(type='number', placeholder='Contact Number')
+              br
+              input#inputUserAddress(type='text', placeholder='Address')
+              input#inputUserGender(type='text', placeholder='Gender')
+              br
+              button#btnAddUser Add User
 
-    #editmodal.modal.fade(role='dialog')
-      .modal-dialog
-        .modal-content
-          form.form-horizontal
-            .modal-header
-              h4 Edit Participant
-            .modal-body
-              .form-group
-                label.col-lg-2.control-label Bib ID:
-                .col-lg-10
-                  input#updateUserBibID.form-control(type='text', placeholder='Bib ID', rel='bibid')
-                br
-              .form-group
-                label.col-lg-2.control-label Event:
-                .col-lg-10
-                  input#updateUserEvent.form-control(type='text', placeholder='Event', rel='event')
-                br
-                .form-group
-                label.col-lg-2.control-label Name:
-                .col-lg-10
-                  input#updateUserFullname.form-control(type='text', placeholder='Full Name', rel='fullname')
-                br
-                .form-group
-                label.col-lg-2.control-label Age:
-                .col-lg-10
-                  input#updateUserAge.form-control(type='text', placeholder='Age', rel='age')
-                br
-                .form-group
-                label.col-lg-2.control-label Email:
-                .col-lg-10
-                  input#updateUserEmail.form-control(type='text', placeholder='Email Address', rel='emailaddress')
-                br
-                .form-group
-                label.col-lg-2.control-label Contact:
-                .col-lg-10
-                  input#updateUserContactNumber.form-control(type='text', placeholder='Contact Number', rel='contactnumber')
-                br
-                .form-group
-                label.col-lg-2.control-label Address:
-                .col-lg-10
-                  input#updateUserAddress.form-control(type='text', placeholder='Address', rel='address')
-                br
-                .form-group
-                label.col-lg-2.control-label Gender:
-                .col-lg-10
-                  input#updateUserGender.form-control(type='text', placeholder='Gender', rel='gender')
-                br
-                br
-                label.col-lg-2.control-label QR:
-                |  <div id="qrcode" style="width:250px; height:250px; margin-top:15px;"></div>
-              .modal-footer
-                button#btnUpdateUser.btn-primary(type='submit') Save
-                a.btn.btn-default(data-dismiss='modal') Close
+        #updateUserPanel
+          h2 Update User
+          #updateUser
+            fieldset
+              input#updateUserBibID(type='number', placeholder='BibID',)
+              input#updateUserEvent(type='text', placeholder='Event')
+              br
+              input#updateUserFullname(type='text', placeholder='Full Name')
+              input#updateUserAge(type='number', placeholder='Age')
+              br
+              input#updateUserEmail(type='text', placeholder='Email Address')
+              input#updateUserContactNumber(type='number', placeholder='Contact Number')
+              br
+              input#updateUserAddress(type='text', placeholder='Address')
+              input#updateUserGender(type='text', placeholder='Gender')
+              br
+              | <div id="qrcode" style="width:250px; height:250px; margin-top:15px;"></div>
+              br
+              button#btnUpdateUser Update
+              button#btnCancelUpdateUser Cancel
+        // /WRAPPER

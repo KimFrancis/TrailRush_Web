@@ -9,8 +9,7 @@ var userListData = [];
 $(document).ready(function(){  
 
     populateTable();
-      
-    });
+  });
 
  // Username link click
     // $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
@@ -28,7 +27,7 @@ $(document).ready(function(){
     $('#btnCancelUpdateUser').on('click', togglePanels);
     // Cancel Update User button click
  // Add class to updated fields
-    $('#editmodal input').on('change', function(){$(this).addClass('updated')})
+    $('#updateUser input').on('change', function(){$(this).addClass('updated')})
  // Update User button click
     $('#btnUpdateUser').on('click', updateUser);
 
@@ -39,6 +38,8 @@ function togglePanels(){
     $('#addUserPanel').toggle();
     $('#updateUserPanel').toggle();
   }
+
+
 
 
 // Fill table with data
@@ -58,7 +59,7 @@ function populateTable() {
         $.each(data, function(){
             tableContent += '<tr>';
             tableContent += '<td>' + this.bibid + '</td>';
-            tableContent += '<td><a href="#editmodal" data-toggle="modal" class="linkupdateuser" rel="' + this.bibid + '" title="Show Details">' + this.fullname + '</a></td>';
+            tableContent += '<td><a href="#" class="linkupdateuser" rel="' + this.bibid + '" title="Show Details">' + this.fullname + '</a></td>';
             tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">REMOVE</a></td>';
             tableContent += '</tr>';
 
@@ -196,16 +197,14 @@ function searchUser(event) {
 
     console.log(thisUserObject);
     //Populate Info Box
-      $('#updateUserBibID').val(thisUserObject.bibid);
-      $('#updateUserEvent').val(thisUserObject.event);
-      $('#updateUserFullname').val(thisUserObject.fullname );
-      $('#updateUserAge').val(thisUserObject.age);
-      $('#updateUserEmail').val(thisUserObject.emailaddress);
-      $('#updateUserContactNumber').val(thisUserObject.contactnumber);
-      $('#updateUserAddress').val(thisUserObject.address);
-      $('#updateUserGender').val(thisUserObject.gender);
-
-
+        $('#updateUserBibID').val(thisUserObject.bibid);
+        $('#updateUserEvent').val(thisUserObject.event);
+        $('#updateUserFullname').val(thisUserObject.fullname);
+        $('#updateUserAge').val(thisUserObject.age);
+        $('#updateUserEmail').val(thisUserObject.emailaddress);
+        $('#updateUserContactNumber').val(thisUserObject.contactnumber);
+        $('#updateUserAddress').val(thisUserObject.address);
+        $('#updateUserGender').val(thisUserObject.gender);
 
     //Generate QR
     clearQR();
@@ -217,7 +216,7 @@ function searchUser(event) {
   
 
     var name = document.getElementById('updateUserFullname').value;
-    var bimp = document.getElementById('updateUserBibID').value;
+    var bimp = document.getElementById('updateUserAge').value;
     var TRevent= document.getElementById('updateUserEvent').value;
 
     document.getElementById('qrcode').value='{"FName":"'+name+'","bibid":"'+bimp+'","EventName":"'+TRevent+'"}';
@@ -290,7 +289,7 @@ function changeUserInfo(event) {
     });
   
     var name = document.getElementById('updateUserFullname').value;
-    var bimp = document.getElementById('updateUserBibID').value;
+    var bimp = document.getElementById('updateUserAge').value;
     var TRevent= document.getElementById('updateUserEvent').value;
     document.getElementById('qrcode').value='{"FName":"'+name+'","bibid":"'+bimp+'","EventName":"'+TRevent+'"}';
 
@@ -317,18 +316,16 @@ function updateUser(event){
     // If they did, do our update
  
     //set the _id of the user to be update 
-     var _id = $(this).parentsUntil('div').parent().attr('rel');
-    
-    console.log(_id);
+    var _id = $(this).parentsUntil('div').parent().attr('rel');
+
+      
     //create a collection of the updated fields
-    var fieldsToBeUpdated = $('#editmodal input.updated');
-    console.log(fieldsToBeUpdated);
+    var fieldsToBeUpdated = $('#updateUser input.updated');
       
     //create an object of the pairs
     var updatedFields = {};
     $(fieldsToBeUpdated).each(function(){
-        // var key = $(this).attr('placeholder').replace(" ","").toLowerCase();
-        var key = $(this).attr('rel');
+        var key = $(this).attr('placeholder').replace(" ","").toLowerCase();
         var value = $(this).val();
         updatedFields[key]=value;
     })

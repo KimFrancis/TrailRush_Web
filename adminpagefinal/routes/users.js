@@ -65,22 +65,12 @@ router.put('/updateuser/:id', function(req, res) {
     var doc = { $set: req.body};
     console.log(doc);
     db.collection('participants').updateById(userToUpdate,doc,function(err, result) {
-    console.log(err);
       res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });
     });
 
 });
 
 router.put('/updateevent/:id', function(req, res) {
-    // var dataToUpdate = {
-    //     EventStatus: req.body.EventStatus,
-    //     EventName: req.body.EventName,
-    //     EventStations: req.body.EventStations,
-    //     EventDescription: req.body.EventDescription,
-    //     EventOrganizer: req.body.EventOrganizer,
-    //     EventPlace: req.body.EventPlace,
-    //     EventDate: req.body.EventDate
-    // };
     var db = req.db;
     var userToUpdate = req.params.id;
     var doc = { $set: req.body};

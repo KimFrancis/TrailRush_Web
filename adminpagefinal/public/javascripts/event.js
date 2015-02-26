@@ -80,7 +80,7 @@ function deleteEvent(event) {
     event.preventDefault();
 
     // Pop up a confirmation dialog
-    var confirmation = confirm('Are you sure you want to delete this driver?');
+    var confirmation = confirm('Are you sure you want to delete this participant?');
 
     // Check and make sure the user confirmed
     if (confirmation === true) {
@@ -161,7 +161,7 @@ function updateEvent(event){
   event.preventDefault();
 
   // Pop up a confirmation dialog
-  var confirmation = confirm('Are you sure you want to update this user?');
+  var confirmation = confirm('Are you sure you want to update this participant?');
 
   // Check and make sure the user confirmed
   if (confirmation === true) {
