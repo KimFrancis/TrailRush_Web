@@ -473,7 +473,7 @@ app.get('/userprofile',function(req, res){
     }
 });
 //add profile
-app.post('/userprofile',function(req,res){
+app.post('/userprofile',function (req,res){
     var a = req.body;
     new Profile({
         _id: a.emailaddress,
@@ -492,6 +492,36 @@ app.post('/userprofile',function(req,res){
         res.redirect('/home');
     }
 });
+});
+
+//editprofile
+app.get('/:user/profile',function (req, res){
+    Profile.find({"EMail":emailCri}, function (err,xProfile){
+        res.render('users/editprofile',{xProfile:xProfile})
+
+    });//end of Profile.find
+
+});// end of get user profile
+
+app.post('/:user/profile',function (req, res){
+    Profile.update(
+    {
+        _id: req.body.Email
+    }, 
+    {
+        $set: {
+            FName: req.body.FName,
+            Address: req.body.Address,
+            Age: req.body.Age,
+            Gender: req.body.Gender,
+            Contact: req.body.Contact
+        }
+    }, 
+    function(err, updated) {
+        if( err || !updated ) console.log("User not updated");
+        else console.log("User updated");
+    });
+   console.log(req.body.Email);
 });
 
 app.param('bibid', function (req, res, next, name) {

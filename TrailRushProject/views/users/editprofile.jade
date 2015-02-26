@@ -1,0 +1,17 @@
+each user in xProfile
+	form(action='/#{user.FName}/profile', method='POST')
+		p Name
+			input(type='text', name="FName", value='#{user.FName}')
+		p Address
+			input(type='text', name='Address', value='#{user.Address}')
+		p Age
+			input(type='number', name='Age',value='#{user.Age}')
+		p Gender
+			input(type='text', name='Gender', value='#{user.Gender}')
+		p Contact
+			input(type='text', name='Contact', value='#{user.Contact}')
+			input(type='hidden',name='Email', value='#{user._id}')
+		input#Save(type='submit', value='Save')
+	input#Edit(type='button',value='Edit')
+	script(src='../javascripts/jquery.js')
+	script(src='../javascripts/editbtn.js')
