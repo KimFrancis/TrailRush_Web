@@ -76,20 +76,9 @@ html(lang='en')
                   small It's free and always will be.
                 
                 .form-group
-                  input#username.form-control.input-md(type='text', name='username', placeholder='Username',required, data-required-msg='Username is required', tabindex='1')
+                  input#email.form-control.input-md(type='email', name='email',required, data-required-msg='Email is required', placeholder='Email Address', tabindex='1')
                 .form-group
                   input#password.form-control.input-md(type='password', name='password',required, data-required-msg='Password is required', placeholder='Password', tabindex='2')
-                .form-group
-                  input#email.form-control.input-md(type='email', name='email',required, data-required-msg='Email is required', placeholder='Email Address', tabindex='3')
-                .form-group
-                  input#fname.form-control.input-md(type='text', name='fname', placeholder='Full Name',required, data-required-msg='Full Name is required',  tabindex='4')
-                .row
-                  .col-xs-12.col-sm-6.col-md-6
-                    input#age.form-control.input-md(type='number', name='age', placeholder='Age',required, data-required-msg='Age is required',  tabindex='5')
-                  .col-xs-12.col-sm-6.col-md-6
-                    select#gender.form-control(tabindex='6',required, data-required-msg='Gender is required', )
-                      option Male
-                      option Female
                 .form-group
                   p!=message
                   button.btn(type='submit', tabindex='7') Submit

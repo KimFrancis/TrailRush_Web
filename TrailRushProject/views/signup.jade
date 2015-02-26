@@ -7,38 +7,16 @@ form.form-horizontal(role='form', method="POST", action="/signup")
                     | Please Sign Up 
                     small It's free and always will be.
                   hr
-                  // Username
-                  .form-group
-                    label.control-label.col-sm-2(for='username') Username:
-                    .col-sm-10
-                      input#username.form-control(type='text', placeholder=' Enter Username', name='username')
-                  // Password
-                  .form-group
-                    label.control-label.col-sm-2(for='password') Password:
-                    .col-sm-10
-                      input#password.form-control(type='password', placeholder='Enter Password', name='password')
                   // Email
                   .form-group
                     label.control-label.col-sm-2(for='email') Email:
                     .col-sm-10
                       input#email.form-control(type='email', placeholder='Enter Email', name="email")
-                  // Full Name
+                  // Password
                   .form-group
-                    label.control-label.col-sm-2(for='fname') Name:
+                    label.control-label.col-sm-2(for='password') Password:
                     .col-sm-10
-                      input#fullname.form-control(type='text', placeholder='Enter Full Name', name="fname")
-                  // Age
-                  .form-group
-                    label.control-label.col-sm-2(for='age') Age:
-                    .col-sm-2
-                      input#age.form-control(type='number', placeholder='Age', name='age')
-                  // Gender
-                  .form-group
-                    label.control-label.col-sm-2(for='gender') Gender:
-                    .col-sm-4
-                      select#gender.form-control(name='gender')
-                        option Male
-                        option Female
+                      input#password.form-control(type='password', placeholder='Enter Password', name='password')
                   .modal-footer
                     button.btn.btn-primary(type='submit', value="Sign UP") Submit
                     a.btn.btn-default(data-dismiss='modal') Close

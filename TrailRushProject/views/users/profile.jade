@@ -1,0 +1,17 @@
+h1 Profile
+form(method="POST" action="/userprofile")
+	p Full Name:
+		input#fullname(type="text" name="fullname")
+	p Address:
+		input#address(type="text" name="address")
+	p Age:
+		input#age(type="string" name="age")
+	p Gender:
+		input#gender(type="text" name="gender")
+	each user in users
+		p Email:
+			input#emailaddress(type="text" name="emailaddress", value="#{user.email}")
+		p Contact Number:
+			input#contactnumber(type="text" name="contactnumber")		
+
+	p: button(type="submit") Save

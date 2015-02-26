@@ -12,7 +12,7 @@ var http = require('http');
 var path = require('path');
 var fs = require('fs');
 var app = express();
-var criteria;
+var emailCri;
 
 //LAGYAN NG MONGOOSE.CONNECT
 mongoose.connect("mongodb://admin:admin@ds041831.mongolab.com:41831/trailrush");
@@ -39,11 +39,7 @@ var Schema = new mongoose.Schema({
 var participants = mongoose.model('participants', Schema);
 //JOIN EVENT
 var UserSchema = new mongoose.Schema({
-    username: String,
     password: String,
-    fname: String,
-    age: String,
-    gender: String,
     email: String,
     salt: String,
     hash: String
@@ -69,6 +65,18 @@ var StatsSchema = new mongoose.Schema({
     event: String,
 });
 var MyStats=mongoose.model('MyStats', StatsSchema);
+//profile schema
+var ProfileSchema = new mongoose.Schema({
+     _id: String
+    ,FName: String
+    ,Address: String
+    ,Age: Number
+    ,Gender: String
+    ,EMail: String
+    ,Contact: String
+});
+var Profile=mongoose.model('Profile', ProfileSchema);
+
 //joinevent
 app.param('EventName', function(req, res, next, EventName){
     MyEvents.find({EventName: EventName}, function(err,docs){
@@ -113,10 +121,10 @@ app.use(function (req, res, next) {
 /*
 Helper Functions
 */
-function authenticate(name, pass, fn) {
-    if (!module.parent) console.log('authenticating %s:%s', name, pass);
+function authenticate(email, pass, fn) {
+    if (!module.parent) console.log('authenticating %s:%s', email, pass);
     User.findOne({
-        username: name
+        email: email
     },
 
     function (err, user) {
@@ -145,7 +153,7 @@ function requiredAuthentication(req, res, next) {
 
 function userExist(req, res, next) {
     User.count({
-        username: req.body.username
+        email: req.body.email
     }, function (err, count) {
         if (count === 0) {
             next();
@@ -268,29 +276,21 @@ app.get("/signup", function (req, res) {
 
 app.post("/signup", userExist, function (req, res) {
     var password = req.body.password;
-    var username = req.body.username;
-    var fname = req.body.fname;
-    var age = req.body.age;
-    var gender = req.body.gender;
     var email = req.body.email;
 
     hash(password, function (err, salt, hash) {
         if (err) throw err;
         var user = new User({
-            username: username,
-            fname: fname,
-            age: age,
-            gender: gender,
             email: email,
             salt: salt,
             hash: hash,
         }).save(function (err, newUser) {
             if (err) throw err;
-            authenticate(newUser.username, password, function(err, user){
+            authenticate(newUser.email, password, function(err, user){
                 if(user){
                     req.session.regenerate(function(){
                         req.session.user = user;
-                        req.session.success = 'Authenticated as ' + user.username + ' click to <a href="/logout">logout</a>. ' + ' You may now access <a href="/restricted">/restricted</a>.';
+                        req.session.success = 'Authenticated as ' + user.email + ' click to <a href="/logout">logout</a>. ' + ' You may now access <a href="/restricted">/restricted</a>.';
                         res.redirect('/home');
                     });
                 }
@@ -312,17 +312,17 @@ app.get("/login",function (req,res,next){
 
 app.post("/login", function (req, res) {
     
-    authenticate(req.body.username, req.body.password, function (err, user) {
+    authenticate(req.body.email, req.body.password, function (err, user) {
         if (user) {
             req.session.regenerate(function () {
                 req.session.user = user;
-                req.session.success = 'Authenticated as ' + user.username + ' click to <a href="/logout">logout</a>. ' + ' You may now access <a href="/restricted">/restricted</a>.';
+                req.session.success = 'Authenticated as ' + user.email + ' click to <a href="/logout">logout</a>. ' + ' You may now access <a href="/restricted">/restricted</a>.';
                 res.redirect('/home');
-                criteria=req.body.username;
+                emailCri=user.email;
             });
         } else {
             res.redirect('/login');
-            req.session.error = 'Authentication failed, please check your ' + ' username and password.';
+            req.session.error = 'Authentication failed, please check your ' + ' email and password.';
             
 
         }
@@ -336,24 +336,14 @@ app.get('/logout', function (req, res) {
 });
 
 //join event
-app.get("/join",function (req,res,next){
-    if (req.session.user) {
-        
-         MyEvents.find({"EventStatus":"Upcoming"}, function (err, docs) {
-        res.render('users/joinevent', { users : docs});
-        console.log(docs);
+app.get("/Join", function (req, res) {
+    MyEvents.find({}, function (err, docs) {
+        res.render('users/new_joinevent', { users : docs});
     });
-    } else {
-        next();
-    }
-}, function (req, res) {
-   res.redirect("/login");
 });
-
-app.post('/join',function(req,res){
+app.post('/Join',function(req,res){
     var a = req.body;
     new participants({
-        _id:a.fullname+a.event,
         fullname: a.fullname,
         address: a.address,
         event: a.event,
@@ -363,22 +353,39 @@ app.post('/join',function(req,res){
         contactnumber: a.contactnumber,
 
     }).save(function (err, users){
+        if(err) res.json(err);
+        participants.find({"fullname": req.body.fullname},function(err,docs){
+        res.render('users/show_joinevent', {users: docs});
+    });
+});
+});
+
+//get data from users to profile
+app.get('/userprofile',function(req, res){
+    User.find({"email":emailCri},function(err,docs){
+        res.render("users/profile", {users: docs});
+        console.log(docs);
+    });
+});
+//add profile
+app.post('/userprofile',function(req,res){
+    var a = req.body;
+    new Profile({
+        _id: a.emailaddress,
+        FName: a.fullname,
+        Address: a.address,
+        Age: a.age,
+        Gender: a.gender,
+        EMail: a.emailaddress,
+        Contact: a.contactnumber,
+
+    }).save(function (err, users){
         if(err){
-           MyEvents.find({"EventStatus":"Upcoming"}, function (err, docs) {
-            res.render('users/joinevent', { users : docs, title : "You have already joined in this event!"});
-            console.log(docs);
-        });
-        } //res.json(err);
-        participants.find({"_id": req.body.fullname+req.body.event},function(err,docs){
-/*          console.log(docs.length)
-        if (docs.length>){
-            res.render('users/show', {users: docs});
+            res.send("Soorryyyy")
         }
         else{
-            res.render('users/alert', {users: docs});
-        }*/
-        res.render('users/joinsuccess', {users: docs});
-    });
+        res.send("Your profile was saved in our database");
+    }
 });
 });
 
