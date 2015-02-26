@@ -63,7 +63,7 @@ router.put('/updateuser/:id', function(req, res) {
     var db = req.db;
     var userToUpdate = req.params.id;
     var doc = { $set: req.body};
-
+    console.log(doc);
     db.collection('participants').updateById(userToUpdate,doc,function(err, result) {
     console.log(err);
       res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });

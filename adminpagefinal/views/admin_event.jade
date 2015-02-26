@@ -1,25 +1,8 @@
 extends layout2
 
 block content
-    h1 Trail Rush
-    p Admin Page(Event)
-    br
-    br
-    #updateEventPanel
-          h2 Edit Event Panel
-          #updateEvent
-            fieldset
-              input#updateUserEventName(type='text', placeholder='Event Name',)
-              input#updateUserEventStatus(type='text', placeholder='Event Status')
-              br
-              input#updateUserEventOrganizer(type='text', placeholder='Event Organizer')
-              input#updateUserEventPlace(type='text', placeholder='Event Place')
-              br
-              input#updateUserEventDescription(type='text', placeholder='Event Description')
-              input#updateUserEventDate(type='date', placeholder='Event Date')
-              br
-              button#btnUpdateEvent Update
-              button#btnCancelUpdateEvent Cancel
+
+
 
     // Wrapper
     #wrapper
@@ -29,8 +12,7 @@ block content
         #userList1
             table
                 thead
-                    th Name of Event
-                    th Edit
+                    th Event
                     th Remove
                 tbody
         button#btnAddEvent Add Event
@@ -39,3 +21,6 @@ block content
 
         // /USER LIST
     // /WRAPPER
+
+           
+

@@ -9,30 +9,8 @@ var userListData = [];
 $(document).ready(function(){  
 
     populateTable();
-      var checkField;
-
-      //checking the length of the value of message and assigning to a variable(checkField) on load
-      checkField = $("input#inputSearchName").val().length;  
-
-      var enableDisableButton = function(){         
-        if(checkField > 0){
-          $('#btnSearchUser').removeAttr("disabled");
-        } 
-        else {
-          $('#btnSearchUser').attr("disabled","disabled");
-        }
-      }        
-
-      //calling enableDisableButton() function on load
-      enableDisableButton();            
-
-      $('input#inputSearchName').keyup(function(){ 
-        //checking the length of the value of message and assigning to the variable(checkField) on keyup
-        checkField = $("input#inputSearchName").val().length;
-        //calling enableDisableButton() function on keyup
-        enableDisableButton();
-      });
-    })
+      
+    });
 
  // Username link click
     // $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
@@ -50,7 +28,7 @@ $(document).ready(function(){
     $('#btnCancelUpdateUser').on('click', togglePanels);
     // Cancel Update User button click
  // Add class to updated fields
-    $('#updateUser input').on('change', function(){$(this).addClass('updated')})
+    $('#editmodal input').on('change', function(){$(this).addClass('updated')})
  // Update User button click
     $('#btnUpdateUser').on('click', updateUser);
 
@@ -82,9 +60,7 @@ function populateTable() {
         $.each(data, function(){
             tableContent += '<tr>';
             tableContent += '<td>' + this.bibid + '</td>';
-            tableContent += '<td><a href="#" class="linkupdateuser" rel="' + this.bibid + '" title="Show Details">' + this.fullname + '</a></td>';
-            tableContent += '<td>' + this.gender + '</td>';
-            tableContent += '<td>' + this.age + '</td>';
+            tableContent += '<td><a href="#editmodal" data-toggle="modal" class="linkupdateuser" rel="' + this.bibid + '" title="Show Details">' + this.fullname + '</a></td>';
             tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">REMOVE</a></td>';
             tableContent += '</tr>';
 
@@ -343,16 +319,18 @@ function updateUser(event){
     // If they did, do our update
  
     //set the _id of the user to be update 
-    var _id = $(this).parentsUntil('div').parent().attr('rel');
-
-      
+    var _id = $(this).parentsUntil('div').parent();
+;
+    console.log(_id)
     //create a collection of the updated fields
-    var fieldsToBeUpdated = $('#updateUser input.updated');
+    var fieldsToBeUpdated = $('#editmodal input.updated');
+    console.log(fieldsToBeUpdated);
       
     //create an object of the pairs
     var updatedFields = {};
     $(fieldsToBeUpdated).each(function(){
-        var key = $(this).attr('placeholder').replace(" ","").toLowerCase();
+        // var key = $(this).attr('placeholder').replace(" ","").toLowerCase();
+        var key = $(this).attr('rel');
         var value = $(this).val();
         updatedFields[key]=value;
     })

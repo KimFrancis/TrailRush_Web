@@ -55,7 +55,6 @@ function populateTable() {
         $.each(data, function(){
             tableContent += '<tr>';
             tableContent += '<td><a href="http://localhost:3000/admin/event/'+this._id+'" rel="' + this._id + '" title="Show Details">' + this.EventName + '</a></td>';
-            tableContent += '<td><a href="#" class="linkupdateevent" rel="' + this.EventName + '">EDIT</a></td>';
             tableContent += '<td><a href="#" class="linkdeleteevent" rel="' + this._id + '">REMOVE</a></td>';
             tableContent += '</tr>';
 
