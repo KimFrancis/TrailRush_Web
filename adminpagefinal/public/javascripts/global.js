@@ -211,7 +211,7 @@ function searchUser(event) {
   
 
     var name = document.getElementById('updateUserFullname').value;
-    var bimp = document.getElementById('updateUserAge').value;
+    var bimp = document.getElementById('updateUserBibID').value;
     var TRevent= document.getElementById('updateUserEvent').value;
 
     document.getElementById('qrcode').value='{"FName":"'+name+'","bibid":"'+bimp+'","EventName":"'+TRevent+'"}';
@@ -284,7 +284,7 @@ function changeUserInfo(event) {
     });
   
     var name = document.getElementById('updateUserFullname').value;
-    var bimp = document.getElementById('updateUserAge').value;
+    var bimp = document.getElementById('updateUserBibID').value;
     var TRevent= document.getElementById('updateUserEvent').value;
     document.getElementById('qrcode').value='{"FName":"'+name+'","bibid":"'+bimp+'","EventName":"'+TRevent+'"}';
 

@@ -1,4 +1,3 @@
-var attempt = 3; // Variable to count number of attempts.
 // Below function Executes on click of login button.
 function validate(){
 var username = document.getElementById("username").value;
@@ -8,15 +7,9 @@ alert ("Login successfully");
 window.location = 'http://localhost:3001/admin/event'; // Redirecting to admin page.
 return false;
 }
-else{
-attempt --;// Decrementing by one.
-alert("You have left "+attempt+" attempt \n Please check your Username or Password.");
+else{// Decrementing by one.
+alert("Login Error! Try Again!");
 // Disabling fields after 3 attempts.
-if( attempt == 0){
-document.getElementById("username").disabled = true;
-document.getElementById("password").disabled = true;
-document.getElementById("submit").disabled = true;
-return false;
-}
+
 }
 }
