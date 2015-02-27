@@ -221,16 +221,24 @@ app.get("/home", function (req,res){
             "_id" : 1
         } 
     },
-function (err, docs){
-    console.log(docs);
-    res.render('users/trailrush', {users: docs ,title: "Already Login"});
+function (err, xEvent){
+    Profile.find({"EMail":emailCri}, function (err, xProfile){
+        res.render('users/trailrush',{
+        xEvent : xEvent,
+        xProfile : xProfile,
+        title : "Already Login"
+        });
+        console.log(xProfile);
+    })
+
+    /*console.log(docs);
+    res.render('users/trailrush', {xEvent: xEvent ,title: "Already Login"});*/
 
 });
 
     }
     else {
-
-                MyEvents.aggregate(
+        MyEvents.aggregate(
     /*{ $match: 
         { "EventStatus": "Upcoming" 
     } 
@@ -251,18 +259,19 @@ function (err, docs){
             "_id" : 1
         } 
     },
-function (err, docs){
-    console.log(docs);
-    res.render('users/trailrush', {users: docs, title: "No Account"});
- 
-});
-        /*MyEvents.find({"EventStatus":"Upcoming"}, function (err, docs){
-        res.render("users/trailrush", {trailevents: docs, title: "No Account"});
+function (err, xEvent){
+        res.render('users/trailrush',{
+        xEvent : xEvent,
+        title : "No Account"
         });
-        MyEvents.find({"EventStatus":"Current"}, function (err, docs){
-        res.render("users/trailrush", {current: docs, title: "Already Login"});
-        });*/
-    }
+
+    /*console.log(docs);
+    res.render('users/trailrush', {xEvent: xEvent ,title: "Already Login"});*/
+
+});
+
+    }//end of else
+
 });
 
 app.get("/Event/:id", function(req,res){
@@ -380,7 +389,8 @@ app.post("/signup", userExist, function (req, res) {
                     req.session.regenerate(function(){
                         req.session.user = user;
                         req.session.success = 'Authenticated as ' + user.email + ' click to <a href="/logout">logout</a>. ' + ' You may now access <a href="/restricted">/restricted</a>.';
-                        res.redirect('/home');
+                         emailCri=user.email;
+                        res.redirect('/userprofile');
                     });
                 }
             });
@@ -479,7 +489,7 @@ app.post('/userprofile',function(req,res){
             res.send("Soorryyyy")
         }
         else{
-        res.send("Your profile was saved in our database");
+        res.redirect('/home');
     }
 });
 });

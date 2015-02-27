@@ -53,13 +53,14 @@ html(lang='en')
                 a(href='http://localhost:3000/Join') Join Event
               li.dropdown
                 a.dropdown-toggle(href='#', data-toggle='dropdown')
-                  | Name
-                  b.caret
-                ul.dropdown-menu
-                  li
-                    a(href='#') View Profile
-                  li
-                    a(href='http://localhost:3000/logout') Logout
+                  each name in xProfile
+                    | #{name.FName}
+                    b.caret
+                  ul.dropdown-menu
+                    li
+                      a(href='#') View Profile
+                    li
+                      a(href='http://localhost:3000/logout') Logout
               
            
     if (title == "No Account")                
@@ -98,7 +99,7 @@ html(lang='en')
         .container
           h1 LIST OF EVENTS
           .row
-            each tevent in users
+            each tevent in xEvent
               .col-md-4.col-sm-4.col-xs-12
                 h2 #{tevent._id}
                 ul
@@ -143,7 +144,7 @@ html(lang='en')
         .container
           h1 LIST OF EVENTS
           .row
-            each tevent in users
+            each tevent in xEvent
               .col-md-4.col-sm-4.col-xs-12
                 h2 #{tevent._id}
                 ul

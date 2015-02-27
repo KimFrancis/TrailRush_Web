@@ -69,7 +69,7 @@ html(lang='en')
         .row
           .col-xs-12.col-sm-8.col-md-6.col-sm-offset-2.col-md-offset-3
             #blackbox
-              form(role='form')
+              form(role='form', action="/userprofile", method="POST" )
                 h2 User Profile
                 .form-group
                   input#fname.form-control.input-md(type='text', name='fullname', placeholder='Full Name', tabindex='1')
@@ -88,7 +88,7 @@ html(lang='en')
                 .form-group
                   input#contactnumber.form-control.input-md(type='number', name='contactnumber', placeholder='Contact Number', tabindex='4')
                 .form-group
-                  button.btn(type='submit') Submit
+                  button.btn(type='submit') Save
     script(src='js/jquery.js')
     script(src='js/scrollingproject.js')
     // Bootstrap Core JavaScript
