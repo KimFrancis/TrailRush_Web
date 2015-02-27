@@ -352,7 +352,17 @@ app.get("/Event/:id", function(req,res){
     }
  
 });
+//sign up
+app.get("/signup",function (req,res,next){
+    if (req.session.user) {
+        res.redirect("/home");
 
+    } else {
+        next();
+    }
+}, function (req, res) {
+    res.render("users/signup");
+ });
 app.post("/signup", userExist, function (req, res) {
     var password = req.body.password;
     var email = req.body.email;
