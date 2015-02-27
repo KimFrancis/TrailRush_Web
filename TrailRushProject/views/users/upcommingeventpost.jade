@@ -85,20 +85,20 @@ html(lang='en')
                   form(role='form', method="POST", action="/Event/#{tevent.EventName}")
                     .form-group
                       //pkilagyan ng label
-                      input#email.form-control.input-md(type='text', name='FName',required, data-required-msg='Email is required', placeholder='fullname', tabindex='1', value='#{user.FName}')
+                      input#email.form-control.input-md(type='text', name='FName',required, data-required-msg='Email is required', placeholder='fullname', tabindex='1', value='#{user.FName}', readonly)
                     .form-group
-                      input#email.form-control.input-md(type='text', name='Address',required, data-required-msg='Email is required', placeholder='fullname', tabindex='1', value='#{user.Address}')
-                    .form-group
-                      //pkilagyan ng label
-                      input#email.form-control.input-md(type='email', name='EMail',required, data-required-msg='Email is required', placeholder='Email Address', tabindex='1', value='#{user.EMail}')
-                    .form-group
-                      input#password.form-control.input-md(type='text', name='Contact',required, data-required-msg='Password is required', placeholder='Password', tabindex='2', value='#{user.Contact}')
+                      input#email.form-control.input-md(type='text', name='Address',required, data-required-msg='Email is required', placeholder='fullname', tabindex='1', value='#{user.Address}', readonly)
                     .form-group
                       //pkilagyan ng label
-                      input#email.form-control.input-md(type='number', name='Age',required, data-required-msg='Email is required', placeholder='Email Address', tabindex='1', value='#{user.Age}')
+                      input#email.form-control.input-md(type='email', name='EMail',required, data-required-msg='Email is required', placeholder='Email Address', tabindex='1', value='#{user.EMail}', readonly)
+                    .form-group
+                      input#password.form-control.input-md(type='text', name='Contact',required, data-required-msg='Password is required', placeholder='Password', tabindex='2', value='#{user.Contact}', readonly)
                     .form-group
                       //pkilagyan ng label
-                      input#email.form-control.input-md(type='text', name='Gender',required, data-required-msg='Email is required', placeholder='Email Address', tabindex='1', value='#{user.Gender}')
+                      input#email.form-control.input-md(type='number', name='Age',required, data-required-msg='Email is required', placeholder='Email Address', tabindex='1', value='#{user.Age}', readonly)
+                    .form-group
+                      //pkilagyan ng label
+                      input#email.form-control.input-md(type='text', name='Gender',required, data-required-msg='Email is required', placeholder='Email Address', tabindex='1', value='#{user.Gender}', readonly)
                     .form-group
                       p!=message
                       button.btn(type='submit', tabindex='7') Join
