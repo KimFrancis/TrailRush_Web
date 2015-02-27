@@ -50,35 +50,58 @@ html(lang='en')
           .col-lg-8
             each tevent in xEvent
               h1 #{tevent.EventName}
-            .panel.panel-success
-              .panel-heading
-                h3.panel-title Results
-                .pull-right
-                  span.clickable.filter(data-toggle='tooltip', title='Toggle table filter', data-container='body')
-                    i.glyphicon.glyphicon-filter
-              .panel-body
-                input#task-table-filter.form-control(type='text', data-action='filter', data-filters='#task-table', placeholder='Search Name')
-              table#task-table.table.table-hover
-                thead
-                  tr
-                    th #
-                    th Name
-                    th Time
-                    th Status
-                tbody
-                  each name in xUsers
-                    tr
-                      td #{name.bibid}
-                      td #{name._id}
-                      each time in name.Date
-                        script
-                          -var timestamp=time;
-                          -var date = new Date(timestamp*1000);
-                          -var minutes = "0" + date.getMinutes();
-                          -var seconds = "0" + date.getSeconds();
-                          -var hours = date.getHours();
-                          -var formattedtime = hours + ":" + minutes.substr(minutes.length-2) + ':' + seconds.substr(seconds.length-2);
-                        td #{formattedtime}
+              if (tevent.EventStatus == "Past" || tevent.EventStatus == "Current" )  
+                .panel.panel-success
+                  .panel-heading
+                    h3.panel-title Results
+                    .pull-right
+                      span.clickable.filter(data-toggle='tooltip', title='Toggle table filter', data-container='body')
+                        i.glyphicon.glyphicon-filter
+                  .panel-body
+                    input#task-table-filter.form-control(type='text', data-action='filter', data-filters='#task-table', placeholder='Search Name')
+                  table#task-table.table.table-hover
+                    thead
+                      tr
+                        th #
+                        th Name
+                        th Time
+                        th Status
+                    tbody
+                      each name in xUsers
+                        tr
+                          td #{name.bibid}
+                          td #{name._id}
+                          each time in name.Date
+                            script
+                              -var timestamp=time;
+                              -var date = new Date(timestamp*1000);
+                              -var minutes = "0" + date.getMinutes();
+                              -var seconds = "0" + date.getSeconds();
+                              -var hours = date.getHours();
+                              -var formattedtime = hours + ":" + minutes.substr(minutes.length-2) + ':' + seconds.substr(seconds.length-2);
+                            td #{formattedtime}                
+              else
+                each user in xProfile
+                  form(role='form', method="POST", action="/Event/#{tevent.EventName}")
+                    .form-group
+                      //pkilagyan ng label
+                      input#email.form-control.input-md(type='text', name='FName',required, data-required-msg='Email is required', placeholder='fullname', tabindex='1', value='#{user.FName}')
+                    .form-group
+                      input#email.form-control.input-md(type='text', name='Address',required, data-required-msg='Email is required', placeholder='fullname', tabindex='1', value='#{user.Address}')
+                    .form-group
+                      //pkilagyan ng label
+                      input#email.form-control.input-md(type='email', name='EMail',required, data-required-msg='Email is required', placeholder='Email Address', tabindex='1', value='#{user.EMail}')
+                    .form-group
+                      input#password.form-control.input-md(type='text', name='Contact',required, data-required-msg='Password is required', placeholder='Password', tabindex='2', value='#{user.Contact}')
+                    .form-group
+                      //pkilagyan ng label
+                      input#email.form-control.input-md(type='number', name='Age',required, data-required-msg='Email is required', placeholder='Email Address', tabindex='1', value='#{user.Age}')
+                    .form-group
+                      //pkilagyan ng label
+                      input#email.form-control.input-md(type='text', name='Gender',required, data-required-msg='Email is required', placeholder='Email Address', tabindex='1', value='#{user.Gender}')
+                    .form-group
+                      p!=message
+                      button.btn(type='submit', tabindex='7') Join
 
             // Comments Form
           // Blog Sidebar Widgets Column

@@ -305,12 +305,16 @@ app.get("/Event/:id", function(req,res){
                     }
                 },
                 function (err, xUsers){
-                    
-                    res.render('users/upcommingeventpost',{ 
+                    Profile.find({"EMail":emailCri},function (err, xProfile){
+                        res.render('users/upcommingeventpost',{ 
                         xEvent : xEvent,
                         xUsers: xUsers, 
+                        xProfile: xProfile,
                         title: "Already Login"
+
                     });
+                    
+                    });//edn of find profile
                     //res.render('users/upcommingeventpost', {trailevents: docs, title: "Already Login"});
                 
                 }); // end of stats.aggregate
@@ -361,6 +365,28 @@ app.get("/Event/:id", function(req,res){
     }
  
 });
+
+//join event
+app.post("/Event/:id",function (req, res){
+    var a = req.body;
+    new participants({
+        _id: a.FName+"."+req.params.id,
+        fullname: a.FName,
+        address: a.Address,
+        event: req.params.id,
+        age: a.Age,
+        gender: a.Gender,
+        emailaddress: a.EMail,
+        contactnumber: a.Contact,
+
+    }).save(function (err, users){
+        if(err) res.json(err);
+        participants.find({"fullname": req.body.FName},function(err,docs){
+        res.render('users/show_joinevent', {users: docs});
+    });
+});
+
+});//end of join event
 //sign up
 app.get("/signup",function (req,res,next){
     if (req.session.user) {
@@ -473,7 +499,7 @@ app.get('/userprofile',function(req, res){
     }
 });
 //add profile
-app.post('/userprofile',function (req,res){
+app.post('/userprofile',function(req,res){
     var a = req.body;
     new Profile({
         _id: a.emailaddress,
@@ -492,36 +518,6 @@ app.post('/userprofile',function (req,res){
         res.redirect('/home');
     }
 });
-});
-
-//editprofile
-app.get('/:user/profile',function (req, res){
-    Profile.find({"EMail":emailCri}, function (err,xProfile){
-        res.render('users/editprofile',{xProfile:xProfile})
-
-    });//end of Profile.find
-
-});// end of get user profile
-
-app.post('/:user/profile',function (req, res){
-    Profile.update(
-    {
-        _id: req.body.Email
-    }, 
-    {
-        $set: {
-            FName: req.body.FName,
-            Address: req.body.Address,
-            Age: req.body.Age,
-            Gender: req.body.Gender,
-            Contact: req.body.Contact
-        }
-    }, 
-    function(err, updated) {
-        if( err || !updated ) console.log("User not updated");
-        else console.log("User updated");
-    });
-   console.log(req.body.Email);
 });
 
 app.param('bibid', function (req, res, next, name) {
