@@ -1,17 +1,108 @@
-each user in xProfile
-	form(action='/#{user.FName}/profile', method='POST')
-		p Name
-			input(type='text', name="FName", value='#{user.FName}')
-		p Address
-			input(type='text', name='Address', value='#{user.Address}')
-		p Age
-			input(type='number', name='Age',value='#{user.Age}')
-		p Gender
-			input(type='text', name='Gender', value='#{user.Gender}')
-		p Contact
-			input(type='text', name='Contact', value='#{user.Contact}')
-			input(type='hidden',name='Email', value='#{user._id}')
-		input#Save(type='submit', value='Save')
-	input#Edit(type='button',value='Edit')
-	script(src='../javascripts/jquery.js')
-	script(src='../javascripts/editbtn.js')
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Scrolling Nav - Start Bootstrap Template
+    link(href='../../stylesheets/bootstrap.min.css', rel='stylesheet')
+    link(href='../../stylesheets/scrolling-nav.css', rel='stylesheet')
+    link(href='../../stylesheets/newscarousel.css', rel='stylesheet')
+    link(href='../../stylesheets/project.css', rel='stylesheet')
+    style.
+      body {
+      background-image:url(../../img/mountain_lake_scenery_2-wallpaper-1600x900.jpg);
+      }
+      #signup #blackbox{
+      background-color: rgba(34,34,34,0.7);
+      padding-left: 30px;
+      padding-right: 30px;
+      padding-top: 5px;
+      padding-bottom: 30px;
+      vertical-align: center;
+      margin-top: 130px;
+      margin-bottom: 20px;
+      }
+      h2{
+      color:white;
+      padding-bottom:10px;
+      }
+      .col-xs-12{
+      margin-bottom:15px;
+      }
+      .btn{
+      margin-top: 20px;
+      margin-bottom:10px;
+      background-color:#ff9640;
+      border-color: none !important;
+      color:white;
+      }
+  body#page-top(data-spy='scroll', data-target='.navbar-fixed-top')
+    // Navigation
+    nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
+      .container
+        .navbar-header.page-scroll
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand.page-scroll(href='http://localhost:3000/home')
+            img(src='../../img/logo.png', height='18', width='140')
+        // Collect the nav links, forms, and other content for toggling
+        .collapse.navbar-collapse.navbar-ex1-collapse.navHeaderCollapse
+          ul.nav.navbar-nav.navbar-right
+            // Hidden li included to remove active class from about link when scrolled up past about section
+            li.hidden
+              a.page-scroll(href='http://localhost:3000/home#page-top')
+            li
+              a.page-scroll(href='http://localhost:3000/home#events') Events
+            li
+              a.page-scroll(href='http://localhost:3000/home#services') Services
+            li
+              a.page-scroll(href='http://localhost:3000/home#download') Download
+            li
+              a(href='http://localhost:3000/logout') Log Out
+    #signup
+      .container
+        .row
+          .col-xs-12.col-sm-8.col-md-6.col-sm-offset-2.col-md-offset-3
+            #blackbox
+              each user in xProfile  
+                .row
+                  .col-xs-10
+                    h2 User Profile 
+                  .col-xs-2
+                    button#Edit.btn(type='button',value='Edit') Edit
+                form(action='/#{user.FName}/profile', method='POST')
+                  
+                  .form-group
+                    input#fullname.form-control.input-md(type='text', name='FName', placeholder='Full Name',value='#{user.FName}', tabindex='1')
+                  .form-group
+                    input#address.form-control.input-md(type='text', name='Address', placeholder='Address',value='#{user.Address}', tabindex='2')
+                  .row
+                    .col-xs-12.col-sm-6.col-md-6
+                      input#age.form-control.input-md(type='number', name='Age', placeholder='Age',value='#{user.Age}', tabindex='4')
+                    .col-xs-12.col-sm-6.col-md-6
+                      select#gender.form-control(name='Gender',value='#{user.Gender}')
+                        option Male
+                        option Female
+                  .form-group
+                    input#contactnumber.form-control.input-md(type='number', name='Contact', placeholder='Contact Number',value='#{user.Contact}' ,tabindex='4')
+                    input(type='hidden',name='Email', value='#{user._id}')
+                  
+                  button#Save.btn(type='submit',value='Save') Save
+                
+               
+
+    script(src='../../javascripts/jquery.js')
+    script(src='../../javascripts/scrollingproject.js')
+    script(src='../javascripts/editbtn.js')
+    // Bootstrap Core JavaScript
+    script(src='../../javascripts/bootstrap.min.js')
+    // Scrolling Nav JavaScript
+    script(src='../../javascripts/jquery.easing.min.js')
+    script(src='../../javascripts/scrolling-nav.js')
+    script(src='../../javascripts/newscarousel.js')
