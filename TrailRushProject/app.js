@@ -451,10 +451,16 @@ app.post('/Join',function(req,res){
 
 //get data from users to profile
 app.get('/userprofile',function(req, res){
-    User.find({"email":emailCri},function(err,docs){
-        res.render("users/profile", {users: docs});
+    
+    if (req.session.user) {
+        User.find({"email":emailCri},function(err,docs){
+        res.render("users/userprofile", {users: docs,title: "Already Login"});
         console.log(docs);
     });
+    } else {
+        res.redirect('/home');
+  
+    }
 });
 //add profile
 app.post('/userprofile',function(req,res){
