@@ -2,17 +2,12 @@
 var userListData = [];
 
 
-
-
-
 // DOM Ready =============================================================
 $(document).ready(function(){  
 
     populateTable();
   });
 
- // Username link click
-    // $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
  // Delete User link click
     $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
  // start the update user process
@@ -339,12 +334,12 @@ function updateUser(event){
 
       // Check for a successful (blank) response
       if (response.msg === '') {
-              togglePanels();
-      }
+                alert('Sucessfully Updated!');
+                togglePanels();
+                    }
       else {
         alert('Bib ID already exist. Please try again!');
       }
-
       // Update the table
       populateTable();
 
@@ -357,6 +352,8 @@ function updateUser(event){
     return false;
 
   }
+
+
   }
 
 
@@ -364,23 +361,3 @@ function back() {
     window.location = 'http://localhost:3001/admin/event';
 }
 
-
-// function makeCode () { 
-    
-//     clearQR();
-//     var qrcode = new QRCode(document.getElementById("qrcode"), 
-//     {
-//     width : 250,
-//     height : 250
-//     });
-  
-
-//     var name = document.getElementById('userInfoName').value;
-//     var bimp = document.getElementById('userInfoAge').value;
-//     var TRevent= document.getElementById('userInfoEvent').value;
-//     document.getElementById('qrcode').value='{"Name":"'+name+'","Bib":"'+bimp+'","EventName":"'+TRevent+'"}';
-
-//     var elText = document.getElementById('qrcode');
-
-//     qrcode.makeCode(elText.value);
-// }

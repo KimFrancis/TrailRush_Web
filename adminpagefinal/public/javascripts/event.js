@@ -1,21 +1,14 @@
 // Userlist data array for filling in info box
 var userListData1 = [];
 
-
-
-
-
 // DOM Ready =============================================================
 $(document).ready(function() {
 
     // Populate the user table on initial page load
     populateTable();
 
-
 });
 
- // Username link click
-    // $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
  // Delete User link click
     $('#userList1 table tbody').on('click', 'td a.linkdeleteevent', deleteEvent);
  // start the update user process
@@ -191,7 +184,9 @@ function updateEvent(event){
 
       // Check for a successful (blank) response
       if (response.msg === '') {
+              alert('Sucessfully Updated!');
               togglePanels();
+
       }
       else {
         alert('Error: ' + response.msg);
